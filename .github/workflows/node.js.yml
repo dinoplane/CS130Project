@@ -13,21 +13,26 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      working-directory: frontend/excel-interface
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./frontend/excel-interface
 
     strategy:
-      matrix:        
-        node-version: [14.x, 16.x, 18.x]
+      matrix:
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    steps: 
+    steps:
     - uses: actions/checkout@v3
-    - run: ls 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: frontend/excel-interface/package-lock.json
     - run: npm ci
     - run: npm run lint
     - run: npm run prettier
