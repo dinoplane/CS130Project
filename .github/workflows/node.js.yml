@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-         working-directory: ./frontend/excel-interface
+         working-directory: frontend/excel-interface
 
     strategy:
       matrix:        
