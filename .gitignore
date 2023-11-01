@@ -1,1 +1,31 @@
+# Python-related
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+
+# Virtual environment
+venv/
+env/
+
+# IDE/Editor specific
+.vscode/
+.idea/
+
+# Compiled files
+*.pyc
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Cache
+__pycache__/
+
+# Miscellaneous
 .DS_Store
+Thumbs.db
