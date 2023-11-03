@@ -5,12 +5,6 @@ import { useState , useRef} from "react";
 import styles from "./page.module.css";
 
 // Example of a data array that
-// you might receive from an API
-const data = [
-  { name: "Anom", age: 19, gender: "Male" },
-  { name: "Megha", age: 19, gender: "Female" },
-  { name: "Subham", age: 25, gender: "Male" },
-];
 
 function Header() {
   return (
@@ -54,12 +48,7 @@ const MAPPINGS = [
 function UIMappingRow({rowCheckboxCallback, mapping}){
   const [isSelected, setIsSelected] = useState(false);
 
-  // function onSelectChange(entry, isChecked){
-
-  // }
-
   const onSelectChange = (e) => {
-    // console.log(e.target.value)
     console.log(isSelected)
     setIsSelected(!isSelected);
 
@@ -81,7 +70,37 @@ function UIMappingRow({rowCheckboxCallback, mapping}){
   );
 }
 
-function UINewRow(){
+function UINewRow({addRowCallback}){
+
+  const myRef = useRef(null);
+  const onInputSubmit = (e) => {
+    addRowCallback(myRef.current.value)
+  }
+  return (
+    <tr key={"add-row"}>
+    <td>
+      <input type="checkbox" disabled={true}></input>
+    </td>
+    <td>
+        <button id="addBtn" onClick={onInputSubmit}>
+          CONFIRM
+        </button>
+    </td>
+    <td>
+      <input ref={myRef}
+        type="text"
+        placeholder="Enter Mapping Query"
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            addRowCallback(event.target.value);
+          }
+          // console.log(myRef.current.value)
+        }}
+      ></input>
+    </td>
+    <td>10/27/2023</td>
+  </tr>
+  );
 
 }
 
@@ -112,7 +131,6 @@ function MappingTable() {
     ]);
     console.log(data);
     setShowTemplateRow(false);
-    console.log(uiRows);
     // setState({data:data})
     // setCount(count +1);
   }
@@ -136,41 +154,41 @@ function MappingTable() {
             data.map((val, id) => {
               return (
                 <UIMappingRow
-                  key={id}
+                  key={"ui-mapping-row" + parseInt(id)}
                   mapping={val}
                   rowCheckboxCallback={toggleSelectedEntries}
                 />
               );
             })
-
-
           }
           {showTemplateRow && (
-            <tr key={"add"}>
-              <td>
-                <input type="checkbox" disabled={true}></input>
-              </td>
-              <td></td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Enter Mapping Query"
-                  onKeyDown={(event) => {
-                    console.log(event.key);
-                    if (event.key === "Enter") {
-                      addRow(event.target.value);
-                    }
-                  }}
-                ></input>
-              </td>
-              <td>10/27/2023</td>
-            </tr>
+            <UINewRow
+              key={"ui-new-row"}
+              addRowCallback={addRow}/>
           )}
+          {
+            !showTemplateRow && (
+              <tr key={"show"}>
+                <td>
+
+                </td>
+                <td>
+                  <button id="addBtn" onClick={openTemplate}>
+                    ADD ROW
+                  </button>
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
-      <button id="addBtn" onClick={openTemplate}>
-        ADD ROW
-      </button>
+
     </div>
   );
 }
@@ -179,107 +197,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Header />
-
-      {/* <div className={styles.description}> */}
-      {/* <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p> */}
-      {/* <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div> */}
-      {/* </div> */}
-
-      {/*<div className={styles.center}>
-         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>*/}
-
       <MappingTable />
-
-      {/* <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>BAKA BAKA</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p> Responsible for every financial disaster since 1984!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-               SUSSY BAKA
-          </p>
-        </a>
-      </div> */}
     </main>
   );
-  // return (
-  //   <div className={styles.main}>
-  //       <table>
-  //           <tr>
-  //               <th>Name</th>
-  //               <th>Age</th>
-  //               <th>Gender</th>
-  //           </tr>
-
-  //       </table>
-  //   </div>
-  // );
 }
