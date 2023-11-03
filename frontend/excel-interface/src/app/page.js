@@ -1,7 +1,7 @@
 "use client"; // This is a client component 👈🏽
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState , useRef} from "react";
 import styles from "./page.module.css";
 
 // Example of a data array that
@@ -51,12 +51,53 @@ const MAPPINGS = [
   },
 ];
 
+function UIMappingRow({rowCheckboxCallback, mapping}){
+  const [isSelected, setIsSelected] = useState(false);
+
+  // function onSelectChange(entry, isChecked){
+
+  // }
+
+  const onSelectChange = (e) => {
+    // console.log(e.target.value)
+    console.log(isSelected)
+    setIsSelected(!isSelected);
+
+    rowCheckboxCallback(mapping, !isSelected);
+  }
+
+  return (
+    <tr>
+      <td>
+        <input
+          type="checkbox"
+          onChange={onSelectChange}
+        ></input>
+      </td>
+      <td>{mapping.ID.toString().padStart(6, "0")}</td>
+      <td>{mapping.mapping_query}</td>
+      <td>{mapping.date_modified}</td>
+    </tr>
+  );
+}
+
+function UINewRow(){
+
+}
+
 function MappingTable() {
   const [showTemplateRow, setShowTemplateRow] = useState(false);
   const [data, setData] = useState(MAPPINGS);
+  const [selectedEntries, setSelectedEntries] = useState([])
+
   // const [count, setCount] = useState(0);
   function openTemplate() {
     setShowTemplateRow(true);
+  }
+
+  const toggleSelectedEntries = (entry, isChecked) => {
+    setSelectedEntries((isChecked) ? [...selectedEntries, entry] :
+                          selectedEntries.filter((el) => el.ID != entry.ID));
   }
 
   function addRow(query) {
@@ -71,6 +112,7 @@ function MappingTable() {
     ]);
     console.log(data);
     setShowTemplateRow(false);
+    console.log(uiRows);
     // setState({data:data})
     // setCount(count +1);
   }
@@ -82,7 +124,6 @@ function MappingTable() {
         <thead>
           <tr key={"header"}>
             <th>
-              {/* {count} */}
               <input type="checkbox"></input>
             </th>
             <th>ID</th>
@@ -91,19 +132,19 @@ function MappingTable() {
           </tr>
         </thead>
         <tbody>
-          {data.map((val, key) => {
-            console.log("HI");
-            return (
-              <tr key={val.ID}>
-                <td>
-                  <input type="checkbox"></input>
-                </td>
-                <td>{val.ID.toString().padStart(6, "0")}</td>
-                <td>{val.mapping_query}</td>
-                <td>{val.date_modified}</td>
-              </tr>
-            );
-          })}
+          {
+            data.map((val, id) => {
+              return (
+                <UIMappingRow
+                  key={id}
+                  mapping={val}
+                  rowCheckboxCallback={toggleSelectedEntries}
+                />
+              );
+            })
+
+
+          }
           {showTemplateRow && (
             <tr key={"add"}>
               <td>
