@@ -51,6 +51,33 @@ const MAPPINGS = [
   },
 ];
 
+function UIMappingRow({mapping}){
+  const [isSelected, setIsSelected] = useState(false);
+
+  function onSelectChange(e){
+    console.log(e);
+  }
+
+  return (
+    <tr key={mapping.ID}>
+      <td>
+        <input
+          type="checkbox"
+          onChange={onSelectChange}
+        ></input>
+      </td>
+      <td>{mapping.ID.toString().padStart(6, "0")}</td>
+      <td>{mapping.mapping_query}</td>
+      <td>{mapping.date_modified}</td>
+    </tr>
+  );
+
+}
+
+function UINewRow(){
+
+}
+
 function MappingTable() {
   const [showTemplateRow, setShowTemplateRow] = useState(false);
   const [data, setData] = useState(MAPPINGS);
@@ -94,14 +121,7 @@ function MappingTable() {
           {data.map((val, key) => {
             console.log("HI");
             return (
-              <tr key={val.ID}>
-                <td>
-                  <input type="checkbox"></input>
-                </td>
-                <td>{val.ID.toString().padStart(6, "0")}</td>
-                <td>{val.mapping_query}</td>
-                <td>{val.date_modified}</td>
-              </tr>
+              <UIMappingRow mapping={val}/>
             );
           })}
           {showTemplateRow && (
