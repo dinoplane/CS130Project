@@ -1,0 +1,45 @@
+@startuml
+
+class User {
+
+}
+
+User - ExcelHandler
+User - MappingFactory
+
+class ExcelHandler{
+  downloadExcel(): Excel
+  uploadExcel(Excel) : void
+}
+
+ExcelHandler --- KnowledgeBase
+ExcelHandler --- MappingFactory
+
+
+class MappingFactory{
+    createMapping(string) : Mapping
+    deleteMapping() : void
+    viewMapping() : Mapping[0..*]
+}
+
+MappingFactory --- MappingDB
+
+enum ViewMapping {
+  mappingInfo: String
+}
+
+class MappingDB {
+  ViewMapping[0..*]
+  addMapping(ViewMapping)
+  removeMapping(ViewMapping)
+}
+
+class KnowledgeBase {
+  data
+  modifyData(UpdateQuery)
+  selectData(Query)
+  setKnowledgeBase(Query)
+}
+
+
+@enduml

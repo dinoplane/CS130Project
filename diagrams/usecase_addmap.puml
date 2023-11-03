@@ -1,0 +1,47 @@
+@startuml Add Mapping
+participant UserInterface
+participant MappingManager
+activate MappingDBManager
+activate MappingDB
+
+--> UserInterface : Start (displayMappings)
+activate UserInterface
+activate MappingManager
+|||
+UserInterface -> MappingManager : requestMappings(begin : int, end : int)
+
+MappingManager --> MappingDBManager : GET "fetchMapping(begin : int, end : int)"
+
+MappingDBManager --> MappingDB : SQL SELECT MAPPING WHERE ID >= begin AND ID <= end
+
+MappingDBManager <-- MappingDB : SQL OUTPUT
+
+MappingManager <-- MappingDBManager : entries : MappingEntry[0..(end - begin)]
+
+UserInterface <-- MappingManager : entries : MappingEntry[0..(end - begin)]
+
+
+
+ --> UserInterface : onAddRowClick()
+|||
+UserInterface --> UserInterface : createMappingEntry()
+|||
+UserInterface -> MappingManager : createMapping(MappingEntry)
+
+MappingManager --> MappingDBManager : POST "addMapping(MappingEntry)"
+
+MappingDBManager --> MappingDBManager : validateMapping(MappingEntry)
+
+alt entry is valid
+    MappingDBManager --> MappingDB : SQL Query
+    MappingDBManager <-- MappingDB : SQL RETURN: bool
+    MappingManager <-- MappingDBManager : SQL RETURN: bool
+|||
+else entry invalid
+|||
+    MappingManager <-- MappingDBManager : Bad request
+|||
+end
+    UserInterface <-- MappingManager : MappingManagerReturn: bool
+
+@enduml

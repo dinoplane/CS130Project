@@ -1,0 +1,170 @@
+@startuml
+package Frontend {
+  package UserInterface {
+    class UIApp {
+      header : Header
+      toolbar : ToolBar
+      mappingTable : MappingTable
+    }
+
+    UIApp "1" *-- "1" Header
+    UIApp "1" *-- "1" ToolBar
+    UIApp "1" *-- "1" MappingTable
+
+    class Header {
+      appName : Label
+      urlButton : Button
+
+      onUrlClick() : void
+      connectToUrl(url : String) : void
+    }
+
+    class ToolBar {
+      uploadButton : Button
+      downloadButton : Button
+      deleteButton : Button
+
+      onUploadClick() : void
+      openDialogForUpload() : Path
+
+      onDownloadClick() : void
+      openDialogForDownload() : Path
+
+      onDeleteClick() : void
+    }
+
+    ToolBar -- MappingTable
+
+    class MappingTable {
+      selectBox : CheckBox
+      maxRows : int
+      uiRows : UIMappingRow[0..*]
+      uiNewRow : UINewRow
+
+      displayMappings() : void
+      requestMappings(begin : int, end : int) : MappingEntry[0..(end-begin)]
+
+      onSelectChange() : void
+      getSelectedRows() : MappingEntry[0..*]
+    }
+
+    MappingTable *-- "0..*" UIMappingRow
+    MappingTable "1" *-- "1" UINewRow
+
+
+    class UIMappingRow{
+      selectBox : CheckBox
+
+      mapping : MappingEntry
+      idLabel : Label
+      queryLabel : Label
+      dateLabel : Label
+
+      onSelectChange() : void
+    }
+
+    class UINewRow {
+      queryInputField : InputField
+
+      showInput : Bool
+      showInputButton : Button
+
+      addRowButton : Button
+
+      viewSchemaButton : Button
+
+      dateLabel : Label
+
+      onShowInputClick() : void
+      onAddRowClick() : void
+      onViewSchemaClick() : void
+      onQueryInputKeyDown() : void
+    }
+  }
+  package FrontendController{
+    class ExcelHandler{
+      downloadExcel(selectedMappings : MappingEntry[0..*]): Excel
+      uploadExcel(Excel) : void
+    }
+
+    class MappingManager{
+        connectedFusekiUrl : String
+        mappingDbUrl : String
+
+        createMapping(MappingEntry) : void
+        deleteMapping(MappingEntry[1..*]) : void
+        requestMappings(begin : int, end : int) : MappingEntry[0..(end - begin)]
+    }
+  }
+
+  UINewRow ..> MappingManager
+  MappingTable ..> MappingManager
+  Header ..> MappingManager
+
+  ToolBar ..> ExcelHandler
+}
+
+package Backend {
+
+  package BackendController {
+    class MappingDBManager {
+      mappings : MappingEntry[0..*]
+
+      fetchMappings(begin : int, end : int) : void
+      addMapping(MappingEntry) : void
+      validateMapping(MappingEntry) : Bool
+
+      removeMapping(MappingEntry[1..*]) : void
+    }
+
+    note right of FusekiDispatcher : "Handles Frontend requests to \ncommunicate with Fuseki"
+    note right of FusekiDispatcher : "I'm questioning whether or not\n it talks to the \nMappingDBManager at all \n(mapping validation perhaps?)"
+
+    class FusekiDispatcher {
+      connectedFusekiUrl : String
+
+      setKnowledgeBase(Query) : Bool
+
+      processExcel(Excel) : void
+      outputExcel(MappingEntry[1..*]) : Excel
+    }
+  }
+
+  package FusekiManager{
+    class ExcelGenerator {
+      generateExcel(MappingEntry[1..*]) : Excel
+      generateSheet(xlFile Excel, entry : MappingEntry) : void
+      fetchData(Query) : XML/JSON
+    }
+
+    class FusekiUpdater {
+      updateFuseki(Excel) : Bool
+      parseExcel(Excel) : UpdateQuery
+      findDifferences(xlFile : Excel, sheetNum : int) : UpdateQuery
+      writeData(UpdateQuery) : void
+    }
+  }
+}
+
+
+struct MappingEntry {
+  mappingDatabase : String
+  mappingID : int
+  mappingInfo: String
+  mappingDate: Date
+}
+
+FusekiDispatcher ..> ExcelGenerator
+FusekiDispatcher ..> FusekiUpdater
+
+ExcelHandler ..> FusekiDispatcher
+MappingManager ..> MappingDBManager
+
+MappingDBManager ..> MappingDB
+
+ExcelGenerator ..> KnowledgeBase
+FusekiUpdater ..> KnowledgeBase
+
+note top of MappingDB : Define its schema
+note bottom of KnowledgeBase : Fuseki
+@enduml

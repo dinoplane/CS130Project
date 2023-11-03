@@ -1,0 +1,106 @@
+@startuml
+participant UserInterface
+participant MappingManager
+activate MappingDBManager
+activate MappingDB
+participant ExcelHandler
+activate FusekiDispatcher
+activate FusekiUpdater
+activate ExcelGenerator
+activate Fuseki
+
+--> UserInterface : Start (displayMappings)
+activate UserInterface
+activate MappingManager
+activate ExcelHandler
+|||
+UserInterface -> MappingManager : requestMappings(begin : int, end : int)
+
+MappingManager --> MappingDBManager : GET "fetchMapping(begin : int, end : int)"
+
+MappingDBManager --> MappingDB : SQL SELECT MAPPING WHERE ID >= begin AND ID <= end
+
+MappingDBManager <-- MappingDB : SQL OUTPUT
+
+MappingManager <-- MappingDBManager : entries : MappingEntry[0..(end - begin)]
+
+UserInterface <-- MappingManager : entries : MappingEntry[0..(end - begin)]
+
+
+
+ --> UserInterface : onAddRowClick()
+|||
+UserInterface --> UserInterface : createMappingEntry()
+|||
+UserInterface -> MappingManager : createMapping(MappingEntry)
+
+MappingManager --> MappingDBManager : POST "addMapping(MappingEntry)"
+
+MappingDBManager --> MappingDBManager : validateMapping(MappingEntry)
+
+alt entry is valid
+    MappingDBManager --> MappingDB : SQL Query
+    MappingDBManager <-- MappingDB : SQL RETURN: bool
+    MappingManager <-- MappingDBManager : SQL RETURN: bool
+|||
+else entry invalid
+|||
+    MappingManager <-- MappingDBManager : Bad request
+|||
+end
+    UserInterface <-- MappingManager : MappingManagerReturn: bool
+
+--> UserInterface : onDeleteClick()
+|||
+UserInterface --> UserInterface : getSelectedMappings()
+|||
+UserInterface -> MappingManager : deleteMapping(MappingEntry[1..*])
+
+MappingManager --> MappingDBManager : POST "removeMapping(MappingEntry[1..*])"
+
+loop for every entry
+    MappingDBManager --> MappingDB : SQL Query
+    MappingDBManager <-- MappingDB : SQL RETURN: bool
+|||
+end
+MappingManager <-- MappingDBManager : SQL RETURN: bool
+UserInterface <-- MappingManager : MappingManagerReturn: bool
+UserInterface --> UserInterface : updateView()
+
+
+--> UserInterface : onUploadClick()
+UserInterface --> UserInterface : openDialogForUpload() : Path
+UserInterface --> ExcelHandler : uploadExcel(Excel)
+ExcelHandler --> FusekiDispatcher : POST "processExcel(Excel)"
+FusekiDispatcher --> FusekiUpdater : updateFuseki()
+FusekiUpdater --> FusekiUpdater : parseExcel()
+loop for every sheet
+activate FusekiUpdater
+FusekiUpdater --> FusekiUpdater : findDifferences(xlFile : Excel, sheetNum : int) : SPARQL UPDATE
+FusekiUpdater --> Fuseki : writeData(SPARQL UPDATE)
+destroy FusekiUpdater
+end
+FusekiUpdater <-- Fuseki : FusekiReturn: bool
+FusekiDispatcher <-- FusekiUpdater : FusekiReturn: bool
+ExcelHandler <-- FusekiDispatcher : DispatcherReturn: bool
+UserInterface <-- ExcelHandler : HandlerReturn: bool
+
+--> UserInterface : onDownloadClick()
+UserInterface --> UserInterface : getSelectedMappings()
+UserInterface --> UserInterface : openDialogForDownload() : Path
+UserInterface --> ExcelHandler : downloadExcel(selectedMappings : MappingEntry[0..*])
+ExcelHandler --> FusekiDispatcher : GET "outputExcel(MappingEntry[1..*])"
+FusekiDispatcher --> ExcelGenerator : generateExcel(MappingEntry[1..*])
+loop for every mapping
+ExcelGenerator --> ExcelGenerator : generateSheet(xlFile : Excel, ent)
+activate ExcelGenerator
+ExcelGenerator --> Fuseki : fetchData(SPARQL)
+ExcelGenerator <-- Fuseki : JSON/XML
+|||
+destroy ExcelGenerator
+end
+FusekiDispatcher <-- ExcelGenerator : xlFile : Excel
+ExcelHandler <-- FusekiDispatcher : xlFile : Excel
+UserInterface <-- ExcelHandler : xlFile : Excel
+|||
+@enduml

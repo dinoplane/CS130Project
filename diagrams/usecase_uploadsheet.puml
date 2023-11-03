@@ -1,0 +1,46 @@
+@startuml Upload Sheet
+participant UserInterface
+participant MappingManager
+activate MappingDBManager
+activate MappingDB
+participant ExcelHandler
+activate FusekiDispatcher
+activate FusekiUpdater
+activate Fuseki
+
+--> UserInterface : Start (displayMappings)
+activate UserInterface
+activate MappingManager
+activate ExcelHandler
+|||
+UserInterface -> MappingManager : requestMappings(begin : int, end : int)
+
+MappingManager --> MappingDBManager : GET "fetchMapping(begin : int, end : int)"
+
+MappingDBManager --> MappingDB : SQL SELECT MAPPING WHERE ID >= begin AND ID <= end
+
+MappingDBManager <-- MappingDB : SQL OUTPUT
+
+MappingManager <-- MappingDBManager : entries : MappingEntry[0..(end - begin)]
+
+UserInterface <-- MappingManager : entries : MappingEntry[0..(end - begin)]
+
+
+--> UserInterface : onUploadClick()
+UserInterface --> UserInterface : openDialogForUpload() : Path
+UserInterface --> ExcelHandler : uploadExcel(Excel)
+ExcelHandler --> FusekiDispatcher : POST "processExcel(Excel)"
+FusekiDispatcher --> FusekiUpdater : updateFuseki()
+FusekiUpdater --> FusekiUpdater : parseExcel()
+loop for every sheet
+activate FusekiUpdater
+FusekiUpdater --> FusekiUpdater : findDifferences(xlFile : Excel, sheetNum : int) : SPARQL UPDATE
+FusekiUpdater --> Fuseki : writeData(SPARQL UPDATE)
+FusekiUpdater <-- Fuseki : FusekiReturn: bool
+destroy FusekiUpdater
+end
+FusekiDispatcher <-- FusekiUpdater : FusekiReturn: bool
+ExcelHandler <-- FusekiDispatcher : DispatcherReturn: bool
+UserInterface <-- ExcelHandler : HandlerReturn: bool
+
+@enduml
