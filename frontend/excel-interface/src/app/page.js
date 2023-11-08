@@ -1,10 +1,14 @@
 "use client"; // This is a client component 👈🏽
 
 import Image from "next/image";
-import { useState , useRef} from "react";
+import { useState , useRef, useEffect} from "react";
 import styles from "./page.module.css";
 
+import MappingManager from "./mappingmanager";
+
 // Example of a data array that
+
+const mappingManager = new MappingManager();
 
 function Header() {
   return (
@@ -17,42 +21,53 @@ function Header() {
   );
 }
 
-function Toolbar() {
+function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
   return (
     <div className="Toolbar">
-      <button className="Download">DOWNLOAD</button>
-      <button className="Upload">UPLOAD</button>
-      <button className="Delete">DELETE</button>
+      <button
+      className="Download"
+      onClick={downloadCallback}
+      >DOWNLOAD</button>
+
+      <button
+      className="Upload"
+      onClick={uploadCallback}
+      >UPLOAD</button>
+
+      <button
+      className="Delete"
+      onClick={deleteCallback}
+      >DELETE</button>
     </div>
   );
 }
 
 const MAPPINGS = [
   {
-    ID: 0,
+    id: 0,
     mapping_query: "SELECT STUDENT WHERE COURSE.NAME = CS130",
     date_modified: "10/19/2023",
   },
   {
-    ID: 1,
+    id: 1,
     mapping_query: "SELECT COURSE WHERE STUDENTS_ENROLLED > 30 AND DEPT = CS",
     date_modified: "10/20/2023",
   },
   {
-    ID: 2,
+    id: 2,
     mapping_query: "SELECT PROFESSOR WHERE COURSE.NAME = CS130",
     date_modified: "10/21/2023",
   },
 ];
 
-function UIMappingRow({rowCheckboxCallback, mapping}){
-  const [isSelected, setIsSelected] = useState(false);
+function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
+  // const [isSelected, setIsSelected] = useState(false);
 
   const onSelectChange = (e) => {
-    console.log(isSelected)
-    setIsSelected(!isSelected);
+    // console.log(isSelected)
+    // setIsSelected(!isSelected);
 
-    rowCheckboxCallback(mapping, !isSelected);
+    rowCheckboxCallback(e, mapping);
   }
 
   return (
@@ -61,9 +76,10 @@ function UIMappingRow({rowCheckboxCallback, mapping}){
         <input
           type="checkbox"
           onChange={onSelectChange}
+          checked={isSelected}
         ></input>
       </td>
-      <td>{mapping.ID.toString().padStart(6, "0")}</td>
+      <td>{mapping.id.toString().padStart(6, "0")}</td>
       <td>{mapping.mapping_query}</td>
       <td>{mapping.date_modified}</td>
     </tr>
@@ -72,9 +88,9 @@ function UIMappingRow({rowCheckboxCallback, mapping}){
 
 function UINewRow({addRowCallback}){
 
-  const myRef = useRef(null);
+  const inputRef = useRef(null);
   const onInputSubmit = (e) => {
-    addRowCallback(myRef.current.value)
+    addRowCallback(inputRef.current.value)
   }
   return (
     <tr key={"add-row"}>
@@ -87,14 +103,14 @@ function UINewRow({addRowCallback}){
         </button>
     </td>
     <td>
-      <input ref={myRef}
+      <input ref={inputRef}
         type="text"
         placeholder="Enter Mapping Query"
         onKeyDown={(event) => {
           if (event.key === "Enter") {
             addRowCallback(event.target.value);
           }
-          // console.log(myRef.current.value)
+          // console.log(inputRef.current.value)
         }}
       ></input>
     </td>
@@ -104,45 +120,126 @@ function UINewRow({addRowCallback}){
 
 }
 
+
+// Adapted from https://codesandbox.io/s/react-parent-child-checkboxes-ebjhl?file=/src/Table.js
+// https://dev.to/bytebodger/constructors-in-functional-components-with-hooks-280m
+
+
+const useConstructor = (callBack = () => {}) => {
+  const [hasBeenCalled, setHasBeenCalled] = useState(false);
+  if (hasBeenCalled) return;
+  callBack();
+  setHasBeenCalled(true);
+}
+
 function MappingTable() {
   const [showTemplateRow, setShowTemplateRow] = useState(false);
   const [data, setData] = useState(MAPPINGS);
   const [selectedEntries, setSelectedEntries] = useState([])
+  const [isParentChecked, setIsParentChecked] = useState(false);
+
+  const parentCheckboxRef = useRef(null);
+
+  useConstructor(() => {
+    // console.log(
+    //   "Occurs ONCE, BEFORE the initial render."
+    // );
+    const currData = [...data]
+    currData.map((row) => {
+      row.isChecked = false;
+      return row;
+    });
+    setData([...currData])
+  });
 
   // const [count, setCount] = useState(0);
   function openTemplate() {
     setShowTemplateRow(true);
   }
 
-  const toggleSelectedEntries = (entry, isChecked) => {
-    setSelectedEntries((isChecked) ? [...selectedEntries, entry] :
-                          selectedEntries.filter((el) => el.ID != entry.ID));
+  const getSelectedEntries = () => {
+    return data.filter((row) => row.isChecked)
   }
 
+  const setParentCheckboxVal = () => {
+    const currData = [...data];
+    const firstRowChecked = currData[0].isChecked;
+    const isAllRowsSame = currData.reduce(
+      (accum, row) => accum & (firstRowChecked === row.isChecked),
+      true
+    );
+    // console.log(isAllRowsSame)
+    // console.log(data.length)
+    if (isAllRowsSame) {
+      setIsParentChecked(firstRowChecked);
+      parentCheckboxRef.current.indeterminate = false
+    } else {
+      setIsParentChecked(false);
+      parentCheckboxRef.current.indeterminate = true
+    }
+  }
+
+  useEffect( () => {
+    setParentCheckboxVal()
+  }, [data])
+
+  const toggleSelectedEntries = (e, entry) => {
+    const currData = [...data];
+    const { checked } = e.target;
+
+    if (entry === "all") {
+      setIsParentChecked(checked);
+    }
+
+    currData.map((row) => {
+      if (entry === "all") {
+        row.isChecked = checked;
+      } else {
+        if (row.id === entry.id) {
+          row.isChecked = checked;
+        }
+      }
+      return row;
+    });
+    console.log(getSelectedEntries())
+    setData([...currData])
+  }
+
+  // const changeParentCheckbox = (e, )
+
   function addRow(query) {
-    console.log(query);
+    // console.log(query);
     setData([
       ...data,
       {
-        ID: data[data.length - 1].ID + 1,
+        id: data[data.length - 1].id + 1,
         mapping_query: query,
         date_modified: "10/19/2023",
+        isChecked: false
       },
     ]);
-    console.log(data);
+    mappingManager.createMapping("query")
     setShowTemplateRow(false);
-    // setState({data:data})
-    // setCount(count +1);
   }
-  // console.log("Hello")
+
   return (
     <div className={styles.datatable}>
-      <Toolbar />
+      <Toolbar
+        downloadCallback={()=>{console.log(getSelectedEntries())}}
+        uploadCallback={()=>{console.log(getSelectedEntries())}}
+        deleteCallback={()=>{console.log(getSelectedEntries())}}
+      />
+
       <table>
         <thead>
           <tr key={"header"}>
             <th>
-              <input type="checkbox"></input>
+              <input
+                ref = {parentCheckboxRef}
+                type="checkbox"
+                checked={isParentChecked}
+                onChange={(e) => toggleSelectedEntries(e, "all")}
+              ></input>
             </th>
             <th>ID</th>
             <th>Mapping Query</th>
@@ -150,13 +247,14 @@ function MappingTable() {
           </tr>
         </thead>
         <tbody>
-          {
-            data.map((val, id) => {
+          { data &&
+            data.map((row, id) => {
               return (
                 <UIMappingRow
                   key={"ui-mapping-row" + parseInt(id)}
-                  mapping={val}
+                  mapping={row}
                   rowCheckboxCallback={toggleSelectedEntries}
+                  isSelected={row?.isChecked}
                 />
               );
             })
@@ -194,6 +292,8 @@ function MappingTable() {
 }
 
 export default function Home() {
+
+
   return (
     <main className={styles.main}>
       <Header />
