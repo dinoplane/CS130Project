@@ -1,0 +1,7 @@
+@prefix a: <data:/> .
+
+a:emp1  a:name  "bob" .
+a:emp1  a:age  30 .
+
+a:emp2  a:name  "alice" .
+a:emp2  a:age  27 .
