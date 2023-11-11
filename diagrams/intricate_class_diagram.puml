@@ -16,7 +16,7 @@ package Frontend {
       urlButton : Button
 
       onUrlClick() : void
-      connectToUrl(url : String) : void
+      connectToUrl(url : String) : Bool
     }
 
     class ToolBar {
@@ -84,15 +84,15 @@ package Frontend {
   package FrontendController{
     class ExcelHandler{
       downloadExcel(selectedMappings : MappingEntry[0..*]): Excel
-      uploadExcel(Excel) : void
+      uploadExcel(Excel) : Bool
     }
 
     class MappingManager{
         connectedFusekiUrl : String
         mappingDbUrl : String
 
-        createMapping(MappingEntry) : void
-        deleteMapping(MappingEntry[1..*]) : void
+        createMapping(MappingEntry) : Bool
+        deleteMapping(MappingEntry[1..*]) : Bool
         requestMappings(begin : int, end : int) : MappingEntry[0..(end - begin)]
     }
   }
@@ -110,22 +110,19 @@ package Backend {
     class MappingDBManager {
       mappings : MappingEntry[0..*]
 
-      fetchMappings(begin : int, end : int) : void
-      addMapping(MappingEntry) : void
+      fetchMappings(begin : int, end : int) : Bool
+      addMapping(MappingEntry) : Bool
       validateMapping(MappingEntry) : Bool
 
-      removeMapping(MappingEntry[1..*]) : void
+      removeMapping(MappingEntry[1..*]) : Bool
     }
-
-    note right of FusekiDispatcher : "Handles Frontend requests to \ncommunicate with Fuseki"
-    note right of FusekiDispatcher : "I'm questioning whether or not\n it talks to the \nMappingDBManager at all \n(mapping validation perhaps?)"
 
     class FusekiDispatcher {
       connectedFusekiUrl : String
 
       setKnowledgeBase(Query) : Bool
 
-      processExcel(Excel) : void
+      processExcel(Excel) : Bool
       outputExcel(MappingEntry[1..*]) : Excel
     }
   }
@@ -133,7 +130,7 @@ package Backend {
   package FusekiManager{
     class ExcelGenerator {
       generateExcel(MappingEntry[1..*]) : Excel
-      generateSheet(xlFile Excel, entry : MappingEntry) : void
+      generateSheet(xlFile Excel, entry : MappingEntry) : Bool
       fetchData(Query) : XML/JSON
     }
 
@@ -141,7 +138,7 @@ package Backend {
       updateFuseki(Excel) : Bool
       parseExcel(Excel) : UpdateQuery
       findDifferences(xlFile : Excel, sheetNum : int) : UpdateQuery
-      writeData(UpdateQuery) : void
+      writeData(UpdateQuery) : Bool
     }
   }
 }
@@ -165,6 +162,4 @@ MappingDBManager ..> MappingDB
 ExcelGenerator ..> KnowledgeBase
 FusekiUpdater ..> KnowledgeBase
 
-note top of MappingDB : Define its schema
-note bottom of KnowledgeBase : Fuseki
 @enduml
