@@ -1,9 +1,10 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.router.api import ping_router
+from backend.app.router.api import ping_router, mappingDB_router  
+from backend.app.database.mongodb_connection import lifespan
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan) #since on_event is deprecated
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,6 +15,7 @@ app.add_middleware(
 
 # Adding router
 app.include_router(ping_router)
+app.include_router(mappingDB_router)
 
 if __name__ == "__main__":
 
