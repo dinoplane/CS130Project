@@ -5,6 +5,11 @@ import { useState , useRef, useEffect} from "react";
 import styles from "./page.module.css";
 
 import MappingManager from "./mappingmanager";
+import download_img from './img/download.svg';
+import upload_img from './img/upload.svg';
+import delete_img from './img/delete.svg';
+import add_img from './img/add.svg';
+
 
 // Example of a data array that
 
@@ -13,9 +18,9 @@ const mappingManager = new MappingManager();
 function Header() {
   return (
     <>
-      <div className="Header">
+      <div className={styles.title_bar}>
         <h1>Excellent Interface</h1>
-        <button className="square">Connected to: URL</button>
+        <button className={styles.connect_button}>Connected to: URL</button>
       </div>
     </>
   );
@@ -23,21 +28,39 @@ function Header() {
 
 function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
   return (
-    <div className="Toolbar">
+    <div className={styles.toolbar}>
       <button
-      className="Download"
+      className={styles.toolbar_button}
       onClick={downloadCallback}
-      >DOWNLOAD</button>
+      >
+        <Image
+        className={styles.image}
+          src={download_img}
+          alt="HAI"
+        />
+      </button>
 
       <button
-      className="Upload"
+      className={styles.toolbar_button}
       onClick={uploadCallback}
-      >UPLOAD</button>
+      >
+        <Image
+          className={styles.image}
+          src={upload_img}
+          alt="HAI"
+        />
+      </button>
 
       <button
-      className="Delete"
+      className={styles.toolbar_button}
       onClick={deleteCallback}
-      >DELETE</button>
+      >
+        <Image
+          className={styles.image}
+          src={delete_img}
+          alt="HAI"
+        />
+      </button>
     </div>
   );
 }
@@ -71,17 +94,17 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
   }
 
   return (
-    <tr>
-      <td>
+    <tr className={styles.entry_row}>
+      <td className={styles.checkbox_col}>
         <input
           type="checkbox"
           onChange={onSelectChange}
           checked={isSelected}
         ></input>
       </td>
-      <td>{mapping.id.toString().padStart(6, "0")}</td>
-      <td>{mapping.mapping_query}</td>
-      <td>{mapping.date_modified}</td>
+      <td className={styles.id_col}>{mapping.id.toString().padStart(6, "0")}</td>
+      <td className={styles.query_col}>{mapping.mapping_query}</td>
+      <td className={styles.date_col}>{mapping.date_modified}</td>
     </tr>
   );
 }
@@ -93,17 +116,19 @@ function UINewRow({addRowCallback}){
     addRowCallback(inputRef.current.value)
   }
   return (
-    <tr key={"add-row"}>
-    <td>
+    <tr key={"add-row"}
+    className={styles.newrow}
+    >
+    <td className={styles.checkbox_col}>
       <input type="checkbox" disabled={true}></input>
     </td>
-    <td>
+    <td className={styles.id_col}>
         <button id="addBtn" onClick={onInputSubmit}>
           CONFIRM
         </button>
     </td>
-    <td>
-      <input ref={inputRef}
+    <td className={styles.query_col}>
+      <input ref={inputRef} className={styles.queryfield}
         type="text"
         placeholder="Enter Mapping Query"
         onKeyDown={(event) => {
@@ -114,7 +139,7 @@ function UINewRow({addRowCallback}){
         }}
       ></input>
     </td>
-    <td>10/27/2023</td>
+    <td className={styles.date_col}>10/27/2023</td>
   </tr>
   );
 
@@ -266,13 +291,18 @@ function MappingTable() {
           )}
           {
             !showTemplateRow && (
-              <tr key={"show"}>
+              <tr key={"show"} className={styles.addrow}>
                 <td>
 
                 </td>
                 <td>
-                  <button id="addBtn" onClick={openTemplate}>
-                    ADD ROW
+                  <button
+                    className={styles.toolbar_button}
+                    id="addBtn"
+                    onClick={openTemplate}>
+                    <Image className={styles.image}
+                    src={add_img}
+                    />
                   </button>
                 </td>
                 <td>
