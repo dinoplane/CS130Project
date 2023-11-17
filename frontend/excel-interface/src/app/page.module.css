@@ -70,6 +70,10 @@
 }
 
 
+.norow {
+  height: 40px;
+}
+
 .addrow{
   background-color: #99DAFE;
   /* box-shadow: 2px 2px 2px 2px gray;s */
@@ -110,6 +114,10 @@
   align-items: center;
   border-right: 1px solid #555555;
   border-left: 1px solid #555555;
+  border-top: 1px solid #555555;
+
+  font-size: 14pt;
+  color: #777777;
   /* width: 500px */
 }
 
@@ -147,6 +155,7 @@
   border-radius: 10px;
 
   font-size: 14pt;
+  color: #777777;
 }
 
 

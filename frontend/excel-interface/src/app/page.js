@@ -10,6 +10,7 @@ import UploadImg from './img/upload.svg';
 import DeleteImg from './img/delete.svg';
 import AddImg from './img/add.svg';
 import ConfirmImg from './img/confirm.svg'
+import next from "next";
 
 
 // Example of a data array that
@@ -160,12 +161,32 @@ function UINewRow({addRowCallback}){
         autofocus
       ></input>
     </td>
-    <td className={styles.date_col}>10/27/2023</td>
+    <td className={styles.date_col}>{getDateTodayString()}</td>
   </tr>
   );
 
 }
 
+
+function getDateTodayString(){
+  let today = new Date();
+  console.log(today);
+
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+
+  let yyyy = today.getFullYear();
+
+  if (dd < 10) {
+      dd = '0' + dd;
+  }
+  if (mm < 10) {
+      mm = '0' + mm;
+  }
+  today = mm + '/' + dd + '/' + yyyy;
+
+  return today;
+}
 
 // Adapted from https://codesandbox.io/s/react-parent-child-checkboxes-ebjhl?file=/src/Table.js
 // https://dev.to/bytebodger/constructors-in-functional-components-with-hooks-280m
@@ -179,6 +200,7 @@ const useConstructor = (callBack = () => {}) => {
 }
 
 function MappingTable() {
+  const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
   const [showTemplateRow, setShowTemplateRow] = useState(false);
   const [data, setData] = useState(MAPPINGS);
   const [isParentChecked, setIsParentChecked] = useState(false);
@@ -194,6 +216,7 @@ function MappingTable() {
       row.isChecked = false;
       return row;
     });
+    setNextId(currData[currData.length - 1].id + 1);
     setData([...currData])
   });
 
@@ -266,13 +289,14 @@ function MappingTable() {
     setData([
       ...data,
       {
-        id: data[data.length - 1].id + 1,
+        id: nextId,
         mapping_query: query,
-        date_modified: "10/19/2023",
+        date_modified: getDateTodayString(),
         isChecked: false
       },
     ]);
-    mappingManager.createMapping("query")
+    mappingManager.createMapping("query");
+    setNextId(nextId + 1);
     setShowTemplateRow(false);
   }
 
@@ -334,6 +358,17 @@ function MappingTable() {
               );
             })
           }
+          {
+            (data.length == 0) && (
+              <tr key={"none"} className={styles.norow}>
+                <td className={styles.checkbox_col}></td>
+                <td className={styles.id_col}></td>
+                <td className={styles.query_col}>Nothing to show here!</td>
+                <td className={styles.date_col}></td>
+              </tr>
+            )
+          }
+
           {showTemplateRow && (
             <UINewRow
               key={"ui-new-row"}
