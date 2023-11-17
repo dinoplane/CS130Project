@@ -203,11 +203,20 @@ function MappingTable() {
   }
 
   const getSelectedEntries = () => {
-    return data.filter((row) => row.isChecked)
+    let ret = data.filter((row) => row.isChecked);
+    if (ret == undefined){
+      ret = [];
+    }
+    return ret;
   }
 
   const setParentCheckboxVal = () => {
     const currData = [...data];
+    if (currData.length == 0){
+      setIsParentChecked(false);
+      return;
+    }
+
     const firstRowChecked = currData[0].isChecked;
     const isAllRowsSame = currData.reduce(
       (accum, row) => accum & (firstRowChecked === row.isChecked),
@@ -267,7 +276,8 @@ function MappingTable() {
     setShowTemplateRow(false);
   }
 
-  function deleteRows(selectedMappings){
+
+  function downloadExcel(selectedMappings){
     console.log(getSelectedEntries())
 
   }
@@ -277,9 +287,14 @@ function MappingTable() {
 
   }
 
-  function downloadExcel(selectedMappings){
+  function deleteRows(selectedMappings){
     console.log(getSelectedEntries())
 
+    // mappingManager.deleteMapping(selectedMappings); SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
+
+    const currData = data.filter((row) => !row.isChecked);
+    console.log(currData);
+    setData([...currData])
   }
 
   return (
