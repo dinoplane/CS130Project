@@ -43,7 +43,7 @@ function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
         <DownloadImg
           className={styles.image}
           alt="HAI"
-          stroke="#4b4b4b"
+          stroke="#333333"
         />
       </div>
 
@@ -55,7 +55,7 @@ function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
         <UploadImg
           className={styles.image}
           alt="HAI"
-          stroke="#4b4b4b"
+          stroke="#333333"
         />
         </label>
         <input type="file" id="file-input" onChange={changeHandler} />
@@ -386,7 +386,7 @@ function MappingTable() {
                     id="addBtn"
                     onClick={openTemplate}>
                     <AddImg className={styles.image}
-                      stroke="#4b4b4b"
+                      stroke="#333333"
                     />
                   </div>
                 </td>
