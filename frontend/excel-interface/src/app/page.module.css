@@ -219,6 +219,9 @@
 
   /* animation: in 4s linear 0s infinite normal; */
 }
+.toolbar_button>input {
+  display: none;
+}
 
 /* .image:hover{
   background-color: red;

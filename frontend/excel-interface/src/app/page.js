@@ -28,6 +28,11 @@ function Header() {
 }
 
 function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
+
+  function changeHandler(){
+
+  }
+
   return (
     <div className={styles.toolbar}>
       <div
@@ -45,11 +50,15 @@ function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
       className={styles.toolbar_button}
       onClick={uploadCallback}
       >
+        <label htmlFor="file-input">
         <UploadImg
           className={styles.image}
           alt="HAI"
           stroke="#4b4b4b"
         />
+        </label>
+        <input type="file" id="file-input" onChange={changeHandler} />
+
       </div>
 
       <div
@@ -172,7 +181,6 @@ const useConstructor = (callBack = () => {}) => {
 function MappingTable() {
   const [showTemplateRow, setShowTemplateRow] = useState(false);
   const [data, setData] = useState(MAPPINGS);
-  const [selectedEntries, setSelectedEntries] = useState([])
   const [isParentChecked, setIsParentChecked] = useState(false);
 
   const parentCheckboxRef = useRef(null);
@@ -259,12 +267,27 @@ function MappingTable() {
     setShowTemplateRow(false);
   }
 
+  function deleteRows(selectedMappings){
+    console.log(getSelectedEntries())
+
+  }
+
+  function uploadExcel(selectedMappings){
+    console.log(getSelectedEntries())
+
+  }
+
+  function downloadExcel(selectedMappings){
+    console.log(getSelectedEntries())
+
+  }
+
   return (
     <div className={styles.datatable}>
       <Toolbar
-        downloadCallback={()=>{console.log(getSelectedEntries())}}
-        uploadCallback={()=>{console.log(getSelectedEntries())}}
-        deleteCallback={()=>{console.log(getSelectedEntries())}}
+        downloadCallback={()=>{downloadExcel(getSelectedEntries())}}
+        uploadCallback={()=>{uploadExcel()}}
+        deleteCallback={()=>{deleteRows()}}
       />
 
       <table>
