@@ -5,10 +5,11 @@ import { useState , useRef, useEffect} from "react";
 import styles from "./page.module.css";
 
 import MappingManager from "./mappingmanager";
-import download_img from './img/download.svg';
-import upload_img from './img/upload.svg';
-import delete_img from './img/delete.svg';
-import add_img from './img/add.svg';
+import DownloadImg from './img/download.svg';
+import UploadImg from './img/upload.svg';
+import DeleteImg from './img/delete.svg';
+import AddImg from './img/add.svg';
+import ConfirmImg from './img/confirm.svg'
 
 
 // Example of a data array that
@@ -29,38 +30,38 @@ function Header() {
 function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
   return (
     <div className={styles.toolbar}>
-      <button
+      <div
       className={styles.toolbar_button}
       onClick={downloadCallback}
       >
-        <Image
-        className={styles.image}
-          src={download_img}
+        <DownloadImg
+          className={styles.image}
           alt="HAI"
+          stroke="#4b4b4b"
         />
-      </button>
+      </div>
 
-      <button
+      <div
       className={styles.toolbar_button}
       onClick={uploadCallback}
       >
-        <Image
+        <UploadImg
           className={styles.image}
-          src={upload_img}
           alt="HAI"
+          stroke="#4b4b4b"
         />
-      </button>
+      </div>
 
-      <button
+      <div
       className={styles.toolbar_button}
       onClick={deleteCallback}
       >
-        <Image
+        <DeleteImg
           className={styles.image}
-          src={delete_img}
           alt="HAI"
+          stroke="#df2323"
         />
-      </button>
+      </div>
     </div>
   );
 }
@@ -123,9 +124,19 @@ function UINewRow({addRowCallback}){
       <input type="checkbox" disabled={true}></input>
     </td>
     <td className={styles.id_col}>
-        <button id="addBtn" onClick={onInputSubmit}>
-          CONFIRM
-        </button>
+        <div
+        className={styles.confirm_div}>
+          <div
+          className={styles.toolbar_button}
+          id="addBtn" onClick={onInputSubmit}>
+
+          <ConfirmImg
+            className={styles.image}
+            alt="HAI"
+            stroke="#00AA00"
+          />
+          </div>
+        </div>
     </td>
     <td className={styles.query_col}>
       <input ref={inputRef} className={styles.queryfield}
@@ -137,6 +148,7 @@ function UINewRow({addRowCallback}){
           }
           // console.log(inputRef.current.value)
         }}
+        autofocus
       ></input>
     </td>
     <td className={styles.date_col}>10/27/2023</td>
@@ -295,15 +307,15 @@ function MappingTable() {
                 <td>
 
                 </td>
-                <td>
-                  <button
+                <td className={styles.addrow_td}>
+                  <div
                     className={styles.toolbar_button}
                     id="addBtn"
                     onClick={openTemplate}>
-                    <Image className={styles.image}
-                    src={add_img}
+                    <AddImg className={styles.image}
+                      stroke="#4b4b4b"
                     />
-                  </button>
+                  </div>
                 </td>
                 <td>
 
