@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "upsnap": "jest --updateSnapshot",
     "prettier": "prettier . --write"
   },
   "dependencies": {

@@ -1,15 +1,16 @@
-import {fireEvent, render, screen} from "@testing-library/react"
-
-// import {render} from '@testing-library/react'
-import MappingTable from "@/app/mapping_table";
+import {fireEvent, render, screen, queryByAttribute} from "@testing-library/react"
+import renderer from 'react-test-renderer';
+import getDateTodayString from "@/app/getdatestring";
 import MappingManager from "@/app/mapping_manager";
+import MappingTable from "@/app/mapping_table";
+// import  from "@/app/mapping_table";
 
 
 const mappingManager = new MappingManager();
 const MAPPINGS = [
     {
       id: 0,
-      mapping_query: "SELECT STUDENT WHERE COURSE.NAME = CS130",
+      mapping_query: "SELECT COURSE WHERE COURSE.NAME = CS130",
       date_modified: "10/19/2023",
     },
     {
@@ -24,45 +25,79 @@ const MAPPINGS = [
     },
   ];
 
-it('adding a row', () => {
-    const component = render(
-        <MappingTable mappings={MAPPINGS} mappingManager={mappingManager} />
-    );
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+// Remember to mock the date function
+// jest.mock('../src/app/mapping_table', () => {
+//     const originalModule = jest.requireActual('../src/app/mapping_table');
 
-    // console.log(component)
-    let addrow_button = component.container.querySelector('#addBtn');
-    // console.log(addrow_button)
+//     //Mock the default export and named export 'foo'
+//     return ({
+//         __esModule: true,
+//         ...originalModule,
+//         getDateTodayString: jest.fn(() => {
+//             console.log("HALLO")
+//             return '10/21/2023'}
+//         ),
+//     });
+// });
 
-    fireEvent.click(addrow_button);
+jest.mock('../src/app/getdatestring',
+    () => jest.fn(()=>"10/21/2023"))
 
-    tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-
-
-    // console.log(tree.props)
-
-    // // Open a template
-    // renderer.act(
-    //     () => {
-
-    //     }
-    // )
-
-    // // re-rendering
-    // tree = component.toJSON();
-    // expect(tree).toMatchSnapshot();
+console.log(getDateTodayString())
 
 
-    //     // manually trigger the callback
-    // renderer.act(() => {
-    //     tree.props.addRow("SELECT PROFESSOR WHERE COURSE.NAME = CS130");
+describe ('Mapping Table', function () {
+    // afterAll(() => {
+    //     jest.resetAllMocks();
     // });
 
-    // // re-rendering
-    // tree = component.toJSON();
-    // expect(tree).toMatchSnapshot();
+    describe('rows are added when', function () {
+
+        it('the user, opens a row and clicks the confirm button', () => {
+            console.log(getDateTodayString())
+
+            const component = render(
+                <MappingTable mappings={[]} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
+
+            // Open a row
+            let openrow_button = component.container.querySelector('#openBtn');
+            fireEvent.click(openrow_button);
+            expect(component).toMatchSnapshot();
+
+            // Input and add
+            let query_input = component.getByPlaceholderText("Enter Mapping Query");
+            fireEvent.change(query_input, {target: {value: 'SELECT COURSE WHERE COURSE.NAME = CS13'}})
+
+            let addrow_button = component.container.querySelector('#addBtn');
+            fireEvent.click(addrow_button);
+
+            expect(component).toMatchSnapshot();
+
+
+            // // Add a couple rows
+            // let mapping_query = "SELECT COURSE WHERE COURSE.NAME = CS13"
+            for (let i = 1; i < 4; i++){
+                // Open a row
+                openrow_button = component.container.querySelector('#openBtn');
+                fireEvent.click(openrow_button);
+                expect(component).toMatchSnapshot();
+
+                // Input and add
+                query_input = component.getByPlaceholderText("Enter Mapping Query");
+                fireEvent.change(query_input, {target: {value: `SELECT COURSE WHERE COURSE.NAME = CS13${i}`}})
+
+                addrow_button = component.container.querySelector('#addBtn');
+                fireEvent.click(addrow_button);
+
+                expect(component).toMatchSnapshot();
+            }
 });
 
 
+
+
+
+    });
+});

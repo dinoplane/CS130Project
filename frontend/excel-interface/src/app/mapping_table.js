@@ -1,7 +1,7 @@
 
 import { useState , useRef, useEffect} from "react";
 import Toolbar from "./toolbar";
-
+import getDateTodayString from "./getdatestring";
 
 import styles from "./page.module.css";
 
@@ -82,27 +82,6 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
 
   }
 
-
-
-function getDateTodayString(){
-    let today = new Date();
-    console.log(today);
-
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-
-    let yyyy = today.getFullYear();
-
-    if (dd < 10) {
-        dd = '0' + dd;
-    }
-    if (mm < 10) {
-        mm = '0' + mm;
-    }
-    today = mm + '/' + dd + '/' + yyyy;
-
-    return today;
-  }
 
   // Adapted from https://codesandbox.io/s/react-parent-child-checkboxes-ebjhl?file=/src/Table.js
   // https://dev.to/bytebodger/constructors-in-functional-components-with-hooks-280m
@@ -209,6 +188,7 @@ function getDateTodayString(){
 
     const addRow = (query) => {
       // console.log(query);
+      console.log("BLEH", getDateTodayString());
       setData([
         ...data,
         {
@@ -306,7 +286,7 @@ function getDateTodayString(){
                   <td className={styles.addrow_td}>
                     <div
                       className={styles.toolbar_button}
-                      id="addBtn"
+                      id="openBtn"
                       onClick={openTemplate}>
                       <AddImg className={styles.image}
                         stroke="#333333"
