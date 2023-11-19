@@ -13,7 +13,8 @@ export default class MappingManager {
         console.log(entry);
     }
 
-    requestMapping(begin, end){
-        console.log(begin, end);
+    requestMappings(){
+        // console.log(begin, end);
+        return [];
     }
 }

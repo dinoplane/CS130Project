@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`adding a row 1`] = `
+<main
+  className="main"
+>
+  <div
+    className="title_bar"
+  >
+    <h1>
+      Excellent Interface
+    </h1>
+    <button
+      className="connect_button"
+    >
+      Connected to: URL
+    </button>
+  </div>
+  <div
+    className="datatable"
+  >
+    <div
+      className="toolbar"
+    >
+      <div
+        className="toolbar_button"
+        onClick={[Function]}
+      >
+        <img
+          alt="HAI"
+          className="image"
+          stroke="#333333"
+        />
+      </div>
+      <div
+        className="toolbar_button"
+        onClick={[Function]}
+      >
+        <label
+          htmlFor="file-input"
+        >
+          <img
+            alt="HAI"
+            className="image"
+            stroke="#333333"
+          />
+        </label>
+        <input
+          id="file-input"
+          onChange={[Function]}
+          type="file"
+        />
+      </div>
+      <div
+        className="toolbar_button"
+        onClick={[Function]}
+      >
+        <img
+          alt="HAI"
+          className="image"
+          stroke="#df2323"
+        />
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <input
+              checked={false}
+              onChange={[Function]}
+              type="checkbox"
+            />
+          </th>
+          <th>
+            ID
+          </th>
+          <th>
+            Mapping Query
+          </th>
+          <th>
+            Date Modified
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          className="norow"
+        >
+          <td
+            className="checkbox_col"
+          />
+          <td
+            className="id_col"
+          />
+          <td
+            className="query_col"
+          >
+            Nothing to show here!
+          </td>
+          <td
+            className="date_col"
+          />
+        </tr>
+        <tr
+          className="addrow"
+        >
+          <td />
+          <td
+            className="addrow_td"
+          >
+            <div
+              className="toolbar_button"
+              id="addBtn"
+              onClick={[Function]}
+            >
+              <img
+                className="image"
+                stroke="#333333"
+              />
+            </div>
+          </td>
+          <td />
+          <td />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+`;
+
+exports[`adding a row 2`] = `
+<div
+  className="datatable"
+>
+  <div
+    className="toolbar"
+  >
+    <div
+      className="toolbar_button"
+      onClick={[Function]}
+    >
+      <img
+        alt="HAI"
+        className="image"
+        stroke="#333333"
+      />
+    </div>
+    <div
+      className="toolbar_button"
+      onClick={[Function]}
+    >
+      <label
+        htmlFor="file-input"
+      >
+        <img
+          alt="HAI"
+          className="image"
+          stroke="#333333"
+        />
+      </label>
+      <input
+        id="file-input"
+        onChange={[Function]}
+        type="file"
+      />
+    </div>
+    <div
+      className="toolbar_button"
+      onClick={[Function]}
+    >
+      <img
+        alt="HAI"
+        className="image"
+        stroke="#df2323"
+      />
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <input
+            checked={false}
+            onChange={[Function]}
+            type="checkbox"
+          />
+        </th>
+        <th>
+          ID
+        </th>
+        <th>
+          Mapping Query
+        </th>
+        <th>
+          Date Modified
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        className="norow"
+      >
+        <td
+          className="checkbox_col"
+        />
+        <td
+          className="id_col"
+        />
+        <td
+          className="query_col"
+        >
+          Nothing to show here!
+        </td>
+        <td
+          className="date_col"
+        />
+      </tr>
+      <tr
+        className="addrow"
+      >
+        <td />
+        <td
+          className="addrow_td"
+        >
+          <div
+            className="toolbar_button"
+            id="addBtn"
+            onClick={[Function]}
+          >
+            <img
+              className="image"
+              stroke="#333333"
+            />
+          </div>
+        </td>
+        <td />
+        <td />
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
