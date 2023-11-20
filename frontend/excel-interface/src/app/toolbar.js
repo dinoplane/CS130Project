@@ -9,13 +9,14 @@ import DeleteImg from './img/delete.svg';
 
 export default function Toolbar({downloadCallback, uploadCallback, deleteCallback}) {
 
-    function changeHandler(){
+    // function changeHandler(){
 
-    }
+    // }
 
     return (
       <div className={styles.toolbar}>
         <div
+        id={"dwnBtn"}
         className={styles.toolbar_button}
         onClick={downloadCallback}
         >
@@ -27,6 +28,7 @@ export default function Toolbar({downloadCallback, uploadCallback, deleteCallbac
         </div>
 
         <div
+        id={"uplBtn"}
         className={styles.toolbar_button}
         onClick={uploadCallback}
         >
@@ -37,11 +39,12 @@ export default function Toolbar({downloadCallback, uploadCallback, deleteCallbac
             stroke="#333333"
           />
           </label>
-          <input type="file" id="file-input" onChange={changeHandler} />
+          {/* <input type="file" id="file-input" onChange={changeHandler} /> */}
 
         </div>
 
         <div
+        id={"delBtn"}
         className={styles.toolbar_button}
         onClick={deleteCallback}
         >

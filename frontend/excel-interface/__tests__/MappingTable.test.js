@@ -1,4 +1,6 @@
 import {fireEvent, render, screen, queryByAttribute} from "@testing-library/react"
+import userEvent from '@testing-library/user-event'
+
 import renderer from 'react-test-renderer';
 import getDateTodayString from "@/app/getdatestring";
 import MappingManager from "@/app/mapping_manager";
@@ -52,10 +54,7 @@ describe ('Mapping Table', function () {
     // });
 
     describe('rows are added when', function () {
-
         it('the user, opens a row and clicks the confirm button', () => {
-            console.log(getDateTodayString())
-
             const component = render(
                 <MappingTable mappings={[]} mappingManager={mappingManager} />
             );
@@ -68,36 +67,160 @@ describe ('Mapping Table', function () {
 
             // Input and add
             let query_input = component.getByPlaceholderText("Enter Mapping Query");
-            fireEvent.change(query_input, {target: {value: 'SELECT COURSE WHERE COURSE.NAME = CS13'}})
+            fireEvent.change(query_input, {target: {value: 'SELECT COURSE WHERE COURSE.NAME = CS130'}})
 
             let addrow_button = component.container.querySelector('#addBtn');
             fireEvent.click(addrow_button);
 
             expect(component).toMatchSnapshot();
+        });
+
+        it('the user, opens a row and presses enter', async () => { // Check this test
+            const user = userEvent.setup()
+            const component = render(
+                <MappingTable mappings={[]} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
+
+            // Open a row
+            let openrow_button = component.container.querySelector('#openBtn');
+            fireEvent.click(openrow_button);
+            expect(component).toMatchSnapshot();
+
+            // Input and press enter
+            let query_input = component.getByPlaceholderText("Enter Mapping Query");
+            fireEvent.change(query_input, {target: {value: 'SELECT COURSE WHERE COURSE.NAME = CS131'}})
+
+            await user.keyboard('{Enter}');
+
+            let rows = component.container.querySelectorAll('[class="entry_row"]')
+            expect(rows.length).toBe(1);
+
+            expect(component).toMatchSnapshot();
 
 
-            // // Add a couple rows
-            // let mapping_query = "SELECT COURSE WHERE COURSE.NAME = CS13"
-            for (let i = 1; i < 4; i++){
-                // Open a row
-                openrow_button = component.container.querySelector('#openBtn');
-                fireEvent.click(openrow_button);
-                expect(component).toMatchSnapshot();
+        });
+    });
 
-                // Input and add
-                query_input = component.getByPlaceholderText("Enter Mapping Query");
-                fireEvent.change(query_input, {target: {value: `SELECT COURSE WHERE COURSE.NAME = CS13${i}`}})
+    describe('the user deletes rows when', function () {
 
-                addrow_button = component.container.querySelector('#addBtn');
-                fireEvent.click(addrow_button);
+        it('the user clicks on nothing, but tries to delete, deleting nothing', () => {
+            const component = render(
+                <MappingTable mappings={MAPPINGS} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
 
-                expect(component).toMatchSnapshot();
-            }
-});
+            let delrow_button = component.container.querySelector('#delBtn');
+            fireEvent.click(delrow_button);
+
+            let rows = component.container.querySelectorAll('[class="entry_row"]')
+            expect(rows.length).toBe(MAPPINGS.length);
+
+            expect(component).toMatchSnapshot();
+        });
+
+        it('the user clicks on 2 entry checkboxes and delete button', () => {
+            const component = render(
+                <MappingTable mappings={MAPPINGS} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
+
+            let rows = component.container.querySelectorAll('[class="entry_row"]')
+
+            fireEvent.click(rows[0].querySelector('input[type="checkbox"]'))
+            fireEvent.click(rows[2].querySelector('input[type="checkbox"]'))
+
+            let delrow_button = component.container.querySelector('#delBtn');
+            fireEvent.click(delrow_button);
+
+            rows = component.container.querySelectorAll('[class="entry_row"]')
+            expect(rows.length).toBe(1);
+
+            expect(component).toMatchSnapshot();
+        });
+
+        it('the user clicks on 2 entry checkboxes, unclicks 1, and deletes', () => {
+            const component = render(
+                <MappingTable mappings={MAPPINGS} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
+
+            let rows = component.container.querySelectorAll('[class="entry_row"]')
+
+            fireEvent.click(rows[0].querySelector('input[type="checkbox"]'))
+            fireEvent.click(rows[2].querySelector('input[type="checkbox"]'))
+            fireEvent.click(rows[0].querySelector('input[type="checkbox"]'))
+
+            let delrow_button = component.container.querySelector('#delBtn');
+            fireEvent.click(delrow_button);
+
+            rows = component.container.querySelectorAll('[class="entry_row"]')
+            expect(rows.length).toBe(2);
+
+            expect(component).toMatchSnapshot();
+        });
 
 
+        it('the user clicks on a parent entry checkbox and deletes', () => {
+            const component = render(
+                <MappingTable mappings={MAPPINGS} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
 
+            let parentchkbox = component.container.querySelector('#parent-checkbox');
+            fireEvent.click(parentchkbox);
 
+            let delrow_button = component.container.querySelector('#delBtn');
+            fireEvent.click(delrow_button);
+
+            let rows = component.container.querySelectorAll('[class="entry_row"]')
+            expect(rows.length).toBe(0);
+
+            expect(component).toMatchSnapshot();
+        });
 
     });
+
+    describe('the user uploads mappings when', function () {
+        it('the user clicks on a parent entry checkbox and deletes', () => {
+            const component = render(
+                <MappingTable mappings={MAPPINGS} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
+
+            let parentchkbox = component.container.querySelector('#parent-checkbox');
+            fireEvent.click(parentchkbox);
+
+            let uplrow_button = component.container.querySelector('#uplBtn');
+            fireEvent.click(uplrow_button);
+
+            // let rows = component.container.querySelectorAll('[class="entry_row"]')
+            // expect(rows.length).toBe(0);
+
+            expect(component).toMatchSnapshot();
+        });
+    });
+
+    describe('the user downloads mappings when', function () {
+        it('the user clicks on a parent entry checkbox and deletes', () => {
+            const component = render(
+                <MappingTable mappings={MAPPINGS} mappingManager={mappingManager} />
+            );
+            expect(component).toMatchSnapshot();
+
+            let parentchkbox = component.container.querySelector('#parent-checkbox');
+            fireEvent.click(parentchkbox);
+
+            let dwnrow_button = component.container.querySelector('#dwnBtn');
+            fireEvent.click(dwnrow_button);
+
+            // let rows = component.container.querySelectorAll('[class="entry_row"]')
+            // expect(rows.length).toBe(0);
+
+            expect(component).toMatchSnapshot();
+        });
+    });
+
+
+
 });

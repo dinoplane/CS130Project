@@ -10,17 +10,12 @@ import ConfirmImg from './img/confirm.svg'
 
 
 function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
-    // const [isSelected, setIsSelected] = useState(false);
-
     const onSelectChange = (e) => {
-      // console.log(isSelected)
-      // setIsSelected(!isSelected);
-
       rowCheckboxCallback(e, mapping);
     }
 
     return (
-      <tr className={styles.entry_row}>
+      <tr id={mapping.id.toString().padStart(6, "0")} className={styles.entry_row}>
         <td className={styles.checkbox_col}>
           <input
             type="checkbox"
@@ -68,6 +63,7 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
           type="text"
           placeholder="Enter Mapping Query"
           onKeyDown={(event) => {
+            console.log("NANANANAN")
             if (event.key === "Enter") {
               addRowCallback(event.target.value);
             }
@@ -86,13 +82,13 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
   // Adapted from https://codesandbox.io/s/react-parent-child-checkboxes-ebjhl?file=/src/Table.js
   // https://dev.to/bytebodger/constructors-in-functional-components-with-hooks-280m
 
-
-  const useConstructor = (callBack = () => {}) => {
-    const [hasBeenCalled, setHasBeenCalled] = useState(false);
-    if (hasBeenCalled) return;
-    callBack();
-    setHasBeenCalled(true);
-  }
+/* istanbul ignore next */
+const useConstructor = (callBack = () => {}) => {
+  const [hasBeenCalled, setHasBeenCalled] = useState(false);
+  if (hasBeenCalled) return;
+  callBack();
+  setHasBeenCalled(true);
+}
 
   export default function MappingTable({mappings, mappingManager}) {
     const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
@@ -103,10 +99,9 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
     const parentCheckboxRef = useRef(null);
 
     useConstructor(() => {
-      // console.log(
-      //   "Occurs ONCE, BEFORE the initial render."
-      // );
-      console.log(data)
+      console.log(
+        "Occurs ONCE, BEFORE the initial render."
+      );
       const currData = [...data]
       currData.map((row) => {
         row.isChecked = false;
@@ -125,9 +120,10 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
 
     const getSelectedEntries = () => {
       let ret = data.filter((row) => row.isChecked);
-      if (ret == undefined){
-        ret = [];
-      }
+      // console.log(ret);
+      // if (ret == undefined){
+      //   ret = [];
+      // }
       return ret;
     }
 
@@ -146,9 +142,6 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
         (accum, row) => accum & (firstRowChecked === row.isChecked),
         true
       );
-      // console.log(isAllRowsSame)
-      // console.log(data.length)
-
       if (isAllRowsSame) {
         setIsParentChecked(firstRowChecked);
         parentCheckboxRef.current.indeterminate = false
@@ -180,7 +173,7 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
         }
         return row;
       });
-      console.log(getSelectedEntries())
+      // console.log(getSelectedEntries())
       setData([...currData])
     }
 
@@ -188,7 +181,7 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
 
     const addRow = (query) => {
       // console.log(query);
-      console.log("BLEH", getDateTodayString());
+      // console.log("BLEH", getDateTodayString());
       setData([
         ...data,
         {
@@ -215,12 +208,12 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
     }
 
     function deleteRows(selectedMappings){
-      console.log(getSelectedEntries())
+      // console.log(getSelectedEntries())
 
-      // mappingManager.deleteMapping(selectedMappings); SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
+      mappingManager.deleteMapping(selectedMappings); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
 
       const currData = data.filter((row) => !row.isChecked);
-      console.log(currData);
+      // console.log(currData);
       setData([...currData])
     }
 
@@ -229,7 +222,7 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
         <Toolbar
           downloadCallback={()=>{downloadExcel(getSelectedEntries())}}
           uploadCallback={()=>{uploadExcel()}}
-          deleteCallback={()=>{deleteRows()}}
+          deleteCallback={()=>{deleteRows(getSelectedEntries())}}
         />
 
         <table>
@@ -237,6 +230,7 @@ function UIMappingRow({rowCheckboxCallback, mapping, isSelected}){
             <tr key={"header"}>
               <th>
                 <input
+                  id="parent-checkbox"
                   ref = {parentCheckboxRef}
                   type="checkbox"
                   checked={isParentChecked}

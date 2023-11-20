@@ -7,9 +7,6 @@ import MappingManager from "./mapping_manager";
 import Header from "./header";
 import MappingTable from "./mapping_table";
 
-
-import next from "next";
-
 // Example of a data array that
 
 const mappingManager = new MappingManager();
