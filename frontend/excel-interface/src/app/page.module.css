@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #FEBD99;
+  background-color: #febd99;
 }
 
 .connect_button {
@@ -25,11 +25,10 @@
   height: 1000px;
   display: flex;
   flex-direction: column;
-  border-color:red;
+  border-color: red;
   /* border: 10px solid #555555; */
   /* justify-content: center; */
   align-items: center;
-
 }
 
 .datatable table {
@@ -40,12 +39,11 @@
   width: 100%;
   color: black;
   overflow: hidden;
-  border-radius:1em;
+  border-radius: 1em;
 }
 
-
 .datatable th {
-  background-color: #CCF9E6;
+  background-color: #ccf9e6;
   border-bottom: 5px solid #555555;
   border-right: 1px solid #555555;
   border-left: 1px solid #555555;
@@ -61,7 +59,7 @@
 .entry_row td {
   text-align: center;
   /* border-collapse: collapse; */
-  border: 1px solid ;
+  border: 1px solid;
   /* background-color: crimson; */
   height: 40px;
   font-size: 14pt;
@@ -69,22 +67,21 @@
   /* border-radius: 30px; */
 }
 
-
 .norow {
   height: 40px;
 }
 
-.addrow{
+.addrow {
   background-color: #b8e5fe;
   /* box-shadow: 2px 2px 2px 2px gray;s */
 
-  border-bottom-left-radius:2em;
-  border-bottom-right-radius:2em;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
 
   height: 50px;
 }
 
-.addrow_td{
+.addrow_td {
   /* back  border-right: 2px solid #555555;
   border-left: 2px solid #555555;ground-color: #66C8FE; */
   /* border-top: 5px solid #555555; */
@@ -96,19 +93,19 @@
   flex-direction: row;
 }
 
-.newrow{
-  background-color: #33B6FE;
+.newrow {
+  background-color: #33b6fe;
   /* box-shadow: 2px 2px 2px 2px gray;s */
 
-  border-bottom-left-radius:2em;
-  border-bottom-right-radius:2em;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
 
   height: 50px;
   text-align: center;
   align-items: center;
 }
 
-.newrow td{
+.newrow td {
   /* background-color: #33B6FE; */
   height: 50px;
   align-items: center;
@@ -121,7 +118,6 @@
   /* width: 500px */
 }
 
-
 /* .addrow_button td{
   border: 2px solid purple;
 } */
@@ -131,11 +127,11 @@
   width: 5%;
 }
 
-.checkbox_col input, .datatable th input{
+.checkbox_col input,
+.datatable th input {
   width: 20px;
-  height: 20px
+  height: 20px;
 }
-
 
 .id_col {
   background-color: azure;
@@ -157,7 +153,6 @@
   font-size: 14pt;
   color: #777777;
 }
-
 
 .date_col {
   background-color: azure;
@@ -181,7 +176,7 @@
 
   display: flex;
   flex-direction: row;
-  gap: 1%
+  gap: 1%;
 }
 
 .confirm_div {
@@ -199,22 +194,22 @@
   margin: 20px;
   padding: 0px;
   position: relative;
-  background-color:#adadad;
+  background-color: #adadad;
 
-  transition: padding  0.05s ease-in-out,
-              margin   0.05s ease-in-out;
+  transition:
+    padding 0.05s ease-in-out,
+    margin 0.05s ease-in-out;
 }
 
 .toolbar_button:hover {
   padding: 20px;
   margin: 0px;
   /* transform: scale(2); */
-  background-color:#66C8FE;
+  background-color: #66c8fe;
 }
 
-
 .toolbar_button:active {
-  background-color: #DDDDDD;
+  background-color: #dddddd;
 }
 
 .image {
@@ -228,13 +223,10 @@
 
   /* animation: in 4s linear 0s infinite normal; */
 }
-.toolbar_button>input {
+.toolbar_button > input {
   display: none;
 }
 
 /* .image:hover{
   background-color: red;
 } */
-
-
-
