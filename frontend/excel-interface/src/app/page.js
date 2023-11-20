@@ -9,7 +9,7 @@ import MappingTable from "./mapping_table";
 // Example of a data array that
 
 const mappingManager = new MappingManager();
-const MAPPINGS = mappingManager.requestMappings();
+const MAPPINGS = []; //mappingManager.requestMapping();
 
 export default function Home() {
   return (

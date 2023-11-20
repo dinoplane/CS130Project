@@ -1,6 +1,6 @@
 export default class MappingManager {
   constructor() {
-    this.mappingDbUrl = "0.0.0.0";
+    this.mappingDbUrl = "0.0.0.0"; // localhost:blabla/excel-interface/mapping-database
     this.fusekiDbUrl = "127.0.0.1";
   }
 
