@@ -3,6 +3,7 @@
 The file structure helps maintain modularity. Please follow the following instruction to add your code
 
 ### database
+
 All the code related to making connections to the database goes in here. If you have a new database name the file as provider_connecion.py for example dynamodb_connection.py
 
 If you want to write query for that database such as delete, add then add it to a file as provider.py example dynamodb.py
@@ -37,7 +38,5 @@ from it. Similar to models in MVC. Use if needed
 
 ### tests
 
-Write unit tests for each functionality you develop here. While we are adding workflow to check code coverage with 
+Write unit tests for each functionality you develop here. While we are adding workflow to check code coverage with
 github actions we recommend to use IDE to calculate the code coverage. Use pylint to check for linting. IMPORTANT!
-
-
