@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Response, Body, status
-from backend.app.schema.mapping_schema import MappingEntry
-from backend.app.services.MappingManager import MappingDB_Manager
+from app.schema.mapping_schema import MappingEntry
+from app.services.MappingManager import MappingDB_Manager
 from typing import List
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])

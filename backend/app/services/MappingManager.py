@@ -1,7 +1,7 @@
-from backend.app.schema.mapping_schema import MappingEntry
+from app.schema.mapping_schema import MappingEntry
 from fastapi.encoders import jsonable_encoder as jsn_enc
 from fastapi import Request, Response, Body, status
-from backend.app.database.mongodb import insert_one, find_one, find
+from app.database.mongodb import insert_one, find_one, find
 
 class MappingDB_Manager():
     def add_mapping(req: Request, mapping = MappingEntry):

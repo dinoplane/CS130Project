@@ -1,8 +1,8 @@
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.router.api import ping_router, mappingDB_router  
-from backend.app.database.mongodb_connection import lifespan
+from app.router.api import ping_router, mappingDB_router  
+from app.database.mongodb_connection import lifespan
 
 app = FastAPI(lifespan=lifespan) #since on_event is deprecated
 

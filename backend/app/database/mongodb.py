@@ -1,4 +1,4 @@
-from backend.app.schema.mapping_schema import MappingEntry
+from app.schema.mapping_schema import MappingEntry
 from fastapi import Request
 #for queries to MongoDB connection
 def insert_one(req: Request, mapping: MappingEntry):
