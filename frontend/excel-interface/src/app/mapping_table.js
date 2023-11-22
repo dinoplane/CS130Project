@@ -86,7 +86,12 @@ const useConstructor = (callBack = () => {}) => {
   setHasBeenCalled(true);
 };
 
-export default function MappingTable({ mappings, mappingManager }) {
+export default function MappingTable({
+  mappings,
+  mappingManager,
+  successCallback,
+  errorCallback,
+}) {
   const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
   const [showTemplateRow, setShowTemplateRow] = useState(false);
   const [data, setData] = useState(mappings);
@@ -175,21 +180,31 @@ export default function MappingTable({ mappings, mappingManager }) {
 
   const addRow = (query) => {
     // console.log(query);
-    // console.log("BLEH", getDateTodayString());
     let newEntry = {
       id: nextId,
       mapping_query: query,
       date_modified: getDateTodayString(),
       isChecked: false,
     };
-    setData([...data, newEntry]);
-    mappingManager.createMapping(newEntry);
-    setNextId(nextId + 1);
-    setShowTemplateRow(false);
+    // console.log("BLEH", getDateTodayString());
+    mappingManager.createMapping(newEntry).then((response) => {
+      if (response) {
+        setData([...data, newEntry]);
+
+        setNextId(nextId + 1);
+        setShowTemplateRow(false);
+        successCallback("YAY");
+      } else {
+        const d = new Date();
+        let text = d.toTimeString().substring(0, 8);
+        errorCallback("Hello from " + text);
+      }
+    });
   };
 
   function downloadExcel(selectedMappings) {
     console.log(getSelectedEntries());
+    successCallback("YAY");
   }
 
   function uploadExcel(selectedMappings) {
@@ -197,8 +212,6 @@ export default function MappingTable({ mappings, mappingManager }) {
   }
 
   function deleteRows(selectedMappings) {
-    // console.log(getSelectedEntries())
-
     mappingManager.deleteMapping(selectedMappings); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
 
     const currData = data.filter((row) => !row.isChecked);

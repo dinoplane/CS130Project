@@ -1,10 +1,11 @@
 export default class MappingManager {
   constructor() {
-    this.mappingDbUrl = "0.0.0.0"; // localhost:blabla/excel-interface/mapping-database
+    this.mappingDbUrl = "http://0.0.0.0:8000"; // localhost:blabla/excel-interface/mapping-database
     this.fusekiDbUrl = "127.0.0.1";
   }
 
   async createMapping(entry) {
+    let success = true;
     console.log(
       JSON.stringify({
         type: "create",
@@ -12,16 +13,32 @@ export default class MappingManager {
         mapping: entry,
       }),
     );
-    const response = await fetch(this.mappingDbUrl, {
+    success = fetch(this.mappingDbUrl, {
       method: "POST",
       body: JSON.stringify({
         type: "create",
         fusekiUrl: this.fusekiDbUrl,
         mapping: entry,
       }),
-    });
-    const success = await response.json();
-    console.log(mapping);
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((responseJson) => {
+        // Do something with the response
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+    // const success = await response.json();
+    // console.log(entry);
+    // console.log(success);
+    console.log(success);
     return success;
   }
 
