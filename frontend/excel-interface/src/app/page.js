@@ -11,7 +11,25 @@ import ErrorDialog from "./errordialog";
 // Example of a data array that
 
 const mappingManager = new MappingManager();
-const MAPPINGS = []; //mappingManager.requestMapping();
+// const MAPPINGS = []; //mappingManager.requestMapping();
+
+const MAPPINGS = [
+  {
+    id: 0,
+    mapping_query: "SELECT COURSE WHERE COURSE.NAME = CS130",
+    date_modified: "10/19/2023",
+  },
+  {
+    id: 1,
+    mapping_query: "SELECT COURSE WHERE STUDENTS_ENROLLED > 30 AND DEPT = CS",
+    date_modified: "10/20/2023",
+  },
+  {
+    id: 2,
+    mapping_query: "SELECT PROFESSOR WHERE COURSE.NAME = CS130",
+    date_modified: "10/21/2023",
+  },
+];
 
 export default function Home() {
   // const errRef = useRef(null);

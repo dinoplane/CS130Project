@@ -212,11 +212,18 @@ export default function MappingTable({
   }
 
   function deleteRows(selectedMappings) {
-    mappingManager.deleteMapping(selectedMappings); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
-
-    const currData = data.filter((row) => !row.isChecked);
-    // console.log(currData);
-    setData([...currData]);
+    mappingManager.deleteMapping(selectedMappings).then((response) => {
+      if (response) {
+        const currData = data.filter((row) => !row.isChecked);
+        // console.log(currData);
+        setData([...currData]);
+        successCallback("YAY");
+      } else {
+        const d = new Date();
+        let text = d.toTimeString().substring(0, 8);
+        errorCallback("Hello from " + text);
+      }
+    }); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
   }
 
   return (

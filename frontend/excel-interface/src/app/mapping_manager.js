@@ -43,31 +43,43 @@ export default class MappingManager {
   }
 
   async deleteMapping(entry) {
-    const response = await fetch(this.mappingDbUrl, {
+    let success = fetch(this.mappingDbUrl, {
       method: "POST",
       body: JSON.stringify({
         type: "delete",
         fusekiUrl: this.fusekiDbUrl,
         mapping: entry,
       }),
-    });
-    const success = await response.json();
-    console.log(mapping);
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((responseJson) => {
+        // Do something with the response
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
     return success;
   }
 
   async requestMapping() {
-    const response = await fetch(this.mappingDbUrl, {
-      method: "GET",
-      body: JSON.stringify({
-        type: "request",
-        fusekiUrl: this.fusekiDbUrl,
-        begin: b,
-        end: e,
-      }),
-    });
-    const mappings = await response.json();
-    console.log(mapping);
-    return mappings;
+    // const response = await fetch(this.mappingDbUrl, {
+    //   method: "GET",
+    //   body: JSON.stringify({
+    //     type: "request",
+    //     fusekiUrl: this.fusekiDbUrl,
+    //     begin: b,
+    //     end: e,
+    //   }),
+    // });
+    // const mappings = await response.json();
+    // console.log(mapping);
+    return [];
   }
 }
