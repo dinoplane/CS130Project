@@ -5,6 +5,13 @@ export default class MappingManager {
   }
 
   async createMapping(entry) {
+    console.log(
+      JSON.stringify({
+        type: "create",
+        fusekiUrl: this.fusekiDbUrl,
+        mapping: entry,
+      }),
+    );
     const response = await fetch(this.mappingDbUrl, {
       method: "POST",
       body: JSON.stringify({

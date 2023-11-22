@@ -176,16 +176,14 @@ export default function MappingTable({ mappings, mappingManager }) {
   const addRow = (query) => {
     // console.log(query);
     // console.log("BLEH", getDateTodayString());
-    setData([
-      ...data,
-      {
-        id: nextId,
-        mapping_query: query,
-        date_modified: getDateTodayString(),
-        isChecked: false,
-      },
-    ]);
-    mappingManager.createMapping("query");
+    let newEntry = {
+      id: nextId,
+      mapping_query: query,
+      date_modified: getDateTodayString(),
+      isChecked: false,
+    };
+    setData([...data, newEntry]);
+    mappingManager.createMapping(newEntry);
     setNextId(nextId + 1);
     setShowTemplateRow(false);
   };
