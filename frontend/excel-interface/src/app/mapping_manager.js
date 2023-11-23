@@ -1,6 +1,6 @@
 export default class MappingManager {
   constructor() {
-    this.mappingDbUrl = "http://0.0.0.0:8000"; // localhost:blabla/excel-interface/mapping-database
+    this.mappingDbUrl = "http://0.0.0.0:8000/excel-interface/mapping-database/"; // localhost:blabla/excel-interface/mapping-database
     this.fusekiDbUrl = "127.0.0.1";
   }
 
@@ -8,17 +8,23 @@ export default class MappingManager {
     let success = true;
     console.log(
       JSON.stringify({
-        type: "create",
-        fusekiUrl: this.fusekiDbUrl,
-        mapping: entry,
+        id: entry.id,
+        name: entry.name,
+        query: entry.query,
+        date: entry.date,
       }),
     );
     success = fetch(this.mappingDbUrl, {
       method: "POST",
+      headers: {
+        accept: " application/json",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        type: "create",
-        fusekiUrl: this.fusekiDbUrl,
-        mapping: entry,
+        id: entry.id,
+        name: entry.name,
+        query: entry.query,
+        date: entry.date,
       }),
     })
       .then((response) => {
@@ -48,7 +54,12 @@ export default class MappingManager {
       body: JSON.stringify({
         type: "delete",
         fusekiUrl: this.fusekiDbUrl,
-        mapping: entry,
+        mapping: {
+          id: entry.id,
+          name: entry.name,
+          query: entry.query,
+          date: entry.date,
+        },
       }),
     })
       .then((response) => {
@@ -70,16 +81,28 @@ export default class MappingManager {
 
   async requestMapping() {
     // const response = await fetch(this.mappingDbUrl, {
-    //   method: "GET",
-    //   body: JSON.stringify({
-    //     type: "request",
-    //     fusekiUrl: this.fusekiDbUrl,
-    //     begin: b,
-    //     end: e,
-    //   }),
-    // });
-    // const mappings = await response.json();
-    // console.log(mapping);
-    return [];
+    let success = await fetch(this.mappingDbUrl, {
+      method: "GET",
+      // body: "",
+      // body: JSON.stringify({
+      //   // fusekiUrl: this.fusekiDbUrl,
+      // }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((responseJson) => {
+        console.log(responseJson);
+        return responseJson;
+      })
+      .catch((error) => {
+        console.log(error);
+        return [];
+      });
+    console.log(success);
+    return success;
   }
 }

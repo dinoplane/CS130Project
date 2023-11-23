@@ -9,12 +9,13 @@ import ConfirmImg from "./img/confirm.svg";
 
 function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
   const onSelectChange = (e) => {
+    console.log("HAI");
     rowCheckboxCallback(e, mapping);
   };
 
   return (
     <tr
-      id={mapping.id.toString().padStart(6, "0")}
+      // id={mapping.id.toString().padStart(6, "0")}
       className={styles.entry_row}
     >
       <td className={styles.checkbox_col}>
@@ -24,26 +25,25 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
           checked={isSelected}
         ></input>
       </td>
-      <td className={styles.id_col}>
-        {mapping.id.toString().padStart(6, "0")}
-      </td>
-      <td className={styles.query_col}>{mapping.mapping_query}</td>
-      <td className={styles.date_col}>{mapping.date_modified}</td>
+      <td className={styles.name_col}>{mapping.name}</td>
+      <td className={styles.query_col}>{mapping.query}</td>
+      <td className={styles.date_col}>{mapping.date}</td>
     </tr>
   );
 }
 
 function UINewRow({ addRowCallback }) {
-  const inputRef = useRef(null);
+  const nameInputRef = useRef(null);
+  const queryInputRef = useRef(null);
   const onInputSubmit = (e) => {
-    addRowCallback(inputRef.current.value);
+    addRowCallback(nameInputRef.current.value, queryInputRef.current.value);
   };
   return (
     <tr key={"add-row"} className={styles.newrow}>
       <td className={styles.checkbox_col}>
         <input type="checkbox" disabled={true}></input>
       </td>
-      <td className={styles.id_col}>
+      <td className={styles.name_col}>
         <div className={styles.confirm_div}>
           <div
             className={styles.toolbar_button}
@@ -55,20 +55,24 @@ function UINewRow({ addRowCallback }) {
         </div>
       </td>
       <td className={styles.query_col}>
-        <input
-          ref={inputRef}
-          className={styles.queryfield}
-          type="text"
-          placeholder="Enter Mapping Query"
-          onKeyDown={(event) => {
-            console.log("NANANANAN");
-            if (event.key === "Enter") {
-              addRowCallback(event.target.value);
-            }
-            // console.log(inputRef.current.value)
-          }}
-          autoFocus
-        ></input>
+        <div>
+          <p>Name:</p>
+          <input
+            ref={nameInputRef}
+            className={styles.namefield}
+            type="text"
+            placeholder="Enter Mapping Name"
+          ></input>
+        </div>
+        <div>
+          <p>Query: </p>
+          <textarea
+            ref={queryInputRef}
+            className={styles.queryfield}
+            placeholder="Enter Mapping Query"
+            // autoFocus
+          ></textarea>
+        </div>
       </td>
       <td className={styles.date_col}>{getDateTodayString()}</td>
     </tr>
@@ -101,15 +105,29 @@ export default function MappingTable({
 
   useConstructor(() => {
     console.log("Occurs ONCE, BEFORE the initial render.");
-    const currData = [...data];
-    currData.map((row) => {
-      row.isChecked = false;
-      return row;
+    mappingManager.requestMapping().then((mappings) => {
+      let currData = [...mappings];
+      let newData = currData.map((row) => {
+        return { data: row, isChecked: false };
+      });
+      console.log(newData);
+      if (newData.length > 0) {
+        setNextId(newData[newData.length - 1].data.id + 1);
+      } else setNextId(0);
+      setData([...newData]);
+      setParentCheckboxVal();
     });
-    if (data.length > 0) {
-      setNextId(currData[currData.length - 1].id + 1);
-    } else setNextId(0);
-    setData([...currData]);
+    // console.log(mappings)
+    // let currData = [...mappings];
+    // const newData = currData.map((row) => {
+    //   return {data: row, isChecked: false};
+    // });
+
+    // console.log(newData)
+    // if (newData.length > 0) {
+    //   setNextId(newData[newData.length - 1].data.id + 1);
+    // } else setNextId(0);
+    // setData([...newData]);
   });
 
   // const [count, setCount] = useState(0);
@@ -132,7 +150,7 @@ export default function MappingTable({
       setIsParentChecked(false);
       parentCheckboxRef.current.disabled = true;
       return;
-    } else if (currData.length == 1) {
+    } else if (currData.length > 0) {
       parentCheckboxRef.current.disabled = false;
     }
 
@@ -161,12 +179,12 @@ export default function MappingTable({
     if (entry === "all") {
       setIsParentChecked(checked);
     }
-
+    console.log(entry);
     currData.map((row) => {
       if (entry === "all") {
         row.isChecked = checked;
       } else {
-        if (row.id === entry.id) {
+        if (row.data.id === entry.id) {
           row.isChecked = checked;
         }
       }
@@ -178,18 +196,19 @@ export default function MappingTable({
 
   // const changeParentCheckbox = (e, )
 
-  const addRow = (query) => {
+  const addRow = (in_name, in_query) => {
     // console.log(query);
     let newEntry = {
       id: nextId,
-      mapping_query: query,
-      date_modified: getDateTodayString(),
-      isChecked: false,
+      name: in_name,
+      query: in_query,
+      date: getDateTodayString(),
+      // isChecked: false,
     };
     // console.log("BLEH", getDateTodayString());
     mappingManager.createMapping(newEntry).then((response) => {
       if (response) {
-        setData([...data, newEntry]);
+        setData([...data, { data: newEntry, isChecked: false }]);
 
         setNextId(nextId + 1);
         setShowTemplateRow(false);
@@ -252,9 +271,9 @@ export default function MappingTable({
                 onChange={(e) => toggleSelectedEntries(e, "all")}
               ></input>
             </th>
-            <th>ID</th>
-            <th>Mapping Query</th>
-            <th>Date Modified</th>
+            <th>Name</th>
+            <th>Query</th>
+            <th>Date Created</th>
           </tr>
         </thead>
         <tbody>
@@ -263,7 +282,7 @@ export default function MappingTable({
               return (
                 <UIMappingRow
                   key={"ui-mapping-row" + parseInt(id)}
-                  mapping={row}
+                  mapping={row.data}
                   rowCheckboxCallback={toggleSelectedEntries}
                   isSelected={row?.isChecked}
                 />
@@ -272,7 +291,7 @@ export default function MappingTable({
           {data.length == 0 && (
             <tr key={"none"} className={styles.norow}>
               <td className={styles.checkbox_col}></td>
-              <td className={styles.id_col}></td>
+              <td className={styles.name_col}></td>
               <td className={styles.query_col}>Nothing to show here!</td>
               <td className={styles.date_col}></td>
             </tr>

@@ -139,7 +139,7 @@
   height: 20px;
 }
 
-.id_col {
+.name_col {
   background-color: azure;
   width: 10%;
 }
@@ -148,16 +148,37 @@
   background-color: azure;
   width: 75%;
 }
+.query_col div {
+  background-color: azure;
+  margin: 20px;
+
+  flex-direction: row;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
 .query_col input {
-  /* background-color: black; */
-  width: 99.5%;
+  background-color: white;
   height: 40px;
-  text-align: center;
+  width: 75%;
+
+  border-radius: 10px;
+  font-size: 14pt;
+  color: #777777;
+  background-color: white;
+}
+
+.query_col textarea {
+  /* background-color: black; */
+  width: 75%;
+  /* height: 40px; */
+  /* text-align: center; */
   border-radius: 10px;
 
   font-size: 14pt;
   color: #777777;
+  background-color: white;
 }
 
 .date_col {

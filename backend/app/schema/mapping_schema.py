@@ -3,6 +3,7 @@ from datetime import datetime
 import uuid
 
 class MappingEntry(BaseModel):
-    id: str = Field(default=uuid.uuid4, alias="_id")
-    info: str = Field(default=None, alias="info")
-    date: str = Field(default=datetime.date, alias="date")
+    id: int = Field(default=int, alias="id")
+    name: str = Field(default=str, alias="name")
+    query: str = Field(default=str, alias="query")
+    date: str = Field(default=str, alias="date")
