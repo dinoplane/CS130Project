@@ -1,0 +1,6209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Mapping Table rows are added when the user, opens a row and clicks the confirm button 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  disabled=""
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="norow"
+            >
+              <td
+                class="checkbox_col"
+              />
+              <td
+                class="id_col"
+              />
+              <td
+                class="query_col"
+              >
+                Nothing to show here!
+              </td>
+              <td
+                class="date_col"
+              />
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                disabled=""
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="norow"
+          >
+            <td
+              class="checkbox_col"
+            />
+            <td
+              class="id_col"
+            />
+            <td
+              class="query_col"
+            >
+              Nothing to show here!
+            </td>
+            <td
+              class="date_col"
+            />
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table rows are added when the user, opens a row and clicks the confirm button 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  disabled=""
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="norow"
+            >
+              <td
+                class="checkbox_col"
+              />
+              <td
+                class="id_col"
+              />
+              <td
+                class="query_col"
+              >
+                Nothing to show here!
+              </td>
+              <td
+                class="date_col"
+              />
+            </tr>
+            <tr
+              class="newrow"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  disabled=""
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                <div
+                  class="confirm_div"
+                >
+                  <div
+                    class="toolbar_button"
+                    id="addBtn"
+                  >
+                    <img
+                      alt="HAI"
+                      class="image"
+                      stroke="#00AA00"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td
+                class="query_col"
+              >
+                <input
+                  class="queryfield"
+                  placeholder="Enter Mapping Query"
+                  type="text"
+                />
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                disabled=""
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="norow"
+          >
+            <td
+              class="checkbox_col"
+            />
+            <td
+              class="id_col"
+            />
+            <td
+              class="query_col"
+            >
+              Nothing to show here!
+            </td>
+            <td
+              class="date_col"
+            />
+          </tr>
+          <tr
+            class="newrow"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                disabled=""
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              <div
+                class="confirm_div"
+              >
+                <div
+                  class="toolbar_button"
+                  id="addBtn"
+                >
+                  <img
+                    alt="HAI"
+                    class="image"
+                    stroke="#00AA00"
+                  />
+                </div>
+              </div>
+            </td>
+            <td
+              class="query_col"
+            >
+              <input
+                class="queryfield"
+                placeholder="Enter Mapping Query"
+                type="text"
+              />
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table rows are added when the user, opens a row and clicks the confirm button 3`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table rows are added when the user, opens a row and presses enter 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  disabled=""
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="norow"
+            >
+              <td
+                class="checkbox_col"
+              />
+              <td
+                class="id_col"
+              />
+              <td
+                class="query_col"
+              >
+                Nothing to show here!
+              </td>
+              <td
+                class="date_col"
+              />
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                disabled=""
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="norow"
+          >
+            <td
+              class="checkbox_col"
+            />
+            <td
+              class="id_col"
+            />
+            <td
+              class="query_col"
+            >
+              Nothing to show here!
+            </td>
+            <td
+              class="date_col"
+            />
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table rows are added when the user, opens a row and presses enter 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  disabled=""
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="norow"
+            >
+              <td
+                class="checkbox_col"
+              />
+              <td
+                class="id_col"
+              />
+              <td
+                class="query_col"
+              >
+                Nothing to show here!
+              </td>
+              <td
+                class="date_col"
+              />
+            </tr>
+            <tr
+              class="newrow"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  disabled=""
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                <div
+                  class="confirm_div"
+                >
+                  <div
+                    class="toolbar_button"
+                    id="addBtn"
+                  >
+                    <img
+                      alt="HAI"
+                      class="image"
+                      stroke="#00AA00"
+                    />
+                  </div>
+                </div>
+              </td>
+              <td
+                class="query_col"
+              >
+                <input
+                  class="queryfield"
+                  placeholder="Enter Mapping Query"
+                  type="text"
+                />
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                disabled=""
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="norow"
+          >
+            <td
+              class="checkbox_col"
+            />
+            <td
+              class="id_col"
+            />
+            <td
+              class="query_col"
+            >
+              Nothing to show here!
+            </td>
+            <td
+              class="date_col"
+            />
+          </tr>
+          <tr
+            class="newrow"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                disabled=""
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              <div
+                class="confirm_div"
+              >
+                <div
+                  class="toolbar_button"
+                  id="addBtn"
+                >
+                  <img
+                    alt="HAI"
+                    class="image"
+                    stroke="#00AA00"
+                  />
+                </div>
+              </div>
+            </td>
+            <td
+              class="query_col"
+            >
+              <input
+                class="queryfield"
+                placeholder="Enter Mapping Query"
+                type="text"
+              />
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table rows are added when the user, opens a row and presses enter 3`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS131
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS131
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on 2 entry checkboxes and delete button 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on 2 entry checkboxes and delete button 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on 2 entry checkboxes, unclicks 1, and deletes 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on 2 entry checkboxes, unclicks 1, and deletes 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on a parent entry checkbox and deletes 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on a parent entry checkbox and deletes 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  disabled=""
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="norow"
+            >
+              <td
+                class="checkbox_col"
+              />
+              <td
+                class="id_col"
+              />
+              <td
+                class="query_col"
+              >
+                Nothing to show here!
+              </td>
+              <td
+                class="date_col"
+              />
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                disabled=""
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="norow"
+          >
+            <td
+              class="checkbox_col"
+            />
+            <td
+              class="id_col"
+            />
+            <td
+              class="query_col"
+            >
+              Nothing to show here!
+            </td>
+            <td
+              class="date_col"
+            />
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on nothing, but tries to delete, deleting nothing 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user deletes rows when the user clicks on nothing, but tries to delete, deleting nothing 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user downloads mappings when the user clicks on a parent entry checkbox and deletes 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user downloads mappings when the user clicks on a parent entry checkbox and deletes 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user uploads mappings when the user clicks on a parent entry checkbox and deletes 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Mapping Table the user uploads mappings when the user clicks on a parent entry checkbox and deletes 2`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="datatable"
+      >
+        <div
+          class="toolbar"
+        >
+          <div
+            class="toolbar_button"
+            id="dwnBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </div>
+          <div
+            class="toolbar_button"
+            id="uplBtn"
+          >
+            <label
+              for="file-input"
+            >
+              <img
+                alt="HAI"
+                class="image"
+                stroke="#333333"
+              />
+            </label>
+          </div>
+          <div
+            class="toolbar_button"
+            id="delBtn"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#df2323"
+            />
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  id="parent-checkbox"
+                  type="checkbox"
+                />
+              </th>
+              <th>
+                ID
+              </th>
+              <th>
+                Mapping Query
+              </th>
+              <th>
+                Date Modified
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="entry_row"
+              id="000000"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000000
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/19/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000001"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000001
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+              </td>
+              <td
+                class="date_col"
+              >
+                10/20/2023
+              </td>
+            </tr>
+            <tr
+              class="entry_row"
+              id="000002"
+            >
+              <td
+                class="checkbox_col"
+              >
+                <input
+                  type="checkbox"
+                />
+              </td>
+              <td
+                class="id_col"
+              >
+                000002
+              </td>
+              <td
+                class="query_col"
+              >
+                SELECT PROFESSOR WHERE COURSE.NAME = CS130
+              </td>
+              <td
+                class="date_col"
+              >
+                10/21/2023
+              </td>
+            </tr>
+            <tr
+              class="addrow"
+            >
+              <td />
+              <td
+                class="addrow_td"
+              >
+                <div
+                  class="toolbar_button"
+                  id="openBtn"
+                >
+                  <img
+                    class="image"
+                    stroke="#333333"
+                  />
+                </div>
+              </td>
+              <td />
+              <td />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="datatable"
+    >
+      <div
+        class="toolbar"
+      >
+        <div
+          class="toolbar_button"
+          id="dwnBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#333333"
+          />
+        </div>
+        <div
+          class="toolbar_button"
+          id="uplBtn"
+        >
+          <label
+            for="file-input"
+          >
+            <img
+              alt="HAI"
+              class="image"
+              stroke="#333333"
+            />
+          </label>
+        </div>
+        <div
+          class="toolbar_button"
+          id="delBtn"
+        >
+          <img
+            alt="HAI"
+            class="image"
+            stroke="#df2323"
+          />
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input
+                id="parent-checkbox"
+                type="checkbox"
+              />
+            </th>
+            <th>
+              ID
+            </th>
+            <th>
+              Mapping Query
+            </th>
+            <th>
+              Date Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="entry_row"
+            id="000000"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000000
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/19/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000001"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000001
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT COURSE WHERE STUDENTS_ENROLLED &gt; 30 AND DEPT = CS
+            </td>
+            <td
+              class="date_col"
+            >
+              10/20/2023
+            </td>
+          </tr>
+          <tr
+            class="entry_row"
+            id="000002"
+          >
+            <td
+              class="checkbox_col"
+            >
+              <input
+                type="checkbox"
+              />
+            </td>
+            <td
+              class="id_col"
+            >
+              000002
+            </td>
+            <td
+              class="query_col"
+            >
+              SELECT PROFESSOR WHERE COURSE.NAME = CS130
+            </td>
+            <td
+              class="date_col"
+            >
+              10/21/2023
+            </td>
+          </tr>
+          <tr
+            class="addrow"
+          >
+            <td />
+            <td
+              class="addrow_td"
+            >
+              <div
+                class="toolbar_button"
+                id="openBtn"
+              >
+                <img
+                  class="image"
+                  stroke="#333333"
+                />
+              </div>
+            </td>
+            <td />
+            <td />
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

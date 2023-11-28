@@ -162,4 +162,5 @@ MappingDBManager ..> MappingDB
 ExcelGenerator ..> KnowledgeBase
 FusekiUpdater ..> KnowledgeBase
 
+
 @enduml
