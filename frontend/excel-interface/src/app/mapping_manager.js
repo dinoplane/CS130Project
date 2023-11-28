@@ -100,7 +100,7 @@ export default class MappingManager {
       })
       .catch((error) => {
         console.log(error);
-        return [];
+        return false;
       });
     console.log(success);
     return success;

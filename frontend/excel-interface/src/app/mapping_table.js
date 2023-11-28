@@ -106,16 +106,22 @@ export default function MappingTable({
   useConstructor(() => {
     console.log("Occurs ONCE, BEFORE the initial render.");
     mappingManager.requestMapping().then((mappings) => {
-      let currData = [...mappings];
-      let newData = currData.map((row) => {
-        return { data: row, isChecked: false };
-      });
-      console.log(newData);
-      if (newData.length > 0) {
-        setNextId(newData[newData.length - 1].data.id + 1);
-      } else setNextId(0);
-      setData([...newData]);
-      setParentCheckboxVal();
+      if (mappings) {
+        let currData = [...mappings];
+        let newData = currData.map((row) => {
+          return { data: row, isChecked: false };
+        });
+        console.log(newData);
+        if (newData.length > 0) {
+          setNextId(newData[newData.length - 1].data.id + 1);
+        } else setNextId(0);
+        setData([...newData]);
+        setParentCheckboxVal();
+      } else {
+        const d = new Date();
+        let text = d.toTimeString().substring(0, 8);
+        errorCallback("Hello from " + text);
+      }
     });
     // console.log(mappings)
     // let currData = [...mappings];
