@@ -6,6 +6,8 @@ export default class ExcelHandler {
   async downloadExcel(selectedMappings) {
     const success = fetch(this.fusekiDispatchUrl, {
       method: "GET",
+      mode: "no-cors",
+      referrerPolicy: "no-referrer",
       body: JSON.stringify({
         type: "request",
         fusekiUrl: this.connectedFusekiURL,
@@ -14,14 +16,27 @@ export default class ExcelHandler {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json();
+          return response.blob();
         }
         throw new Error("Something went wrong");
       })
-      .then((responseJson) => {
+      .then((responseBlob) =>
         // Do something with the response
-        return true;
-      })
+        {
+          const d = new Date();
+          let text = d.toTimeString().substring(0, 8);
+          const fileName = text + "-excel.xlsx";
+
+          const aElement = document.createElement("a");
+          aElement.setAttribute("download", fileName);
+          const href = URL.createObjectURL(responseBlob);
+          aElement.href = href;
+          // aElement.setAttribute('href', href);
+          aElement.setAttribute("target", "_blank");
+          aElement.click();
+          URL.revokeObjectURL(href);
+        },
+      )
       .catch((error) => {
         console.log(error);
         return false;
