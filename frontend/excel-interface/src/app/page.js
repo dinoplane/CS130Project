@@ -1,19 +1,19 @@
-"use client"; // This is a client component 👈🏽
+'use client' // This is a client component 👈🏽
 
-import styles from "./page.module.css";
-import { useState, useRef, useEffect } from "react";
+import styles from './page.module.css'
+import { useState, useRef, useEffect } from 'react'
 
-import MappingManager from "./mapping_manager";
-import ExcelHandler from "./excelhandler";
-import Header from "./header";
-import MappingTable from "./mapping_table";
-import ErrorDialog from "./errordialog";
+import MappingManager from './mapping_manager'
+import ExcelHandler from './excelhandler'
+import Header from './header'
+import MappingTable from './mapping_table'
+import ErrorDialog from './errordialog'
 
 // Example of a data array that
 
-const mappingManager = new MappingManager();
-const MAPPINGS = [];
-const excelHandler = new ExcelHandler();
+const mappingManager = new MappingManager()
+const MAPPINGS = []
+const excelHandler = new ExcelHandler()
 
 // const MAPPINGS = [
 //   {
@@ -38,43 +38,43 @@ const excelHandler = new ExcelHandler();
 
 // console.log(MAPPINGS)
 export default function Home() {
-  // const errRef = useRef(null);
-  const [hasError, setHasError] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-  const closeErrorCallback = () => {
-    setHasError(false);
-  };
+    // const errRef = useRef(null);
+    const [hasError, setHasError] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
+    const closeErrorCallback = () => {
+        setHasError(false)
+    }
 
-  const handleErrorCallback = (val) => {
-    console.log("HAI");
-    setErrorMsg(val);
-    setHasError(true);
-  };
+    const handleErrorCallback = (val) => {
+        console.log('HAI')
+        setErrorMsg(val)
+        setHasError(true)
+    }
 
-  const handleSuccessCallback = (val) => {
-    console.log(val);
-    setErrorMsg("");
-    setHasError(false);
-  };
+    const handleSuccessCallback = (val) => {
+        console.log(val)
+        setErrorMsg('')
+        setHasError(false)
+    }
 
-  return (
-    <main className={styles.main}>
-      <div className={styles.maindiv}>
-        <Header />
-        <MappingTable
-          mappings={MAPPINGS}
-          mappingManager={mappingManager}
-          excelHandler={excelHandler}
-          successCallback={handleSuccessCallback}
-          errorCallback={handleErrorCallback}
-        />
-      </div>
-      {hasError && (
-        <ErrorDialog
-          closeErrorCallback={closeErrorCallback}
-          errorMsg={errorMsg}
-        />
-      )}
-    </main>
-  );
+    return (
+        <main className={styles.main}>
+            <div className={styles.maindiv}>
+                <Header />
+                <MappingTable
+                    mappings={MAPPINGS}
+                    mappingManager={mappingManager}
+                    excelHandler={excelHandler}
+                    successCallback={handleSuccessCallback}
+                    errorCallback={handleErrorCallback}
+                />
+            </div>
+            {hasError && (
+                <ErrorDialog
+                    closeErrorCallback={closeErrorCallback}
+                    errorMsg={errorMsg}
+                />
+            )}
+        </main>
+    )
 }
