@@ -14,11 +14,12 @@ SELECT ?id ?name ?age
 WHERE {
   ?id a:AGE 30 .
   ?id a:NAME ?name .
-  ?id a:AGE ?age .
+  ?id a:AGE ?age . 
 }
 
 """    
 )
+
 
 
 ret = sparql.queryAndConvert()
