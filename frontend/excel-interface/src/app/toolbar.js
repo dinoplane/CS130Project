@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import DownloadImg from "./img/download.svg";
 import UploadImg from "./img/upload.svg";
 import DeleteImg from "./img/delete.svg";
+// import { upload } from "@testing-library/user-event/dist/types/utility";
 
 // https://www.robinwieruch.de/react-hook-detect-click-outside-component/
 const useOutsideClick = (callback) => {
@@ -78,10 +79,10 @@ export default function Toolbar({
   uploadCallback,
   deleteCallback,
 }) {
-  // function changeHandler(){
-
-  // }
-
+  const changeHandler = (event) => {
+    uploadCallback(event.target.files[0]);
+  };
+  // Consider adding are you sure? dialog
   return (
     <div className={styles.toolbar}>
       <div
@@ -91,17 +92,23 @@ export default function Toolbar({
       >
         <DownloadImg className={styles.image} alt="HAI" stroke="#333333" />
       </div>
-      <UploadDropdownMenu
+      <div id={"uplBtn"} className={styles.toolbar_button}>
+        <label htmlFor="file-input">
+          <UploadImg className={styles.image} alt="HAI" stroke="#333333" />
+        </label>
+        <input
+          type="file"
+          id="file-input"
+          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+          onChange={changeHandler}
+        />
+      </div>
+
+      {/* <UploadDropdownMenu
         trigger={
-          <div id={"uplBtn"} className={styles.toolbar_button}>
-            <label htmlFor="file-input">
-              <UploadImg className={styles.image} alt="HAI" stroke="#333333" />
-            </label>
-            {/* <input type="file" id="file-input" onChange={changeHandler} /> */}
-          </div>
-        }
+
         uploadCallback={uploadCallback}
-      />
+      /> */}
 
       <div
         id={"delBtn"}

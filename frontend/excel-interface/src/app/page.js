@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { useState, useRef, useEffect } from "react";
 
 import MappingManager from "./mapping_manager";
+import ExcelHandler from "./excelhandler";
 import Header from "./header";
 import MappingTable from "./mapping_table";
 import ErrorDialog from "./errordialog";
@@ -12,6 +13,7 @@ import ErrorDialog from "./errordialog";
 
 const mappingManager = new MappingManager();
 const MAPPINGS = [];
+const excelHandler = new ExcelHandler();
 
 // const MAPPINGS = [
 //   {
@@ -62,6 +64,7 @@ export default function Home() {
         <MappingTable
           mappings={MAPPINGS}
           mappingManager={mappingManager}
+          excelHandler={excelHandler}
           successCallback={handleSuccessCallback}
           errorCallback={handleErrorCallback}
         />

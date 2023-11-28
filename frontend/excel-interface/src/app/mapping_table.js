@@ -62,6 +62,7 @@ function UINewRow({ addRowCallback }) {
             className={styles.namefield}
             type="text"
             placeholder="Enter Mapping Name"
+            autoFocus
           ></input>
         </div>
         <div>
@@ -93,6 +94,7 @@ const useConstructor = (callBack = () => {}) => {
 export default function MappingTable({
   mappings,
   mappingManager,
+  excelHandler,
   successCallback,
   errorCallback,
 }) {
@@ -144,10 +146,6 @@ export default function MappingTable({
 
   const getSelectedEntries = () => {
     let ret = data.filter((row) => row.isChecked);
-    // console.log(ret);
-    // if (ret == undefined){
-    //   ret = [];
-    // }
     return ret;
   };
 
@@ -201,8 +199,6 @@ export default function MappingTable({
     setData([...currData]);
   };
 
-  // const changeParentCheckbox = (e, )
-
   const addRow = (in_name, in_query) => {
     // console.log(query);
     let newEntry = {
@@ -230,11 +226,21 @@ export default function MappingTable({
 
   function downloadExcel(selectedMappings) {
     console.log(getSelectedEntries());
+    excelHandler.downloadExcel(selectedMappings).then();
+
     successCallback("YAY");
   }
 
-  function uploadExcel(selectedMappings) {
-    console.log(getSelectedEntries());
+  function uploadExcel(selectedFile) {
+    excelHandler.uploadExcel(selectedFile).then((response) => {
+      if (response) {
+        successCallback("YAY");
+      } else {
+        const d = new Date();
+        let text = d.toTimeString().substring(0, 8);
+        errorCallback("Hello from " + text);
+      }
+    });
   }
 
   function deleteRows(selectedMappings) {
@@ -258,8 +264,8 @@ export default function MappingTable({
         downloadCallback={() => {
           downloadExcel(getSelectedEntries());
         }}
-        uploadCallback={() => {
-          uploadExcel();
+        uploadCallback={(selectedFile) => {
+          uploadExcel(selectedFile);
         }}
         deleteCallback={() => {
           deleteRows(getSelectedEntries());
