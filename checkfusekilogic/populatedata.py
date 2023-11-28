@@ -1,8 +1,10 @@
-from SPARQLWrapper import SPARQLWrapper, CSV
-from openpyxl import Workbook, load_workbook
-import csv
-from io import StringIO
+from openpyxl import load_workbook
 import requests
+
+### the following will NOT be used in backend, it's there for us to populate 
+## our fuseki kb for our demos and testing.
+## in reality the user should provide us with their own fuseki link
+## and the kb should already be populated
 
 def is_float(s):
     if s.replace(".", "").isnumeric():
@@ -67,7 +69,3 @@ print(ttl_filestream)
 data = ttl_filestream
 headers = {'Content-Type': 'text/turtle;charset=utf-8'}
 r = requests.post('http://localhost:3030/db/data', data=data, headers=headers)
-
-
-#todo: what about duplicate primary keys in og excel sheet?
-#rodo: number input formatting, excel stores them as floats regardless

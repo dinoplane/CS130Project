@@ -1,4 +1,5 @@
 import rdflib
+import pandas
 
 g = rdflib.Graph()
 g.parse("http://localhost:3030/db/")
