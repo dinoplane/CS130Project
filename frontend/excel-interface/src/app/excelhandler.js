@@ -3,7 +3,7 @@ export default class ExcelHandler {
         this.fusekiDispatchUrl = '1.0.0.0'
         this.connectedFusekiURL = '127.0.0.1'
     }
-    async downloadExcel(selectedMappings) {
+    async downloadExcel(entries) {
         const success = fetch(this.fusekiDispatchUrl, {
             method: 'POST',
             mode: 'no-cors',

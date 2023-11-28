@@ -230,9 +230,15 @@ export default function MappingTable({
 
     function downloadExcel(selectedMappings) {
         console.log(getSelectedEntries())
-        excelHandler.downloadExcel(selectedMappings).then()
-
-        successCallback('YAY')
+        excelHandler.downloadExcel(selectedMappings).then((response) => {
+            if (response) {
+                successCallback('YAY')
+            } else {
+                const d = new Date()
+                let text = d.toTimeString().substring(0, 8)
+                errorCallback('Hello from ' + text)
+            }
+        })
     }
 
     function uploadExcel(selectedFile) {
