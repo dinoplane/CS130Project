@@ -48,18 +48,20 @@ export default class MappingManager {
     return success;
   }
 
-  async deleteMapping(entry) {
+  async deleteMapping(entries) {
     let success = fetch(this.mappingDbUrl, {
       method: "POST",
       body: JSON.stringify({
         type: "delete",
         fusekiUrl: this.fusekiDbUrl,
-        mapping: {
-          id: entry.id,
-          name: entry.name,
-          query: entry.query,
-          date: entry.date,
-        },
+        mappings: entries.map((entry) => {
+          return {
+            id: entry.id,
+            name: entry.name,
+            query: entry.query,
+            date: entry.date,
+          };
+        }),
       }),
     })
       .then((response) => {
