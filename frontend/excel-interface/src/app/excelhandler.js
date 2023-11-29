@@ -14,7 +14,6 @@ export default class ExcelHandler {
             mode: 'no-cors',
             referrerPolicy: 'no-referrer',
             body: JSON.stringify({
-                type: 'request',
                 fusekiUrl: this.fusekiKBUrl,
                 mappings: entries.map((entry) => {
                     return {

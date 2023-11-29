@@ -68,7 +68,7 @@ export default function Home() {
                 if (response.ok) {
                     mappingManager.setFusekiUrl(url);
                     excelHandler.setFusekiUrl(url);
-                    return responseJson;
+                    return response.json();
                 }
                 throw new Error('Something went wrong');
             })

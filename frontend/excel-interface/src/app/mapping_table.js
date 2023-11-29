@@ -124,6 +124,7 @@ export default function MappingTable({
                 setData([...newData]);
                 setParentCheckboxVal();
                 successCallback('YAY');
+                console.log(newData);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
