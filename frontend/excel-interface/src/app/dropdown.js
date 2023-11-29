@@ -1,40 +1,40 @@
-import { useState, useRef, useEffect, cloneElement } from 'react'
-import styles from './page.module.css'
+import { useState, useRef, useEffect, cloneElement } from 'react';
+import styles from './page.module.css';
 
 const useOutsideClick = (callback) => {
-    const ref = useRef()
-    console.log('HALLO')
+    const ref = useRef();
+    console.log('HALLO');
     useEffect(() => {
         const handleClick = (event) => {
             if (ref.current && !ref.current.contains(event.target)) {
-                callback()
+                callback();
             }
-        }
+        };
 
-        document.addEventListener('click', handleClick, true)
+        document.addEventListener('click', handleClick, true);
 
         return () => {
-            document.removeEventListener('click', handleClick, true)
-        }
-    }, [ref])
+            document.removeEventListener('click', handleClick, true);
+        };
+    }, [ref]);
 
-    return ref
-}
+    return ref;
+};
 
 export default function DropdownMenu({ trigger, child }) {
     const ref = useOutsideClick(() => {
         // console.log("HEEEELO")
-        setDropdownOpen(false)
-    })
+        setDropdownOpen(false);
+    });
 
-    const [dropdownOpen, setDropdownOpen] = useState(false)
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const handleOpen = () => {
-        setDropdownOpen(!dropdownOpen)
-    }
+        setDropdownOpen(!dropdownOpen);
+    };
 
     const handleClose = () => {
-        setDropdownOpen(false)
-    }
+        setDropdownOpen(false);
+    };
 
     // const dropdownCallback = (mode) => {
     //   setDropdownOpen(false);
@@ -54,5 +54,5 @@ export default function DropdownMenu({ trigger, child }) {
                 </div>
             ) : null}
         </div>
-    )
+    );
 }

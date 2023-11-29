@@ -1,14 +1,14 @@
-import styles from './page.module.css'
-import DropdownMenu from './dropdown'
-import { useState, useRef, useEffect } from 'react'
+import styles from './page.module.css';
+import DropdownMenu from './dropdown';
+import { useState, useRef, useEffect } from 'react';
 
 export function ConnectDialog({ connectCallback, closeCallback }) {
-    const urlInputRef = useRef(null)
+    const urlInputRef = useRef(null);
 
     const onInputSubmit = (e) => {
-        connectCallback(urlInputRef.current.value)
-        closeCallback()
-    }
+        connectCallback(urlInputRef.current.value);
+        closeCallback();
+    };
     return (
         <div className={styles.connectDialog}>
             <input
@@ -22,12 +22,12 @@ export function ConnectDialog({ connectCallback, closeCallback }) {
                 SUBMIT
             </button>
         </div>
-    )
+    );
 }
 
 export default function Header({ connectCallback }) {
-    const [isKBSet, setIsKBSet] = useState(false)
-    const [fusekiUrl, setFusekiUrl] = useState('')
+    const [isKBSet, setIsKBSet] = useState(false);
+    const [fusekiUrl, setFusekiUrl] = useState('');
 
     return (
         <>
@@ -43,5 +43,5 @@ export default function Header({ connectCallback }) {
                 />
             </div>
         </> //I could use drop down here...
-    )
+    );
 }

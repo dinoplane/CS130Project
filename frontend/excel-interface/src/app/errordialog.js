@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react';
 
-import styles from './page.module.css'
+import styles from './page.module.css';
 
 export default function ErrorDialog({ closeErrorCallback, errorMsg }) {
     // const [hasError, setHasError] = useState(false);
@@ -12,5 +12,5 @@ export default function ErrorDialog({ closeErrorCallback, errorMsg }) {
             <p>{errorMsg}</p>
             <div onClick={closeErrorCallback}>CLOSE!</div>
         </div>
-    )
+    );
 }

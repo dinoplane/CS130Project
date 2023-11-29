@@ -1,19 +1,19 @@
-'use client' // This is a client component 👈🏽
+'use client'; // This is a client component 👈🏽
 
-import styles from './page.module.css'
-import { useState, useRef, useEffect } from 'react'
+import styles from './page.module.css';
+import { useState, useRef, useEffect } from 'react';
 
-import MappingManager from './mapping_manager'
-import ExcelHandler from './excelhandler'
-import Header from './header'
-import MappingTable from './mapping_table'
-import ErrorDialog from './errordialog'
+import MappingManager from './mapping_manager';
+import ExcelHandler from './excelhandler';
+import Header from './header';
+import MappingTable from './mapping_table';
+import ErrorDialog from './errordialog';
 
 // Example of a data array that
 
-const mappingManager = new MappingManager()
-const MAPPINGS = []
-const excelHandler = new ExcelHandler()
+const mappingManager = new MappingManager();
+const MAPPINGS = [];
+const excelHandler = new ExcelHandler();
 
 // const MAPPINGS = [
 //   {
@@ -36,28 +36,54 @@ const excelHandler = new ExcelHandler()
 //   },
 // ];
 
-function connectToFuseki(url) {}
-
 // console.log(MAPPINGS)
 export default function Home() {
     // const errRef = useRef(null);
-    const [hasError, setHasError] = useState(false)
-    const [errorMsg, setErrorMsg] = useState('')
+    const [hasError, setHasError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
     const closeErrorCallback = () => {
-        setHasError(false)
-    }
+        setHasError(false);
+    };
 
     const handleErrorCallback = (val) => {
-        console.log('HAI')
-        setErrorMsg(val)
-        setHasError(true)
-    }
+        console.log('HAI');
+        setErrorMsg(val);
+        setHasError(true);
+    };
 
     const handleSuccessCallback = (val) => {
-        console.log(val)
-        setErrorMsg('')
-        setHasError(false)
-    }
+        console.log(val);
+        setErrorMsg('');
+        setHasError(false);
+    };
+
+    const connectToFuseki = (url) => {
+        let success = fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                fusekiUrl: url,
+            }),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    mappingManager.setFusekiUrl(url);
+                    excelHandler.setFusekiUrl(url);
+                    return responseJson;
+                }
+                throw new Error('Something went wrong');
+            })
+            .then((responseJson) => {
+                // Do something with the response
+                handleSuccessCallback('Connected!');
+                return true;
+            })
+            .catch((error) => {
+                console.log(error);
+                handleErrorCallback("Can't connect");
+                return false;
+            });
+        return success;
+    };
 
     return (
         <main className={styles.main}>
@@ -78,5 +104,5 @@ export default function Home() {
                 />
             )}
         </main>
-    )
+    );
 }

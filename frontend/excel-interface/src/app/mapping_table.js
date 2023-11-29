@@ -1,17 +1,17 @@
-import { useState, useRef, useEffect } from 'react'
-import Toolbar from './toolbar'
-import getDateTodayString from './getdatestring'
+import { useState, useRef, useEffect } from 'react';
+import Toolbar from './toolbar';
+import getDateTodayString from './getdatestring';
 
-import styles from './page.module.css'
+import styles from './page.module.css';
 
-import AddImg from './img/add.svg'
-import ConfirmImg from './img/confirm.svg'
+import AddImg from './img/add.svg';
+import ConfirmImg from './img/confirm.svg';
 
 function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     const onSelectChange = (e) => {
-        console.log('HAI')
-        rowCheckboxCallback(e, mapping)
-    }
+        console.log('HAI');
+        rowCheckboxCallback(e, mapping);
+    };
 
     return (
         <tr
@@ -29,15 +29,15 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
             <td className={styles.query_col}>{mapping.query}</td>
             <td className={styles.date_col}>{mapping.date}</td>
         </tr>
-    )
+    );
 }
 
 function UINewRow({ addRowCallback }) {
-    const nameInputRef = useRef(null)
-    const queryInputRef = useRef(null)
+    const nameInputRef = useRef(null);
+    const queryInputRef = useRef(null);
     const onInputSubmit = (e) => {
-        addRowCallback(nameInputRef.current.value, queryInputRef.current.value)
-    }
+        addRowCallback(nameInputRef.current.value, queryInputRef.current.value);
+    };
     return (
         <tr key={'add-row'} className={styles.newrow}>
             <td className={styles.checkbox_col}>
@@ -81,7 +81,7 @@ function UINewRow({ addRowCallback }) {
             </td>
             <td className={styles.date_col}>{getDateTodayString()}</td>
         </tr>
-    )
+    );
 }
 
 // Adapted from https://codesandbox.io/s/react-parent-child-checkboxes-ebjhl?file=/src/Table.js
@@ -89,11 +89,11 @@ function UINewRow({ addRowCallback }) {
 
 /* istanbul ignore next */
 const useConstructor = (callBack = () => {}) => {
-    const [hasBeenCalled, setHasBeenCalled] = useState(false)
-    if (hasBeenCalled) return
-    callBack()
-    setHasBeenCalled(true)
-}
+    const [hasBeenCalled, setHasBeenCalled] = useState(false);
+    if (hasBeenCalled) return;
+    callBack();
+    setHasBeenCalled(true);
+};
 
 export default function MappingTable({
     mappings,
@@ -102,34 +102,34 @@ export default function MappingTable({
     successCallback,
     errorCallback,
 }) {
-    const [nextId, setNextId] = useState(0) // So we may fetch the ID from the mapping database
-    const [showTemplateRow, setShowTemplateRow] = useState(false)
-    const [data, setData] = useState(mappings)
-    const [isParentChecked, setIsParentChecked] = useState(false)
+    const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
+    const [showTemplateRow, setShowTemplateRow] = useState(false);
+    const [data, setData] = useState(mappings);
+    const [isParentChecked, setIsParentChecked] = useState(false);
 
-    const parentCheckboxRef = useRef(null)
+    const parentCheckboxRef = useRef(null);
 
     useConstructor(() => {
-        console.log('Occurs ONCE, BEFORE the initial render.')
+        console.log('Occurs ONCE, BEFORE the initial render.');
         mappingManager.requestMapping().then((mappings) => {
             if (mappings) {
-                let currData = [...mappings]
+                let currData = [...mappings];
                 let newData = currData.map((row) => {
-                    return { data: row, isChecked: false }
-                })
-                console.log(newData)
+                    return { data: row, isChecked: false };
+                });
+                console.log(newData);
                 if (newData.length > 0) {
-                    setNextId(newData[newData.length - 1].data.id + 1)
-                } else setNextId(0)
-                setData([...newData])
-                setParentCheckboxVal()
-                successCallback('YAY')
+                    setNextId(newData[newData.length - 1].data.id + 1);
+                } else setNextId(0);
+                setData([...newData]);
+                setParentCheckboxVal();
+                successCallback('YAY');
             } else {
-                const d = new Date()
-                let text = d.toTimeString().substring(0, 8)
-                errorCallback('Hello from ' + text)
+                const d = new Date();
+                let text = d.toTimeString().substring(0, 8);
+                errorCallback('Hello from ' + text);
             }
-        })
+        });
         // console.log(mappings)
         // let currData = [...mappings];
         // const newData = currData.map((row) => {
@@ -141,67 +141,67 @@ export default function MappingTable({
         //   setNextId(newData[newData.length - 1].data.id + 1);
         // } else setNextId(0);
         // setData([...newData]);
-    })
+    });
 
     // const [count, setCount] = useState(0);
     const openTemplate = () => {
-        setShowTemplateRow(true)
-    }
+        setShowTemplateRow(true);
+    };
 
     const getSelectedEntries = () => {
-        let ret = data.filter((row) => row.isChecked)
-        return ret
-    }
+        let ret = data.filter((row) => row.isChecked);
+        return ret;
+    };
 
     const setParentCheckboxVal = () => {
-        const currData = [...data]
+        const currData = [...data];
         if (parentCheckboxRef.current != null) {
             if (currData.length == 0) {
-                setIsParentChecked(false)
-                parentCheckboxRef.current.disabled = true
+                setIsParentChecked(false);
+                parentCheckboxRef.current.disabled = true;
             } else if (currData.length > 0) {
-                parentCheckboxRef.current.disabled = false
-                const firstRowChecked = currData[0].isChecked
+                parentCheckboxRef.current.disabled = false;
+                const firstRowChecked = currData[0].isChecked;
                 const isAllRowsSame = currData.reduce(
                     (accum, row) => accum & (firstRowChecked === row.isChecked),
                     true
-                )
+                );
                 if (isAllRowsSame) {
-                    setIsParentChecked(firstRowChecked)
-                    parentCheckboxRef.current.indeterminate = false
+                    setIsParentChecked(firstRowChecked);
+                    parentCheckboxRef.current.indeterminate = false;
                 } else {
-                    setIsParentChecked(false)
-                    parentCheckboxRef.current.indeterminate = true
+                    setIsParentChecked(false);
+                    parentCheckboxRef.current.indeterminate = true;
                 }
             }
         }
-    }
+    };
 
     useEffect(() => {
-        setParentCheckboxVal()
-    }, [data])
+        setParentCheckboxVal();
+    }, [data]);
 
     const toggleSelectedEntries = (e, entry) => {
-        const currData = [...data]
-        const { checked } = e.target
+        const currData = [...data];
+        const { checked } = e.target;
 
         if (entry === 'all') {
-            setIsParentChecked(checked)
+            setIsParentChecked(checked);
         }
-        console.log(entry)
+        console.log(entry);
         currData.map((row) => {
             if (entry === 'all') {
-                row.isChecked = checked
+                row.isChecked = checked;
             } else {
                 if (row.data.id === entry.id) {
-                    row.isChecked = checked
+                    row.isChecked = checked;
                 }
             }
-            return row
-        })
+            return row;
+        });
         // console.log(getSelectedEntries())
-        setData([...currData])
-    }
+        setData([...currData]);
+    };
 
     const addRow = (in_name, in_query) => {
         // console.log(query);
@@ -211,74 +211,74 @@ export default function MappingTable({
             query: in_query,
             date: getDateTodayString(),
             // isChecked: false,
-        }
+        };
         // console.log("BLEH", getDateTodayString());
         mappingManager.createMapping(newEntry).then((response) => {
             if (response) {
-                setData([...data, { data: newEntry, isChecked: false }])
+                setData([...data, { data: newEntry, isChecked: false }]);
 
-                setNextId(nextId + 1)
-                setShowTemplateRow(false)
-                successCallback('YAY')
+                setNextId(nextId + 1);
+                setShowTemplateRow(false);
+                successCallback('YAY');
             } else {
-                const d = new Date()
-                let text = d.toTimeString().substring(0, 8)
-                errorCallback('Hello from ' + text)
+                const d = new Date();
+                let text = d.toTimeString().substring(0, 8);
+                errorCallback('Hello from ' + text);
             }
-        })
-    }
+        });
+    };
 
     function downloadExcel(selectedMappings) {
-        console.log(getSelectedEntries())
+        console.log(getSelectedEntries());
         excelHandler.downloadExcel(selectedMappings).then((response) => {
             if (response) {
-                successCallback('YAY')
+                successCallback('YAY');
             } else {
-                const d = new Date()
-                let text = d.toTimeString().substring(0, 8)
-                errorCallback('Hello from ' + text)
+                const d = new Date();
+                let text = d.toTimeString().substring(0, 8);
+                errorCallback('Hello from ' + text);
             }
-        })
+        });
     }
 
     function uploadExcel(selectedFile) {
         excelHandler.uploadExcel(selectedFile).then((response) => {
             if (response) {
-                successCallback('YAY')
+                successCallback('YAY');
             } else {
-                const d = new Date()
-                let text = d.toTimeString().substring(0, 8)
-                errorCallback('Hello from ' + text)
+                const d = new Date();
+                let text = d.toTimeString().substring(0, 8);
+                errorCallback('Hello from ' + text);
             }
-        })
+        });
     }
 
     function deleteRows(selectedMappings) {
         mappingManager.deleteMapping(selectedMappings).then((response) => {
             if (response) {
-                const currData = data.filter((row) => !row.isChecked)
+                const currData = data.filter((row) => !row.isChecked);
                 // console.log(currData);
-                setData([...currData])
-                successCallback('YAY')
+                setData([...currData]);
+                successCallback('YAY');
             } else {
-                const d = new Date()
-                let text = d.toTimeString().substring(0, 8)
-                errorCallback('Hello from ' + text)
+                const d = new Date();
+                let text = d.toTimeString().substring(0, 8);
+                errorCallback('Hello from ' + text);
             }
-        }) //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
+        }); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
     }
 
     return (
         <div className={styles.datatable}>
             <Toolbar
                 downloadCallback={() => {
-                    downloadExcel(getSelectedEntries())
+                    downloadExcel(getSelectedEntries());
                 }}
                 uploadCallback={(selectedFile) => {
-                    uploadExcel(selectedFile)
+                    uploadExcel(selectedFile);
                 }}
                 deleteCallback={() => {
-                    deleteRows(getSelectedEntries())
+                    deleteRows(getSelectedEntries());
                 }}
             />
 
@@ -311,7 +311,7 @@ export default function MappingTable({
                                     rowCheckboxCallback={toggleSelectedEntries}
                                     isSelected={row?.isChecked}
                                 />
-                            )
+                            );
                         })}
                     {data.length == 0 && (
                         <tr key={'none'} className={styles.norow}>
@@ -349,5 +349,5 @@ export default function MappingTable({
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
