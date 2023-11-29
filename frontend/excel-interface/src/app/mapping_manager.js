@@ -53,7 +53,6 @@ export default class MappingManager {
         let success = fetch(this.mappingDbUrl, {
             method: 'POST',
             body: JSON.stringify({
-                type: 'delete',
                 fusekiUrl: this.fusekiDbUrl,
                 mappings: entries.map((entry) => {
                     return {

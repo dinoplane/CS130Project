@@ -36,6 +36,8 @@ const excelHandler = new ExcelHandler()
 //   },
 // ];
 
+function connectToFuseki(url) {}
+
 // console.log(MAPPINGS)
 export default function Home() {
     // const errRef = useRef(null);
@@ -60,7 +62,7 @@ export default function Home() {
     return (
         <main className={styles.main}>
             <div className={styles.maindiv}>
-                <Header />
+                <Header connectCallback={connectToFuseki} />
                 <MappingTable
                     mappings={MAPPINGS}
                     mappingManager={mappingManager}

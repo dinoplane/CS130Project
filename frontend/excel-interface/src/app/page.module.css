@@ -23,7 +23,8 @@
 
 .connect_button {
     border-radius: 30px;
-    width: 15%;
+    width: 200px;
+    height: 40px;
 }
 
 .datatable {
@@ -256,9 +257,10 @@
 
 .dropdown {
     background-color: inherit;
-    border-radius: 30px;
+    width: max-content;
+    /* border-radius: 30px;
     width: 40px;
-    height: 40px;
+    height: 40px; */
     /* margin: 20px;
   padding: 20px; */
     position: relative;
@@ -268,16 +270,32 @@
 .menu {
     position: absolute;
     top: 50%;
-    left: 50%;
-    list-style-type: none;
+    left: 0%;
+    /* top: 100%;
+    left: 100%; */
+    /* list-style-type: none;
     margin: 5px 0;
-    padding: 0;
-
+    padding: 0; */
+    /* margin: 20px; */
+    padding: 10px;
+    background-color: #777777;
     border: 1px solid grey;
-    width: 150px;
-    overflow: hidden;
+    width: 200px;
+    border-radius: 1em;
+    /* overflow: hidden; */
     z-index: 2;
 }
+
+/* .menu input{
+    background-color: white;
+    height: 40px;
+    width: 75%;
+
+    border-radius: 10px;
+    font-size: 14pt;
+    color: #777777;
+    background-color: white;
+} */
 
 .menu > li {
     margin: 0;
@@ -328,4 +346,42 @@
     flex-direction: row;
     gap: 1%;
     justify-content: space-around;
+}
+
+.connectDialog {
+    background-color: #777777;
+    height: fit-content;
+    width: fit-content;
+
+    border-radius: 10px;
+    font-size: 14pt;
+    color: #777777;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.connectDialog button {
+    /* background-color: white; */
+    height: 30px;
+    width: 40%;
+
+    border-radius: 10px;
+    font-size: 10pt;
+    color: #777777;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.connectDialog input {
+    /* background-color: white; */
+    height: 20px;
+    width: 100%;
+    padding: 10px;
+
+    border-radius: 5px;
+    font-size: 10pt;
+    color: #777777;
+    /* background-color: white; */
 }

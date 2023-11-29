@@ -1,7 +1,7 @@
 export default class ExcelHandler {
     constructor() {
         this.fusekiDispatchUrl = '1.0.0.0'
-        this.connectedFusekiURL = '127.0.0.1'
+        this.fusekiDbUrl = '127.0.0.1'
     }
     async downloadExcel(entries) {
         const success = fetch(this.fusekiDispatchUrl, {
@@ -10,7 +10,7 @@ export default class ExcelHandler {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify({
                 type: 'request',
-                fusekiUrl: this.connectedFusekiURL,
+                fusekiUrl: this.fusekiDbUrl,
                 mappings: entries.map((entry) => {
                     return {
                         id: entry.id,
@@ -57,7 +57,7 @@ export default class ExcelHandler {
         const success = fetch(this.fusekiDispatchUrl, {
             method: 'POST',
             body: JSON.stringify({
-                fusekiUrl: this.connectedFusekiURL,
+                fusekiUrl: this.fusekiDbUrl,
                 fileName: selectedFile.name,
                 fileData: formData,
             }),
