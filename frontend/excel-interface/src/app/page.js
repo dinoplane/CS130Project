@@ -7,7 +7,7 @@ import MappingManager from './mapping_manager';
 import ExcelHandler from './excelhandler';
 import Header from './header';
 import MappingTable from './mapping_table';
-import ErrorDialog from './errordialog';
+import NotifDialog from './notifdialog';
 
 // Example of a data array that
 
@@ -39,23 +39,23 @@ const excelHandler = new ExcelHandler();
 // console.log(MAPPINGS)
 export default function Home() {
     // const errRef = useRef(null);
-    const [hasError, setHasError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
-    const closeErrorCallback = () => {
-        setHasError(false);
+    const [hasNotif, setHasNotif] = useState(false);
+    const [notifMsg, setNotifMsg] = useState('');
+    const closeNotifCallback = () => {
+        setHasNotif(false);
     };
 
-    const handleErrorCallback = (val) => {
+    const handleNotifCallback = (val, isNotif) => {
         console.log('HAI');
-        setErrorMsg(val);
-        setHasError(true);
+        setNotifMsg(val);
+        setHasNotif(true);
     };
 
-    const handleSuccessCallback = (val) => {
-        console.log(val);
-        setErrorMsg('');
-        setHasError(false);
-    };
+    // const handleSuccessCallback = (val) => {
+    //     console.log(val);
+    //     setNotifMsg('');
+    //     setHasError(false);
+    // };
 
     const connectToFuseki = (url) => {
         let success = fetch(url, {
@@ -74,12 +74,12 @@ export default function Home() {
             })
             .then((responseJson) => {
                 // Do something with the response
-                handleSuccessCallback('Connected!');
+                handleNotifCallback('Connected!');
                 return true;
             })
             .catch((error) => {
-                console.log(error);
-                handleErrorCallback("Can't connect");
+                console.log(notif);
+                handleNotifCallback("Can't connect");
                 return false;
             });
         return success;
@@ -93,14 +93,14 @@ export default function Home() {
                     mappings={MAPPINGS}
                     mappingManager={mappingManager}
                     excelHandler={excelHandler}
-                    successCallback={handleSuccessCallback}
-                    errorCallback={handleErrorCallback}
+                    // successCallback={handleSuccessCallback}
+                    notifCallback={handleNotifCallback}
                 />
             </div>
-            {hasError && (
-                <ErrorDialog
-                    closeErrorCallback={closeErrorCallback}
-                    errorMsg={errorMsg}
+            {hasNotif && (
+                <NotifDialog
+                    closeNotifCallback={closeNotifCallback}
+                    notifMsg={notifMsg}
                 />
             )}
         </main>

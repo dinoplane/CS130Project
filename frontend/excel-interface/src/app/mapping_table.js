@@ -99,8 +99,7 @@ export default function MappingTable({
     mappings,
     mappingManager,
     excelHandler,
-    successCallback,
-    errorCallback,
+    notifCallback,
 }) {
     const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
     const [showTemplateRow, setShowTemplateRow] = useState(false);
@@ -123,12 +122,12 @@ export default function MappingTable({
                 } else setNextId(0);
                 setData([...newData]);
                 setParentCheckboxVal();
-                successCallback('YAY');
+                notifCallback('YAY');
                 console.log(newData);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text);
             }
         });
         // console.log(mappings)
@@ -220,11 +219,11 @@ export default function MappingTable({
 
                 setNextId(nextId + 1);
                 setShowTemplateRow(false);
-                successCallback('YAY');
+                notifCallback('YAY');
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text);
             }
         });
     };
@@ -233,11 +232,11 @@ export default function MappingTable({
         console.log(getSelectedEntries());
         excelHandler.downloadExcel(selectedMappings).then((response) => {
             if (response) {
-                successCallback('YAY');
+                notifCallback('YAY');
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text);
             }
         });
     }
@@ -245,11 +244,11 @@ export default function MappingTable({
     function uploadExcel(selectedFile) {
         excelHandler.uploadExcel(selectedFile).then((response) => {
             if (response) {
-                successCallback('YAY');
+                notifCallback('YAY');
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text);
             }
         });
     }
@@ -260,11 +259,11 @@ export default function MappingTable({
                 const currData = data.filter((row) => !row.isChecked);
                 // console.log(currData);
                 setData([...currData]);
-                successCallback('YAY');
+                notifCallback('YAY');
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text);
             }
         }); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
     }
