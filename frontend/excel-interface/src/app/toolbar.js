@@ -1,48 +1,69 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, cloneElement } from 'react';
 
-import styles from "./page.module.css";
+import styles from './page.module.css';
 
-import DownloadImg from "./img/download.svg";
-import UploadImg from "./img/upload.svg";
-import DeleteImg from "./img/delete.svg";
+import DownloadImg from './img/download.svg';
+import UploadImg from './img/upload.svg';
+import DeleteImg from './img/delete.svg';
+// import { upload } from "@testing-library/user-event/dist/types/utility";
+
+// https://www.robinwieruch.de/react-hook-detect-click-outside-component/
 
 export default function Toolbar({
-  downloadCallback,
-  uploadCallback,
-  deleteCallback,
+    downloadCallback,
+    uploadCallback,
+    deleteCallback,
 }) {
-  // function changeHandler(){
+    const changeHandler = (event) => {
+        uploadCallback(event.target.files[0]);
+    };
+    // Consider adding are you sure? dialog
+    return (
+        <div className={styles.toolbar}>
+            <div
+                id={'dwnBtn'}
+                className={styles.toolbar_button}
+                onClick={downloadCallback}
+            >
+                <DownloadImg
+                    className={styles.image}
+                    alt="HAI"
+                    stroke="#333333"
+                />
+            </div>
+            <div id={'uplBtn'} className={styles.toolbar_button}>
+                <label htmlFor="file-input">
+                    <UploadImg
+                        className={styles.image}
+                        alt="HAI"
+                        stroke="#333333"
+                    />
+                </label>
+                <input
+                    type="file"
+                    id="file-input"
+                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                    onChange={changeHandler}
+                />
+            </div>
 
-  // }
+            {/* <UploadDropdownMenu
+        trigger={
 
-  return (
-    <div className={styles.toolbar}>
-      <div
-        id={"dwnBtn"}
-        className={styles.toolbar_button}
-        onClick={downloadCallback}
-      >
-        <DownloadImg className={styles.image} alt="HAI" stroke="#333333" />
-      </div>
+        uploadCallback={uploadCallback}
+      /> */}
 
-      <div
-        id={"uplBtn"}
-        className={styles.toolbar_button}
-        onClick={uploadCallback}
-      >
-        <label htmlFor="file-input">
-          <UploadImg className={styles.image} alt="HAI" stroke="#333333" />
-        </label>
-        {/* <input type="file" id="file-input" onChange={changeHandler} /> */}
-      </div>
-
-      <div
-        id={"delBtn"}
-        className={styles.toolbar_button}
-        onClick={deleteCallback}
-      >
-        <DeleteImg className={styles.image} alt="HAI" stroke="#df2323" />
-      </div>
-    </div>
-  );
+            <div
+                id={'delBtn'}
+                className={styles.toolbar_button}
+                onClick={deleteCallback}
+            >
+                <DeleteImg
+                    className={styles.image}
+                    alt="HAI"
+                    stroke="#df2323"
+                />
+            </div>
+        </div>
+    );
 }
