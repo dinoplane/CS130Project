@@ -41,14 +41,17 @@ export default function Home() {
     // const errRef = useRef(null);
     const [hasNotif, setHasNotif] = useState(false);
     const [notifMsg, setNotifMsg] = useState('');
+    const [notifError, setNotifError] = useState(false);
+
     const closeNotifCallback = () => {
         setHasNotif(false);
     };
 
-    const handleNotifCallback = (val, isNotif) => {
+    const handleNotifCallback = (val, isError) => {
         console.log('HAI');
-        setNotifMsg(val);
         setHasNotif(true);
+        setNotifMsg(val);
+        setNotifError(isError);
     };
 
     // const handleSuccessCallback = (val) => {
@@ -101,6 +104,7 @@ export default function Home() {
                 <NotifDialog
                     closeNotifCallback={closeNotifCallback}
                     notifMsg={notifMsg}
+                    notifError={notifError}
                 />
             )}
         </main>

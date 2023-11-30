@@ -122,7 +122,7 @@ export default function MappingTable({
                 } else setNextId(0);
                 setData([...newData]);
                 setParentCheckboxVal();
-                notifCallback('YAY');
+                notifCallback('Mappings successfully retrieved!');
                 console.log(newData);
             } else {
                 const d = new Date();
