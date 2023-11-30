@@ -38,9 +38,9 @@ export function ConnectDialog({
                 placeholder="Enter Fuseki Url"
                 autoFocus
             ></input>
-            <button className={styles.connect_button} onClick={onInputSubmit}>
+            <div className={styles.connect_button} onClick={onInputSubmit}>
                 SUBMIT
-            </button>
+            </div>
         </div>
     );
 }
@@ -60,11 +60,11 @@ export default function Header({ connectCallback }) {
                 <h1>Excellent Interface</h1>
                 <DropdownMenu
                     trigger={
-                        <button className={styles.connect_button}>
+                        <div className={styles.connect_button}>
                             {!isKBSet
                                 ? 'Not Connected'
                                 : 'Connected to ' + fusekiUrl}
-                        </button>
+                        </div>
                     }
                     child={
                         <ConnectDialog

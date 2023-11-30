@@ -145,7 +145,10 @@ export default function MappingTable({
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text, true);
+                notifCallback(
+                    'Mapping retrieval failed. Please refresh and try again.',
+                    true
+                );
             }
         });
         // console.log(mappings)
@@ -222,6 +225,16 @@ export default function MappingTable({
     };
 
     const addRow = (in_name, in_query) => {
+        if (in_name == '') {
+            notifCallback('Name field cannot be empty.', true);
+            return;
+        }
+
+        if (in_query == '') {
+            notifCallback('Query field cannot be empty.', true);
+            return;
+        }
+
         // console.log(query);
         let newEntry = {
             id: nextId,
@@ -247,7 +260,10 @@ export default function MappingTable({
     };
 
     function downloadExcel(selectedMappings) {
-        console.log(getSelectedEntries());
+        if (selectedMappings.length == 0) {
+            notifCallback('No mappings selected for download.', true);
+            return;
+        }
         excelHandler.downloadExcel(selectedMappings).then((response) => {
             if (response) {
                 notifCallback('YAY', false);
@@ -272,6 +288,10 @@ export default function MappingTable({
     }
 
     function deleteRows(selectedMappings) {
+        if (selectedMappings.length == 0) {
+            notifCallback('No mappings selected for deletion.', true);
+            return;
+        }
         mappingManager.deleteMapping(selectedMappings).then((response) => {
             if (response) {
                 const currData = data.filter((row) => !row.isChecked);

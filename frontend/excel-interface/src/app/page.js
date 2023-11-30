@@ -60,7 +60,12 @@ export default function Home() {
     //     setHasError(false);
     // };
 
-    const connectToFuseki = (url) => {
+    async function connectToFuseki(url) {
+        if (url == '') {
+            handleNotifCallback('Url cannot be empty.', true);
+            return false;
+        }
+
         let success = fetch(url, {
             method: 'POST',
             body: JSON.stringify({
@@ -82,11 +87,11 @@ export default function Home() {
             })
             .catch((error) => {
                 // console.log(notif);
-                handleNotifCallback("Can't connect", true);
+                handleNotifCallback("Can't connect to " + url, true);
                 return false;
             });
         return success;
-    };
+    }
 
     return (
         <main className={styles.main}>
