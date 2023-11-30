@@ -6,6 +6,8 @@ import styles from './page.module.css';
 
 import AddImg from './img/add.svg';
 import ConfirmImg from './img/confirm.svg';
+import SlashImg from './img/slash.svg';
+import CancelImg from './img/cancel.svg';
 
 function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     const onSelectChange = (e) => {
@@ -32,7 +34,7 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     );
 }
 
-function UINewRow({ addRowCallback }) {
+function UINewRow({ addRowCallback, closeCallback }) {
     const nameInputRef = useRef(null);
     const queryInputRef = useRef(null);
     const onInputSubmit = (e) => {
@@ -55,6 +57,22 @@ function UINewRow({ addRowCallback }) {
                             alt="HAI"
                             stroke="#00AA00"
                         />
+                    </div>
+
+                    <div className={styles.toolbar_slash} id="addBtn">
+                        <SlashImg
+                            className={styles.image}
+                            alt="HAI"
+                            stroke="#00AA00"
+                        />
+                    </div>
+
+                    <div
+                        className={styles.toolbar_button}
+                        id="addBtn"
+                        onClick={closeCallback}
+                    >
+                        <CancelImg className={styles.image} alt="HAI" />
                     </div>
                 </div>
             </td>
@@ -122,12 +140,12 @@ export default function MappingTable({
                 } else setNextId(0);
                 setData([...newData]);
                 setParentCheckboxVal();
-                notifCallback('Mappings successfully retrieved!');
+                notifCallback('Mappings successfully retrieved!', false);
                 console.log(newData);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text, true);
             }
         });
         // console.log(mappings)
@@ -219,11 +237,11 @@ export default function MappingTable({
 
                 setNextId(nextId + 1);
                 setShowTemplateRow(false);
-                notifCallback('YAY');
+                notifCallback('YAY', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text, true);
             }
         });
     };
@@ -232,11 +250,11 @@ export default function MappingTable({
         console.log(getSelectedEntries());
         excelHandler.downloadExcel(selectedMappings).then((response) => {
             if (response) {
-                notifCallback('YAY');
+                notifCallback('YAY', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text, true);
             }
         });
     }
@@ -244,11 +262,11 @@ export default function MappingTable({
     function uploadExcel(selectedFile) {
         excelHandler.uploadExcel(selectedFile).then((response) => {
             if (response) {
-                notifCallback('YAY');
+                notifCallback('YAY', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text, true);
             }
         });
     }
@@ -259,11 +277,11 @@ export default function MappingTable({
                 const currData = data.filter((row) => !row.isChecked);
                 // console.log(currData);
                 setData([...currData]);
-                notifCallback('YAY');
+                notifCallback('YAY', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text);
+                notifCallback('Hello from ' + text, true);
             }
         }); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
     }
@@ -325,7 +343,13 @@ export default function MappingTable({
                     )}
 
                     {showTemplateRow && (
-                        <UINewRow key={'ui-new-row'} addRowCallback={addRow} />
+                        <UINewRow
+                            key={'ui-new-row'}
+                            addRowCallback={addRow}
+                            closeCallback={() => {
+                                setShowTemplateRow(false);
+                            }}
+                        />
                     )}
                     {!showTemplateRow && (
                         <tr key={'show'} className={styles.addrow}>

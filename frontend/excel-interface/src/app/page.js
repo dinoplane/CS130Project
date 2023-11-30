@@ -47,7 +47,7 @@ export default function Home() {
         setHasNotif(false);
     };
 
-    const handleNotifCallback = (val, isError) => {
+    const handleNotifCallback = (val, isError = false) => {
         console.log('HAI');
         setHasNotif(true);
         setNotifMsg(val);
@@ -77,12 +77,12 @@ export default function Home() {
             })
             .then((responseJson) => {
                 // Do something with the response
-                handleNotifCallback('Connected!');
+                handleNotifCallback('Connected!', false);
                 return true;
             })
             .catch((error) => {
-                console.log(notif);
-                handleNotifCallback("Can't connect");
+                // console.log(notif);
+                handleNotifCallback("Can't connect", true);
                 return false;
             });
         return success;
