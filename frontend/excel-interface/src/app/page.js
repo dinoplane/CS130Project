@@ -76,6 +76,7 @@ export default function Home() {
             handleNotifCallback('Url cannot be empty.', true);
             return false;
         }
+        setShowTable(true);
 
         // if (showTable)
         // {setShowTable(false);}
@@ -99,7 +100,6 @@ export default function Home() {
             .then((responseJson) => {
                 // Do something with the response
                 handleNotifCallback('Connected!', false);
-                setShowTable(true);
                 setFusekiUrl(url);
                 return true;
             })
