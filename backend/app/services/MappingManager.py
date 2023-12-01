@@ -1,23 +1,43 @@
-from app.schema.mapping_schema import MappingEntry
-from fastapi.encoders import jsonable_encoder as jsn_enc
-from fastapi import Request, Response, Body, status
-from app.database.mongodb import insert_one, find_one, find
+import logging
+from typing import List
 
-class MappingDB_Manager():
-    def add_mapping(req: Request, mapping = MappingEntry):
-        mapping = jsn_enc(mapping)
-        #insert to DB
-        new_map = insert_one(req, mapping)
-         #return inserted val from DB (i.e. ensure it got added)
-        map_add = find_one(req, new_map)
-        return map_add
-    def fetch_mappings(req: Request):
-        #something to get the mappings
-        mappingEntries = find(req)
-        return mappingEntries
-    def remove_mapping():
-        return
-        #something to remove mapping
+from app.schema.mapping_schema import MappingEntry, FetchMappingRequestModel, DeleteMappingRequestModel, UploadRequestModel
+from fastapi import Request
+from app.database.mongodb import insert_one, find, delete
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+class MappingDBManager:
+    @staticmethod
+    def add_mapping(req: Request, mapping: MappingEntry):
+        mapping_data = dict(mapping)
+        # insert to DB
+        result = insert_one(req, mapping_data)
+        # return inserted val from DB (i.e. ensure it got added)
+        mapping_from_db = req.app.map_db["mappings"].find_one({"_id": result.inserted_id})
+        mapping_from_db.pop("_id")
+        return mapping_from_db
+
+    @staticmethod
+    def fetch_mappings(req: Request, data: FetchMappingRequestModel):
+        # something to get the mappings
+        query = dict(data)
+        mapping_entries = find(req, query)
+        return mapping_entries
+
+    @staticmethod
+    def delete_mappings(req: Request, ids: DeleteMappingRequestModel):
+        for mapping_id in ids:
+            delete_result = delete(req, mapping_id)
+            logger.info(delete_result)
+
     def validate_mapping():
         return
-        #something to validate mapping
+        # something to validate mapping
+
+    def get_query_by_ID(mapping_id: str):
+        query = ''
+        
+        return query

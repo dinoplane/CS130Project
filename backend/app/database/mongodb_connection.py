@@ -1,13 +1,15 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from pymongo import MongoClient 
-from dotenv import dotenv_values
+from pymongo import MongoClient
+import os
 
-#to setup the mongodb connection
+
+# to setup the mongodb connection
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    env_var = dotenv_values('.env')
-    app.mongodb_client = MongoClient(env_var["CONNECT_URL"])
-    app.map_db = app.mongodb_client[env_var["MAP_DB"]]
+
+    app.mongodb_client = MongoClient(os.getenv('CONNECT_URL'))
+    print(os.getenv('CONNECT_URL'))
+    app.map_db = app.mongodb_client['mapping_DB']
     yield
     app.mongodb_client.close()

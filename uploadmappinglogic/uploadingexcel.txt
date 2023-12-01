@@ -1,0 +1,6 @@
+how to modify a downloaded mapping for uploadttl2fuseki
+
+1. you may add rows
+2. you may delete rows (blank rows are ok)
+3. you may modify rows (all values or just indivudal cells both work)
+4. you may NOT add columns
