@@ -1,7 +1,7 @@
 import logging
 from typing import List
 
-from app.schema.mapping_schema import MappingEntry, FetchMappingRequestModel, DeleteMappingRequestModel, UploadRequestModel
+from app.schema.mapping_schema import MappingEntry, FetchMappingRequestModel, DeleteMappingRequestModel
 from fastapi import Request
 from app.database.mongodb import insert_one, find, delete
 
@@ -36,8 +36,3 @@ class MappingDBManager:
     def validate_mapping():
         return
         # something to validate mapping
-
-    def get_query_by_ID(mapping_id: str):
-        query = ''
-        
-        return query

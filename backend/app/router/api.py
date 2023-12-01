@@ -2,8 +2,9 @@ from fastapi import APIRouter, Request, Response, Body, status, HTTPException
 from pymongo.errors import PyMongoError
 
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
-    DeleteMappingRequestModel, UploadRequestModel
+    DeleteMappingRequestModel, UploadRequestSchema
 from app.services.MappingManager import MappingDBManager
+from app.services.UploadManager import UploadDBManager
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])
 
@@ -46,5 +47,6 @@ async def download(request: DownloadRequestSchema):
     pass
 
 @router.post("/upload", status_code=status.HTTP_200_OK)
-def upload_mapping(request: Request, data: UploadRequestModel = Body(...)): 
-    return MappingDBManager.add_mapping(request, data)  # change this to new func
+def upload_mapping(request: UploadRequestSchema): 
+    upload_client = UploadManager(request)
+    return upload_client.upload()

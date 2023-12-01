@@ -24,7 +24,7 @@ class DeleteMappingRequestModel(BaseModel):
 class DownloadRequestSchema(BaseModel):
     selected_mapping: List[MappingEntry]
 
-class UploadRequestModel(BaseModel):
+class UploadRequestSchema(BaseModel):
     fuseki_url: str = Field(...)
-    fileData: dict = Field(...)
+    file: dict = Field(...)
     # file should be passed here
