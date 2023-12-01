@@ -82,9 +82,10 @@ export default class MappingManager {
     }
 
     async requestMapping() {
+        return [];
         // const response = await fetch(this.mappingDbUrl, {
         let success = await fetch(this.mappingDbUrl, {
-            method: 'GET',
+            method: 'POST',
             // body: "",
             body: JSON.stringify({
                 fusekiUrl: this.fusekiKBUrl,

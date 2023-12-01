@@ -1,13 +1,20 @@
 'use client'; // This is a client component 👈🏽
 
 import styles from './page.module.css';
-import { useState, useRef, useEffect } from 'react';
+import {
+    useState,
+    useRef,
+    useEffect,
+    forwardRef,
+    useImperativeHandle,
+} from 'react';
 
 import MappingManager from './mapping_manager';
 import ExcelHandler from './excelhandler';
 import Header from './header';
 import MappingTable from './mapping_table';
 import NotifDialog from './notifdialog';
+import { Truculenta } from 'next/font/google';
 
 // Example of a data array that
 
@@ -43,6 +50,10 @@ export default function Home() {
     const [notifMsg, setNotifMsg] = useState('');
     const [notifError, setNotifError] = useState(false);
 
+    const [showTable, setShowTable] = useState(false);
+    // const [fusekiSet, setFusekiSet] = useState(false);
+    const [fusekiUrl, setFusekiUrl] = useState('');
+
     const closeNotifCallback = () => {
         setHasNotif(false);
     };
@@ -66,6 +77,11 @@ export default function Home() {
             return false;
         }
 
+        // if (showTable)
+        // {setShowTable(false);}
+        // else
+
+        // return true;
         let success = fetch(url, {
             method: 'POST',
             body: JSON.stringify({
@@ -83,6 +99,8 @@ export default function Home() {
             .then((responseJson) => {
                 // Do something with the response
                 handleNotifCallback('Connected!', false);
+                setShowTable(true);
+                setFusekiUrl(url);
                 return true;
             })
             .catch((error) => {
@@ -97,13 +115,19 @@ export default function Home() {
         <main className={styles.main}>
             <div className={styles.maindiv}>
                 <Header connectCallback={connectToFuseki} />
-                <MappingTable
-                    mappings={MAPPINGS}
-                    mappingManager={mappingManager}
-                    excelHandler={excelHandler}
-                    // successCallback={handleSuccessCallback}
-                    notifCallback={handleNotifCallback}
-                />
+                {showTable ? (
+                    <MappingTable
+                        mappings={[]}
+                        fusekiUrl={fusekiUrl}
+                        mappingManager={mappingManager}
+                        excelHandler={excelHandler}
+                        // successCallback={handleSuccessCallback}
+                        notifCallback={handleNotifCallback}
+                        // rerenderCallback={handleRerenderCallback}
+                    />
+                ) : (
+                    <p>Nothing to see here!</p>
+                )}
             </div>
             {hasNotif && (
                 <NotifDialog

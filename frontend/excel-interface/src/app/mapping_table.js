@@ -106,18 +106,20 @@ function UINewRow({ addRowCallback, closeCallback }) {
 // https://dev.to/bytebodger/constructors-in-functional-components-with-hooks-280m
 
 /* istanbul ignore next */
-const useConstructor = (callBack = () => {}) => {
-    const [hasBeenCalled, setHasBeenCalled] = useState(false);
-    if (hasBeenCalled) return;
-    callBack();
-    setHasBeenCalled(true);
-};
+// const useConstructor = (callBack = () => {}) => {
+//     const [hasBeenCalled, setHasBeenCalled] = useState(false);
+//     if (hasBeenCalled) return;
+//     callBack();
+//     setHasBeenCalled(true);
+// };
 
 export default function MappingTable({
     mappings,
+    fusekiUrl,
     mappingManager,
     excelHandler,
     notifCallback,
+    // rerenderCallback
 }) {
     const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
     const [showTemplateRow, setShowTemplateRow] = useState(false);
@@ -126,11 +128,19 @@ export default function MappingTable({
 
     const parentCheckboxRef = useRef(null);
 
-    useConstructor(() => {
-        console.log('Occurs ONCE, BEFORE the initial render.');
+    const loadMappings = () => {
         mappingManager.requestMapping().then((mappings) => {
             // Change when needed -> mappings.results
             if (mappings) {
+                // const d = new Date();
+                // let text = d.toTimeString().substring(0, 8);
+                // console.log("AIUSHGDUHSADHui")
+                // mappings = [{
+                //     id: 0, // Get rid of this
+                //     name: "A",
+                //     query: "aaa",
+                //     date: text
+                // }]
                 let currData = [...mappings];
                 let newData = currData.map((row) => {
                     return { data: row, isChecked: false };
@@ -152,18 +162,24 @@ export default function MappingTable({
                 );
             }
         });
-        // console.log(mappings)
-        // let currData = [...mappings];
-        // const newData = currData.map((row) => {
-        //   return {data: row, isChecked: false};
-        // });
+    };
 
-        // console.log(newData)
-        // if (newData.length > 0) {
-        //   setNextId(newData[newData.length - 1].data.id + 1);
-        // } else setNextId(0);
-        // setData([...newData]);
-    });
+    // useConstructor(() => {
+    //     console.log(fusekiUrl);
+    //     console.log('Occurs ONCE, BEFORE the initial render.');
+    //     // loadMappings();
+    //     // console.log(mappings)
+    //     // let currData = [...mappings];
+    //     // const newData = currData.map((row) => {
+    //     //   return {data: row, isChecked: false};
+    //     // });
+
+    //     // console.log(newData)
+    //     // if (newData.length > 0) {
+    //     //   setNextId(newData[newData.length - 1].data.id + 1);
+    //     // } else setNextId(0);
+    //     // setData([...newData]);
+    // });
 
     // const [count, setCount] = useState(0);
     const openTemplate = () => {
@@ -202,6 +218,11 @@ export default function MappingTable({
     useEffect(() => {
         setParentCheckboxVal();
     }, [data]);
+
+    useEffect(() => {
+        console.log('Setting ' + fusekiUrl);
+        loadMappings();
+    }, [fusekiUrl]);
 
     const toggleSelectedEntries = (e, entry) => {
         const currData = [...data];

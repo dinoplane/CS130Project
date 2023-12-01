@@ -19,7 +19,7 @@ export function ConnectDialog({
             })
             .then((responseJson) => {
                 // Do something with the response
-                updateCallback(url);
+                updateCallback(urlInputRef.current.value);
                 closeCallback();
 
                 return true;
