@@ -18,9 +18,9 @@ export default class ExcelHandler {
                 mappings: entries.map((entry) => {
                     return {
                         id: entry.id,
-                        name: entry.name,
+                        // name: entry.name,
                         query: entry.query,
-                        date: entry.date,
+                        // date: entry.date,
                     };
                 }),
             }),

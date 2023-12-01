@@ -13,10 +13,10 @@ export default class MappingManager {
         let success = true;
         console.log(
             JSON.stringify({
-                id: entry.id,
+                id: entry.id, // Get rid of this
                 name: entry.name,
                 query: entry.query,
-                date: entry.date,
+                date: entry.date, // Get rid of this
             })
         );
         success = fetch(this.mappingDbUrl, {
@@ -26,10 +26,11 @@ export default class MappingManager {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                id: entry.id,
+                // fusekiUrl: this.fusekiKBUrl, // Need this
+                id: entry.id, // Get rid of this
                 name: entry.name,
                 query: entry.query,
-                date: entry.date,
+                date: entry.date, // Get rid of this
             }),
         })
             .then((response) => {
@@ -57,14 +58,9 @@ export default class MappingManager {
         let success = fetch(this.mappingDbUrl, {
             method: 'POST',
             body: JSON.stringify({
-                fusekiUrl: this.fusekiKBUrl,
+                // fusekiUrl: this.fusekiKBUrl,
                 mappings: entries.map((entry) => {
-                    return {
-                        id: entry.id,
-                        name: entry.name,
-                        query: entry.query,
-                        date: entry.date,
-                    };
+                    return entry.id;
                 }),
             }),
         })
@@ -90,9 +86,9 @@ export default class MappingManager {
         let success = await fetch(this.mappingDbUrl, {
             method: 'GET',
             // body: "",
-            // body: JSON.stringify({
-            //   // fusekiUrl: this.fusekiKBUrl,
-            // }),
+            body: JSON.stringify({
+                fusekiUrl: this.fusekiKBUrl,
+            }),
         })
             .then((response) => {
                 if (response.ok) {

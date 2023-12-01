@@ -129,6 +129,7 @@ export default function MappingTable({
     useConstructor(() => {
         console.log('Occurs ONCE, BEFORE the initial render.');
         mappingManager.requestMapping().then((mappings) => {
+            // Change when needed -> mappings.results
             if (mappings) {
                 let currData = [...mappings];
                 let newData = currData.map((row) => {
