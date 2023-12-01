@@ -7,9 +7,9 @@ from io import StringIO
 ## WHAT YOU NEED TO GIVE
 
 #### code starts here
-def upload_mapping(fuseki_url, ):
+def upload_mapping(fuseki_url, query, sheet):
     ##replace with user provided url
-    fuseki_url = "http://localhost:3030/db/"
+    # fuseki_url = "http://localhost:3030/db/"
 
     sparql = SPARQLWrapper(fuseki_url)
     sparql.setReturnFormat(CSV)
@@ -25,15 +25,7 @@ def upload_mapping(fuseki_url, ):
     
 
     ###replace this with the query gotten from the execl sheet
-    user_provided_query =  """ SELECT ?name ?loc
-                WHERE {
-                    ?subject start-date ?sd .
-                    ?subject name ?name .
-                    ?subject location ?loc .
-                    FILTER(?sd < "2019-01-01")
-                }
-                LIMIT 25
-    """
+    user_provided_query = query
 
     #flatten the query for parsing purposes. it should already be flattened because
     #downloadmapping flattens it for backend to store in excel file
@@ -140,7 +132,7 @@ def upload_mapping(fuseki_url, ):
     ############ now we read the modifed excel file into a 2d list
 
     ##first read contents of the file (replace with uploaded file)
-    uploaded_file = "modified-data.xlsx"
+    uploaded_file = sheet # "modified-data.xlsx"
     wb = load_workbook(uploaded_file)
     ws = wb.active
 

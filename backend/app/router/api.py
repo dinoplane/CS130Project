@@ -4,7 +4,7 @@ from pymongo.errors import PyMongoError
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
     DeleteMappingRequestModel, UploadRequestSchema
 from app.services.MappingManager import MappingDBManager
-from app.services.UploadManager import UploadDBManager
+from app.services.UploadManager import UploadManager
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])
 
@@ -47,6 +47,6 @@ async def download(request: DownloadRequestSchema):
     pass
 
 @router.post("/upload", status_code=status.HTTP_200_OK)
-def upload_mapping(request: UploadRequestSchema): 
+async def upload_mapping(request: UploadRequestSchema): 
     upload_client = UploadManager(request)
     return upload_client.upload()
