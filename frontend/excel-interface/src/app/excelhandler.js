@@ -56,13 +56,16 @@ export default class ExcelHandler {
     }
     async uploadExcel(selectedFile) {
         const formData = new FormData();
-        formData.append('File', selectedFile);
+        formData.append('file', selectedFile);
         console.log(selectedFile);
+        console.log(formData);
+
+        console.log(formData.get());
         const success = fetch(this.fusekiDispatchUrl, {
             method: 'POST',
             body: JSON.stringify({
                 fusekiUrl: this.fusekiKBUrl,
-                fileName: selectedFile.name,
+                // fileName: selectedFile.name,
                 fileData: formData,
             }),
         })
