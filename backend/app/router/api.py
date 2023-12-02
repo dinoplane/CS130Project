@@ -3,6 +3,7 @@ from pymongo.errors import PyMongoError
 
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
     DeleteMappingRequestModel
+from app.services.DownloadManager import DownloadManager
 from app.services.MappingManager import MappingDBManager
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])
@@ -41,6 +42,8 @@ async def delete_mappings(request: Request, items_to_delete: DeleteMappingReques
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
 
-@router.get(path="/download")
+@router.get(path="/download", status_code=status.HTTP_200_OK)
 async def download(request: DownloadRequestSchema):
-    pass
+    download_client = DownloadManager(request)
+    return download_client.download()
+

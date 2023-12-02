@@ -10,7 +10,7 @@ class MappingEntry(BaseModel):
     name: str = Field(...)
     query: str = Field(...)
     fuseki_url: str = Field(...)
-    date: datetime = Field(default_factory=lambda: datetime.now().strftime("%m/%d/%Y"))
+    date: str = Field(default_factory=lambda: datetime.now().strftime("%m/%d/%Y"))
 
 
 class FetchMappingRequestModel(BaseModel):
@@ -22,4 +22,5 @@ class DeleteMappingRequestModel(BaseModel):
 
 
 class DownloadRequestSchema(BaseModel):
-    selected_mapping: List[MappingEntry]
+    fuseki_url: str = Field(...)
+    selected_mappings: List[MappingEntry] = Field(...)
