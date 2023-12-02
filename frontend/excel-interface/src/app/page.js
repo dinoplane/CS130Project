@@ -1,13 +1,20 @@
 'use client'; // This is a client component 👈🏽
 
 import styles from './page.module.css';
-import { useState, useRef, useEffect } from 'react';
+import {
+    useState,
+    useRef,
+    useEffect,
+    forwardRef,
+    useImperativeHandle,
+} from 'react';
 
 import MappingManager from './mapping_manager';
 import ExcelHandler from './excelhandler';
 import Header from './header';
 import MappingTable from './mapping_table';
-import ErrorDialog from './errordialog';
+import NotifDialog from './notifdialog';
+import { Truculenta } from 'next/font/google';
 
 // Example of a data array that
 
@@ -39,25 +46,43 @@ const excelHandler = new ExcelHandler();
 // console.log(MAPPINGS)
 export default function Home() {
     // const errRef = useRef(null);
-    const [hasError, setHasError] = useState(false);
-    const [errorMsg, setErrorMsg] = useState('');
-    const closeErrorCallback = () => {
-        setHasError(false);
+    const [hasNotif, setHasNotif] = useState(false);
+    const [notifMsg, setNotifMsg] = useState('');
+    const [notifError, setNotifError] = useState(false);
+
+    const [showTable, setShowTable] = useState(false);
+    // const [fusekiSet, setFusekiSet] = useState(false);
+    const [fusekiUrl, setFusekiUrl] = useState('');
+
+    const closeNotifCallback = () => {
+        setHasNotif(false);
     };
 
-    const handleErrorCallback = (val) => {
+    const handleNotifCallback = (val, isError = false) => {
         console.log('HAI');
-        setErrorMsg(val);
-        setHasError(true);
+        setHasNotif(true);
+        setNotifMsg(val);
+        setNotifError(isError);
     };
 
-    const handleSuccessCallback = (val) => {
-        console.log(val);
-        setErrorMsg('');
-        setHasError(false);
-    };
+    // const handleSuccessCallback = (val) => {
+    //     console.log(val);
+    //     setNotifMsg('');
+    //     setHasError(false);
+    // };
 
-    const connectToFuseki = (url) => {
+    async function connectToFuseki(url) {
+        if (url == '') {
+            handleNotifCallback('Url cannot be empty.', true);
+            return false;
+        }
+        setShowTable(true);
+
+        // if (showTable)
+        // {setShowTable(false);}
+        // else
+
+        // return true;
         let success = fetch(url, {
             method: 'POST',
             body: JSON.stringify({
@@ -74,33 +99,41 @@ export default function Home() {
             })
             .then((responseJson) => {
                 // Do something with the response
-                handleSuccessCallback('Connected!');
+                handleNotifCallback('Connected!', false);
+                setFusekiUrl(url);
                 return true;
             })
             .catch((error) => {
-                console.log(error);
-                handleErrorCallback("Can't connect");
+                // console.log(notif);
+                handleNotifCallback("Can't connect to " + url, true);
                 return false;
             });
         return success;
-    };
+    }
 
     return (
         <main className={styles.main}>
             <div className={styles.maindiv}>
                 <Header connectCallback={connectToFuseki} />
-                <MappingTable
-                    mappings={MAPPINGS}
-                    mappingManager={mappingManager}
-                    excelHandler={excelHandler}
-                    successCallback={handleSuccessCallback}
-                    errorCallback={handleErrorCallback}
-                />
+                {showTable ? (
+                    <MappingTable
+                        mappings={[]}
+                        fusekiUrl={fusekiUrl}
+                        mappingManager={mappingManager}
+                        excelHandler={excelHandler}
+                        // successCallback={handleSuccessCallback}
+                        notifCallback={handleNotifCallback}
+                        // rerenderCallback={handleRerenderCallback}
+                    />
+                ) : (
+                    <p>Nothing to see here!</p>
+                )}
             </div>
-            {hasError && (
-                <ErrorDialog
-                    closeErrorCallback={closeErrorCallback}
-                    errorMsg={errorMsg}
+            {hasNotif && (
+                <NotifDialog
+                    closeNotifCallback={closeNotifCallback}
+                    notifMsg={notifMsg}
+                    notifError={notifError}
                 />
             )}
         </main>

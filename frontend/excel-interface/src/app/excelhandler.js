@@ -18,9 +18,9 @@ export default class ExcelHandler {
                 mappings: entries.map((entry) => {
                     return {
                         id: entry.id,
-                        name: entry.name,
+                        // name: entry.name,
                         query: entry.query,
-                        date: entry.date,
+                        // date: entry.date,
                     };
                 }),
             }),
@@ -56,13 +56,16 @@ export default class ExcelHandler {
     }
     async uploadExcel(selectedFile) {
         const formData = new FormData();
-        formData.append('File', selectedFile);
+        formData.append('file', selectedFile);
         console.log(selectedFile);
+        console.log(formData);
+
+        console.log(formData.get());
         const success = fetch(this.fusekiDispatchUrl, {
             method: 'POST',
             body: JSON.stringify({
                 fusekiUrl: this.fusekiKBUrl,
-                fileName: selectedFile.name,
+                // fileName: selectedFile.name,
                 fileData: formData,
             }),
         })
