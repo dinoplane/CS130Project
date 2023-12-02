@@ -67,22 +67,18 @@ export default class ExcelHandler {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        const success = fetch(this.fusekiDispatchUrl + 'upload', {
+        var requestOptions = {
             method: 'POST',
-            body: JSON.stringify({
-                fuseki_url: this.fusekiKBUrl,
-                fileData: formData,
-            }),
-        })
+            body: formData,
+            redirect: 'follow',
+        };
+
+        const success = fetch(this.fusekiDispatchUrl + 'upload', requestOptions)
             .then((response) => {
                 if (response.ok) {
-                    return response.json();
+                    return true;
                 }
                 throw new Error('Something went wrong');
-            })
-            .then((responseJson) => {
-                // Do something with the response
-                return true;
             })
             .catch((error) => {
                 console.log(error);

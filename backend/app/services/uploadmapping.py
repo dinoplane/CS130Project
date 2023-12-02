@@ -129,12 +129,13 @@ def upload_mapping(fuseki_url, query, sheet):
     ############ now we read the modifed excel file into a 2d list
 
     ##first read contents of the file (replace with uploaded file)
-    uploaded_file = sheet # "modified-data.xlsx"
-    wb = load_workbook(uploaded_file)
-    ws = wb.active
+    # uploaded_file = sheet # "modified-data.xlsx"
+    # wb = load_workbook(uploaded_file)
+    ws = sheet
 
-    #here's where the modified data will be stored as a 2d list
-    modified_mapping = sheet
+    # #here's where the modified data will be stored as a 2d list
+    modified_mapping = []
+    # sheet
     for i in range(1,ws.max_row+1):
         row = [cell.value for cell in ws[i]]
         isEmpty = True

@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request, Response, Body, status, HTTPException, UploadFile
 from pymongo.errors import PyMongoError
+from fastapi.responses import JSONResponse
 
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
     DeleteMappingRequestModel
@@ -7,6 +8,10 @@ from app.services.DownloadManager import DownloadManager
 from app.services.MappingManager import MappingDBManager
 from app.services.UploadManager import UploadManager
 from app.services.DownloadManager import DownloadManager
+
+from openpyxl import Workbook, load_workbook
+
+from io import BytesIO
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])
 
@@ -49,6 +54,9 @@ async def download(request: DownloadRequestSchema):
     return download_client.download()
 
 @router.post("/upload", status_code=status.HTTP_200_OK)
-def upload_mapping(request: Request, file: UploadFile = UploadFile(...)): 
-    upload_client = UploadManager(request, file)
-    return upload_client.upload()
+async def upload_mapping(request: Request, file: UploadFile = UploadFile(...)):
+    upload_client = UploadManager(request)
+    contents = await file.read()
+
+    wb = load_workbook(BytesIO(contents))
+    return upload_client.upload(wb)
