@@ -1,7 +1,8 @@
 export default class ExcelHandler {
     constructor() {
-        this.fusekiDispatchUrl = '1.0.0.0';
-        this.fusekiKBUrl = '127.0.0.1';
+        this.fusekiDispatchUrl =
+            'http://0.0.0.0:8000/excel-interface/operations/';
+        this.fusekiKBUrl = 'http://localhost:3030/db/';
     }
 
     setFusekiUrl(url) {
@@ -9,45 +10,53 @@ export default class ExcelHandler {
     }
 
     async downloadExcel(entries) {
-        const success = fetch(this.fusekiDispatchUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify({
-                fusekiUrl: this.fusekiKBUrl,
-                mappings: entries.map((entry) => {
-                    return {
-                        id: entry.id,
-                        name: entry.name,
-                        query: entry.query,
-                        date: entry.date,
-                    };
-                }),
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        const raw = JSON.stringify({
+            fuseki_url: this.fusekiKBUrl,
+            selected_mappings: entries.map((entry) => {
+                return {
+                    fuseki_url: this.fusekiKBUrl,
+                    id: entry.data.id,
+                    name: entry.data.name,
+                    query: entry.data.query,
+                    date: entry.data.date,
+                };
             }),
-        })
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+        const success = fetch(
+            this.fusekiDispatchUrl + 'download',
+            requestOptions
+        )
             .then((response) => {
                 if (response.ok) {
                     return response.blob();
                 }
                 throw new Error('Something went wrong');
             })
-            .then((responseBlob) =>
-                // Do something with the response
-                {
-                    const d = new Date();
-                    let text = d.toTimeString().substring(0, 8);
-                    const fileName = text + '-excel.xlsx';
+            .then((responseBlob) => {
+                const d = new Date();
+                let text = d.toTimeString().substring(0, 8);
+                const fileName = text + '-excel.xlsx';
 
-                    const aElement = document.createElement('a');
-                    aElement.setAttribute('download', fileName);
-                    const href = URL.createObjectURL(responseBlob);
-                    aElement.href = href;
-                    // aElement.setAttribute('href', href);
-                    aElement.setAttribute('target', '_blank');
-                    aElement.click();
-                    URL.revokeObjectURL(href);
-                }
-            )
+                const aElement = document.createElement('a');
+                aElement.setAttribute('download', fileName);
+                const href = URL.createObjectURL(responseBlob);
+                aElement.href = href;
+                // aElement.setAttribute('href', href);
+                aElement.setAttribute('target', '_blank');
+                aElement.click();
+                URL.revokeObjectURL(href);
+                return true;
+            })
             .catch((error) => {
                 console.log(error);
                 return false;
@@ -56,13 +65,12 @@ export default class ExcelHandler {
     }
     async uploadExcel(selectedFile) {
         const formData = new FormData();
-        formData.append('File', selectedFile);
-        console.log(selectedFile);
-        const success = fetch(this.fusekiDispatchUrl, {
+        formData.append('file', selectedFile);
+
+        const success = fetch(this.fusekiDispatchUrl + 'upload', {
             method: 'POST',
             body: JSON.stringify({
-                fusekiUrl: this.fusekiKBUrl,
-                fileName: selectedFile.name,
+                fuseki_url: this.fusekiKBUrl,
                 fileData: formData,
             }),
         })
