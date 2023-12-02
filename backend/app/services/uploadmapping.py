@@ -21,8 +21,8 @@ def upload_mapping(fuseki_url, query, sheet):
     print(ret.decode())
     return
     '''
-    
-    
+
+
 
     ###replace this with the query gotten from the execl sheet
     user_provided_query = query
@@ -34,7 +34,7 @@ def upload_mapping(fuseki_url, query, sheet):
 
     query = user_provided_query
 
-    
+
     #### here we take care of the prefix issue
     prefix = 'data:/'
     shorten = "a:"
@@ -54,12 +54,12 @@ def upload_mapping(fuseki_url, query, sheet):
     # flatten query for ease of parsing
     query = " ".join(line.strip() for line in query.splitlines())
 
-    
+
     #add prefixes where necessary in query
     for pred in predicates:
         query = query.replace(pred, shorten+pred)
         query = query.replace('?' + shorten, '?')
-    
+
     #and this is our query with all the prefixes added, pure SPARQL
     query = "PREFIX "+ shorten + " <" + prefix + "> " + query
 
@@ -88,7 +88,7 @@ def upload_mapping(fuseki_url, query, sheet):
             query = query[:select_index] + ' ' + subject_name + query[select_index:]
 
     except:
-        #i dont wanna check all the edge cases for strings so i assume if 
+        #i dont wanna check all the edge cases for strings so i assume if
         #we hit an error here the query was bad to begin with
         #again, replace this with whatever behaviour you do for bad queries
         wb = Workbook()
@@ -100,7 +100,7 @@ def upload_mapping(fuseki_url, query, sheet):
 
         #now lets query the kb and get the excel file
     ret = None
-    try:  
+    try:
         sparql.setQuery(query)
         ret = sparql.queryAndConvert()
     except(SPARQLExceptions.QueryBadFormed):
@@ -132,20 +132,20 @@ def upload_mapping(fuseki_url, query, sheet):
     ############ now we read the modifed excel file into a 2d list
 
     ##first read contents of the file (replace with uploaded file)
-    uploaded_file = sheet # "modified-data.xlsx"
-    wb = load_workbook(uploaded_file)
-    ws = wb.active
+    # uploaded_file = sheet # "modified-data.xlsx"
+    # wb = load_workbook(uploaded_file)
+    # ws = wb.active
 
     #here's where the modified data will be stored as a 2d list
-    modified_mapping = []
-    for i in range(1,ws.max_row+1):
-        row = [cell.value for cell in ws[i]]
-        isEmpty = True
-        for col in row:
-            if not ((col == None) or (col == '')):
-                isEmpty = False
-        if not isEmpty:
-            modified_mapping.append(row)
+    modified_mapping = sheet
+    # for i in range(1,ws.max_row+1):
+    #     row = [cell.value for cell in ws[i]]
+    #     isEmpty = True
+    #     for col in row:
+    #         if not ((col == None) or (col == '')):
+    #             isEmpty = False
+    #     if not isEmpty:
+    #         modified_mapping.append(row)
 
 
 
@@ -186,7 +186,7 @@ def upload_mapping(fuseki_url, query, sheet):
                 index = tokenized.index(pred)
                 pred_map[tokenized[index+1][1:]] = pred
     except:
-        #i dont wanna check all the edge cases for strings so i assume if 
+        #i dont wanna check all the edge cases for strings so i assume if
         #we hit an error here the query was bad to begin with
         #don't update kb
         print("bad query formed")
@@ -203,7 +203,7 @@ def upload_mapping(fuseki_url, query, sheet):
     for key in orig_keys:
         if key not in mod_keys:
             to_delete.append(key)
-    
+
 
     #now the delete query to the fuseki kb
     values = "".join("a:" + id + " " for id in to_delete)

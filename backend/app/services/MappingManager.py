@@ -28,8 +28,8 @@ class MappingDBManager:
         return mapping_entries
 
     @staticmethod
-    def delete_mappings(req: Request, ids: DeleteMappingRequestModel):
-        for mapping_id in ids:
+    def delete_mappings(req: Request, input_data: DeleteMappingRequestModel):
+        for mapping_id in input_data.ids:
             delete_result = delete(req, mapping_id)
             logger.info(delete_result)
 

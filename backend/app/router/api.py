@@ -5,6 +5,7 @@ from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, Fetch
     DeleteMappingRequestModel, UploadRequestSchema
 from app.services.MappingManager import MappingDBManager
 from app.services.UploadManager import UploadManager
+from app.services.DownloadManager import DownloadManager
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])
 
@@ -42,11 +43,13 @@ async def delete_mappings(request: Request, items_to_delete: DeleteMappingReques
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
 
-@router.get(path="/download")
-async def download(request: DownloadRequestSchema):
-    pass
 
 @router.post("/upload", status_code=status.HTTP_200_OK)
-async def upload_mapping(request: UploadRequestSchema): 
-    upload_client = UploadManager(request)
+async def upload_mapping(request: Request, data: UploadRequestSchema = Body(...)):
+    upload_client = UploadManager(request, data)
     return upload_client.upload()
+
+@router.post(path="/download", status_code=status.HTTP_200_OK)
+async def download(request: DownloadRequestSchema):
+    download_client = DownloadManager(request)
+    return download_client.download()

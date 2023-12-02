@@ -6,6 +6,8 @@ import styles from './page.module.css';
 
 import AddImg from './img/add.svg';
 import ConfirmImg from './img/confirm.svg';
+import SlashImg from './img/slash.svg';
+import CancelImg from './img/cancel.svg';
 
 function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     const onSelectChange = (e) => {
@@ -14,10 +16,7 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     };
 
     return (
-        <tr
-            // id={mapping.id.toString().padStart(6, "0")}
-            className={styles.entry_row}
-        >
+        <tr className={styles.entry_row}>
             <td className={styles.checkbox_col}>
                 <input
                     type="checkbox"
@@ -32,7 +31,7 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     );
 }
 
-function UINewRow({ addRowCallback }) {
+function UINewRow({ addRowCallback, closeCallback }) {
     const nameInputRef = useRef(null);
     const queryInputRef = useRef(null);
     const onInputSubmit = (e) => {
@@ -56,6 +55,22 @@ function UINewRow({ addRowCallback }) {
                             stroke="#00AA00"
                         />
                     </div>
+
+                    <div className={styles.toolbar_slash} id="addBtn">
+                        <SlashImg
+                            className={styles.image}
+                            alt="HAI"
+                            stroke="#00AA00"
+                        />
+                    </div>
+
+                    <div
+                        className={styles.toolbar_button}
+                        id="addBtn"
+                        onClick={closeCallback}
+                    >
+                        <CancelImg className={styles.image} alt="HAI" />
+                    </div>
                 </div>
             </td>
             <td className={styles.query_col}>
@@ -75,7 +90,6 @@ function UINewRow({ addRowCallback }) {
                         ref={queryInputRef}
                         className={styles.queryfield}
                         placeholder="Enter Mapping Query"
-                        // autoFocus
                     ></textarea>
                 </div>
             </td>
@@ -88,63 +102,64 @@ function UINewRow({ addRowCallback }) {
 // https://dev.to/bytebodger/constructors-in-functional-components-with-hooks-280m
 
 /* istanbul ignore next */
-const useConstructor = (callBack = () => {}) => {
-    const [hasBeenCalled, setHasBeenCalled] = useState(false);
-    if (hasBeenCalled) return;
-    callBack();
-    setHasBeenCalled(true);
-};
+// const useConstructor = (callBack = () => {}) => {
+//     const [hasBeenCalled, setHasBeenCalled] = useState(false);
+//     if (hasBeenCalled) return;
+//     callBack();
+//     setHasBeenCalled(true);
+// };
 
 export default function MappingTable({
     mappings,
+    fusekiUrl,
     mappingManager,
     excelHandler,
-    successCallback,
-    errorCallback,
+    notifCallback,
+    // rerenderCallback
 }) {
-    const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
     const [showTemplateRow, setShowTemplateRow] = useState(false);
     const [data, setData] = useState(mappings);
     const [isParentChecked, setIsParentChecked] = useState(false);
 
     const parentCheckboxRef = useRef(null);
 
-    useConstructor(() => {
-        console.log('Occurs ONCE, BEFORE the initial render.');
+    const loadMappings = () => {
         mappingManager.requestMapping().then((mappings) => {
             if (mappings) {
-                let currData = [...mappings];
+                let currData = [...mappings.result];
                 let newData = currData.map((row) => {
                     return { data: row, isChecked: false };
                 });
                 console.log(newData);
-                if (newData.length > 0) {
-                    setNextId(newData[newData.length - 1].data.id + 1);
-                } else setNextId(0);
                 setData([...newData]);
                 setParentCheckboxVal();
-                successCallback('YAY');
+                notifCallback('Mappings successfully retrieved!', false);
                 console.log(newData);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback(
+                    'Mapping retrieval failed. Please refresh and try again.',
+                    true
+                );
             }
         });
-        // console.log(mappings)
-        // let currData = [...mappings];
-        // const newData = currData.map((row) => {
-        //   return {data: row, isChecked: false};
-        // });
+    };
 
-        // console.log(newData)
-        // if (newData.length > 0) {
-        //   setNextId(newData[newData.length - 1].data.id + 1);
-        // } else setNextId(0);
-        // setData([...newData]);
-    });
+    // useConstructor(() => {
+    //     console.log(fusekiUrl);
+    //     console.log('Occurs ONCE, BEFORE the initial render.');
+    //     // loadMappings();
+    //     // console.log(mappings)
+    //     // let currData = [...mappings];
+    //     // const newData = currData.map((row) => {
+    //     //   return {data: row, isChecked: false};
+    //     // });
 
-    // const [count, setCount] = useState(0);
+    //     // console.log(newData)
+    //     // setData([...newData]);
+    // });
+
     const openTemplate = () => {
         setShowTemplateRow(true);
     };
@@ -182,6 +197,11 @@ export default function MappingTable({
         setParentCheckboxVal();
     }, [data]);
 
+    useEffect(() => {
+        console.log('Setting ' + fusekiUrl);
+        loadMappings();
+    }, [fusekiUrl]);
+
     const toggleSelectedEntries = (e, entry) => {
         const currData = [...data];
         const { checked } = e.target;
@@ -200,44 +220,58 @@ export default function MappingTable({
             }
             return row;
         });
-        // console.log(getSelectedEntries())
         setData([...currData]);
     };
 
     const addRow = (in_name, in_query) => {
-        // console.log(query);
+        if (in_name == '') {
+            notifCallback('Name field cannot be empty.', true);
+            return;
+        }
+
+        if (in_query == '') {
+            notifCallback('Query field cannot be empty.', true);
+            return;
+        }
+
         let newEntry = {
-            id: nextId,
             name: in_name,
             query: in_query,
-            date: getDateTodayString(),
-            // isChecked: false,
         };
-        // console.log("BLEH", getDateTodayString());
         mappingManager.createMapping(newEntry).then((response) => {
             if (response) {
-                setData([...data, { data: newEntry, isChecked: false }]);
-
-                setNextId(nextId + 1);
+                (newEntry.id = response.id),
+                    (newEntry.date = response.date),
+                    setData([...data, { data: newEntry, isChecked: false }]);
                 setShowTemplateRow(false);
-                successCallback('YAY');
+                notifCallback(`Mapping "${newEntry.name}" created.`, false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback(
+                    `Cannot create mapping "${newEntry.name}".`,
+                    true
+                );
             }
         });
+        console.log('AAAAAAAAAAAAAA');
+        console.log(newEntry);
+        console.log(data);
     };
 
     function downloadExcel(selectedMappings) {
-        console.log(getSelectedEntries());
+        console.log(selectedMappings);
+        if (selectedMappings.length == 0) {
+            notifCallback('No mappings selected for download.', true);
+            return;
+        }
         excelHandler.downloadExcel(selectedMappings).then((response) => {
             if (response) {
-                successCallback('YAY');
+                notifCallback('Successfully downloaded data.', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Cannot download excel sheet', true);
             }
         });
     }
@@ -245,28 +279,36 @@ export default function MappingTable({
     function uploadExcel(selectedFile) {
         excelHandler.uploadExcel(selectedFile).then((response) => {
             if (response) {
-                successCallback('YAY');
+                notifCallback('Uploaded and updated knowledge base.', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Cannot upload/update knowledge base', true);
             }
         });
     }
 
     function deleteRows(selectedMappings) {
+        if (selectedMappings.length == 0) {
+            notifCallback('No mappings selected for deletion.', true);
+            return;
+        }
         mappingManager.deleteMapping(selectedMappings).then((response) => {
             if (response) {
+                const beforeLen = data.length;
                 const currData = data.filter((row) => !row.isChecked);
-                // console.log(currData);
                 setData([...currData]);
-                successCallback('YAY');
+                const newLen = beforeLen - currData.length;
+                notifCallback(
+                    `Deleted ${newLen} mapping${newLen > 1 ? 's' : ''}.`,
+                    false
+                );
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                errorCallback('Hello from ' + text);
+                notifCallback('Cannot delete mappings.', true);
             }
-        }); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
+        });
     }
 
     return (
@@ -326,7 +368,13 @@ export default function MappingTable({
                     )}
 
                     {showTemplateRow && (
-                        <UINewRow key={'ui-new-row'} addRowCallback={addRow} />
+                        <UINewRow
+                            key={'ui-new-row'}
+                            addRowCallback={addRow}
+                            closeCallback={() => {
+                                setShowTemplateRow(false);
+                            }}
+                        />
                     )}
                     {!showTemplateRow && (
                         <tr key={'show'} className={styles.addrow}>

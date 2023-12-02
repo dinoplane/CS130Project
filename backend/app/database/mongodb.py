@@ -21,6 +21,6 @@ def find(req: Request, query):
 
 
 def delete(req: Request, mapping_id: str):
-    query = {'Id': mapping_id}
+    query = {'id': mapping_id}
     result = req.app.map_db["mappings"].delete_one(query)
     return result
