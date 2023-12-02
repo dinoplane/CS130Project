@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Request, Response, Body, status, HTTPException
+from fastapi import APIRouter, Request, Response, Body, status, HTTPException, UploadFile
 from pymongo.errors import PyMongoError
 
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
-    DeleteMappingRequestModel, UploadRequestSchema
+    DeleteMappingRequestModel
+from app.services.DownloadManager import DownloadManager
 from app.services.MappingManager import MappingDBManager
 from app.services.UploadManager import UploadManager
 from app.services.DownloadManager import DownloadManager
@@ -42,14 +43,12 @@ async def delete_mappings(request: Request, items_to_delete: DeleteMappingReques
         # Handle other exceptions (non-HTTPException and non-PyMongoError) here, log or perform other actions
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
-
-
-@router.post("/upload", status_code=status.HTTP_200_OK)
-async def upload_mapping(request: Request, data: UploadRequestSchema = Body(...)):
-    upload_client = UploadManager(request, data)
-    return upload_client.upload()
-
 @router.post(path="/download", status_code=status.HTTP_200_OK)
 async def download(request: DownloadRequestSchema):
     download_client = DownloadManager(request)
     return download_client.download()
+
+@router.post("/upload", status_code=status.HTTP_200_OK)
+def upload_mapping(request: Request, file: UploadFile = UploadFile(...)): 
+    upload_client = UploadManager(request, file)
+    return upload_client.upload()
