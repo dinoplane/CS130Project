@@ -1,47 +1,19 @@
 'use client'; // This is a client component 👈🏽
 
 import styles from './page.module.css';
-import {
-    useState,
-    useRef,
-    useEffect,
-    forwardRef,
-    useImperativeHandle,
-} from 'react';
+import { useState } from 'react';
 
 import MappingManager from './mapping_manager';
 import ExcelHandler from './excelhandler';
 import Header from './header';
 import MappingTable from './mapping_table';
 import NotifDialog from './notifdialog';
-import { Truculenta } from 'next/font/google';
 
 // Example of a data array that
 
 const mappingManager = new MappingManager();
 const MAPPINGS = [];
 const excelHandler = new ExcelHandler();
-
-// const MAPPINGS = [
-//   {
-//     id: 0,
-//     name: "PLOOP",
-//     query: "SELECT COURSE WHERE COURSE.NAME = CS130",
-//     date: "10/19/2023",
-//   },
-//   {
-//     id: 1,
-//     name: "BLOOP",
-//     query: "SELECT COURSE WHERE STUDENTS_ENROLLED > 30 AND DEPT = CS",
-//     date: "10/20/2023",
-//   },
-//   {
-//     id: 2,
-//     name: "FLOOP",
-//     query: "SELECT PROFESSOR WHERE COURSE.NAME = CS130",
-//     date: "10/21/2023",
-//   },
-// ];
 
 // console.log(MAPPINGS)
 export default function Home() {
@@ -50,8 +22,7 @@ export default function Home() {
     const [notifMsg, setNotifMsg] = useState('');
     const [notifError, setNotifError] = useState(false);
 
-    const [showTable, setShowTable] = useState(false);
-    // const [fusekiSet, setFusekiSet] = useState(false);
+    const [showTable, setShowTable] = useState(true); // Set false later
     const [fusekiUrl, setFusekiUrl] = useState('');
 
     const closeNotifCallback = () => {

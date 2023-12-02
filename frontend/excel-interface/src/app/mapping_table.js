@@ -16,10 +16,7 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     };
 
     return (
-        <tr
-            // id={mapping.id.toString().padStart(6, "0")}
-            className={styles.entry_row}
-        >
+        <tr className={styles.entry_row}>
             <td className={styles.checkbox_col}>
                 <input
                     type="checkbox"
@@ -93,7 +90,6 @@ function UINewRow({ addRowCallback, closeCallback }) {
                         ref={queryInputRef}
                         className={styles.queryfield}
                         placeholder="Enter Mapping Query"
-                        // autoFocus
                     ></textarea>
                 </div>
             </td>
@@ -121,7 +117,6 @@ export default function MappingTable({
     notifCallback,
     // rerenderCallback
 }) {
-    const [nextId, setNextId] = useState(0); // So we may fetch the ID from the mapping database
     const [showTemplateRow, setShowTemplateRow] = useState(false);
     const [data, setData] = useState(mappings);
     const [isParentChecked, setIsParentChecked] = useState(false);
@@ -130,25 +125,12 @@ export default function MappingTable({
 
     const loadMappings = () => {
         mappingManager.requestMapping().then((mappings) => {
-            // Change when needed -> mappings.results
             if (mappings) {
-                // const d = new Date();
-                // let text = d.toTimeString().substring(0, 8);
-                // console.log("AIUSHGDUHSADHui")
-                // mappings = [{
-                //     id: 0, // Get rid of this
-                //     name: "A",
-                //     query: "aaa",
-                //     date: text
-                // }]
-                let currData = [...mappings];
+                let currData = [...mappings.result];
                 let newData = currData.map((row) => {
                     return { data: row, isChecked: false };
                 });
                 console.log(newData);
-                if (newData.length > 0) {
-                    setNextId(newData[newData.length - 1].data.id + 1);
-                } else setNextId(0);
                 setData([...newData]);
                 setParentCheckboxVal();
                 notifCallback('Mappings successfully retrieved!', false);
@@ -175,13 +157,9 @@ export default function MappingTable({
     //     // });
 
     //     // console.log(newData)
-    //     // if (newData.length > 0) {
-    //     //   setNextId(newData[newData.length - 1].data.id + 1);
-    //     // } else setNextId(0);
     //     // setData([...newData]);
     // });
 
-    // const [count, setCount] = useState(0);
     const openTemplate = () => {
         setShowTemplateRow(true);
     };
@@ -242,7 +220,6 @@ export default function MappingTable({
             }
             return row;
         });
-        // console.log(getSelectedEntries())
         setData([...currData]);
     };
 
@@ -257,42 +234,44 @@ export default function MappingTable({
             return;
         }
 
-        // console.log(query);
         let newEntry = {
-            id: nextId,
             name: in_name,
             query: in_query,
-            date: getDateTodayString(),
-            // isChecked: false,
         };
-        // console.log("BLEH", getDateTodayString());
         mappingManager.createMapping(newEntry).then((response) => {
             if (response) {
-                setData([...data, { data: newEntry, isChecked: false }]);
-
-                setNextId(nextId + 1);
+                (newEntry.id = response.id),
+                    (newEntry.date = response.date),
+                    setData([...data, { data: newEntry, isChecked: false }]);
                 setShowTemplateRow(false);
-                notifCallback('YAY', false);
+                notifCallback(`Mapping "${newEntry.name}" created.`, false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text, true);
+                notifCallback(
+                    `Cannot create mapping "${newEntry.name}".`,
+                    true
+                );
             }
         });
+        console.log('AAAAAAAAAAAAAA');
+        console.log(newEntry);
+        console.log(data);
     };
 
     function downloadExcel(selectedMappings) {
+        console.log(selectedMappings);
         if (selectedMappings.length == 0) {
             notifCallback('No mappings selected for download.', true);
             return;
         }
         excelHandler.downloadExcel(selectedMappings).then((response) => {
             if (response) {
-                notifCallback('YAY', false);
+                notifCallback('Successfully downloaded data.', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text, true);
+                notifCallback('Cannot download excel sheet', true);
             }
         });
     }
@@ -300,11 +279,11 @@ export default function MappingTable({
     function uploadExcel(selectedFile) {
         excelHandler.uploadExcel(selectedFile).then((response) => {
             if (response) {
-                notifCallback('YAY', false);
+                notifCallback('Uploaded and updated knowledge base.', false);
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text, true);
+                notifCallback('Cannot upload/update knowledge base', true);
             }
         });
     }
@@ -316,16 +295,20 @@ export default function MappingTable({
         }
         mappingManager.deleteMapping(selectedMappings).then((response) => {
             if (response) {
+                const beforeLen = data.length;
                 const currData = data.filter((row) => !row.isChecked);
-                // console.log(currData);
                 setData([...currData]);
-                notifCallback('YAY', false);
+                const newLen = beforeLen - currData.length;
+                notifCallback(
+                    `Deleted ${newLen} mapping${newLen > 1 ? 's' : ''}.`,
+                    false
+                );
             } else {
                 const d = new Date();
                 let text = d.toTimeString().substring(0, 8);
-                notifCallback('Hello from ' + text, true);
+                notifCallback('Cannot delete mappings.', true);
             }
-        }); //SO IM GONNA NEED TO FIGURE OUT WHEN TO UPDATE THE UI
+        });
     }
 
     return (
