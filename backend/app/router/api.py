@@ -42,7 +42,7 @@ async def delete_mappings(request: Request, items_to_delete: DeleteMappingReques
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
 
-@router.get(path="/download", status_code=status.HTTP_200_OK)
+@router.post(path="/download", status_code=status.HTTP_200_OK)
 async def download(request: DownloadRequestSchema):
     download_client = DownloadManager(request)
     return download_client.download()

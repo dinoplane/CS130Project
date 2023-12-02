@@ -10,7 +10,7 @@ def insert_one(req: Request, mapping: MappingEntry):
 
 
 def find(req: Request, query):
-    mappings = req.app.map_db["mappings"].find({"fuseki_url":"http://localhost:3030/db/"})
+    mappings = req.app.map_db["mappings"].find(query)
     documents = []
     if mappings is not None:
         documents = [document for document in mappings]
@@ -21,6 +21,6 @@ def find(req: Request, query):
 
 
 def delete(req: Request, mapping_id: str):
-    query = {'Id': mapping_id}
+    query = {'id': mapping_id}
     result = req.app.map_db["mappings"].delete_one(query)
     return result
