@@ -6,7 +6,7 @@ import uuid
 
 
 class MappingEntry(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    id: str = Field(default_factory=lambda: str(uuid.uuid4())[:10])
     name: str = Field(...)
     query: str = Field(...)
     fuseki_url: str = Field(...)
@@ -24,3 +24,7 @@ class DeleteMappingRequestModel(BaseModel):
 class DownloadRequestSchema(BaseModel):
     fuseki_url: str = Field(...)
     selected_mappings: List[MappingEntry] = Field(...)
+
+
+class CheckFusekiConnectionRequestModel(BaseModel):
+    fuseki_url: str = Field(...)
