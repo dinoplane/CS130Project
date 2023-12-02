@@ -34,7 +34,6 @@ def upload_mapping(fuseki_url, query, sheet):
 
     query = user_provided_query
 
-
     #### here we take care of the prefix issue
     prefix = 'data:/'
     shorten = "a:"
@@ -54,12 +53,10 @@ def upload_mapping(fuseki_url, query, sheet):
     # flatten query for ease of parsing
     query = " ".join(line.strip() for line in query.splitlines())
 
-
     #add prefixes where necessary in query
     for pred in predicates:
         query = query.replace(pred, shorten+pred)
         query = query.replace('?' + shorten, '?')
-
     #and this is our query with all the prefixes added, pure SPARQL
     query = "PREFIX "+ shorten + " <" + prefix + "> " + query
 
@@ -138,14 +135,14 @@ def upload_mapping(fuseki_url, query, sheet):
 
     #here's where the modified data will be stored as a 2d list
     modified_mapping = sheet
-    # for i in range(1,ws.max_row+1):
-    #     row = [cell.value for cell in ws[i]]
-    #     isEmpty = True
-    #     for col in row:
-    #         if not ((col == None) or (col == '')):
-    #             isEmpty = False
-    #     if not isEmpty:
-    #         modified_mapping.append(row)
+    for i in range(1,ws.max_row+1):
+        row = [cell.value for cell in ws[i]]
+        isEmpty = True
+        for col in row:
+            if not ((col == None) or (col == '')):
+                isEmpty = False
+        if not isEmpty:
+            modified_mapping.append(row)
 
 
 
@@ -203,7 +200,6 @@ def upload_mapping(fuseki_url, query, sheet):
     for key in orig_keys:
         if key not in mod_keys:
             to_delete.append(key)
-
 
     #now the delete query to the fuseki kb
     values = "".join("a:" + id + " " for id in to_delete)
