@@ -5,22 +5,22 @@ import { useState, useRef, useEffect } from 'react';
 export function ConnectDialog({
     connectCallback,
     updateCallback,
-    closeCallback,
+    closecallback,
+    startText,
 }) {
     const urlInputRef = useRef(null);
 
     const onInputSubmit = (e) => {
         connectCallback(urlInputRef.current.value)
             .then((response) => {
-                if (response.ok) {
-                    return response.json();
+                if (response) {
+                    return true;
                 }
                 throw new Error('Something went wrong');
             })
-            .then((responseJson) => {
-                // Do something with the response
+            .then(() => {
                 updateCallback(urlInputRef.current.value);
-                closeCallback();
+                closecallback();
 
                 return true;
             })
@@ -33,11 +33,11 @@ export function ConnectDialog({
         <div className={styles.connectDialog}>
             <input
                 ref={urlInputRef}
-                // className={styles.namefield}
                 type="text"
                 placeholder="Enter Fuseki Url"
+                defaultValue={startText}
                 autoFocus
-            ></input>
+            />
             <div className={styles.connect_button} onClick={onInputSubmit}>
                 SUBMIT
             </div>
@@ -60,16 +60,21 @@ export default function Header({ connectCallback }) {
                 <h1>Excellent Interface</h1>
                 <DropdownMenu
                     trigger={
-                        <div className={styles.connect_button}>
-                            {!isKBSet
-                                ? 'Not Connected'
-                                : 'Connected to ' + fusekiUrl}
+                        <div
+                            className={
+                                !isKBSet
+                                    ? styles.unconnect_button
+                                    : styles.connect_button
+                            }
+                        >
+                            {!isKBSet ? 'Not Connected' : 'Connected'}
                         </div>
                     }
                     child={
                         <ConnectDialog
                             connectCallback={connectCallback}
                             updateCallback={updateUrl}
+                            startText={fusekiUrl}
                         />
                     }
                 />

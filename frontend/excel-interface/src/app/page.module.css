@@ -23,6 +23,12 @@
     background-color: #f2f2f2;
 }
 
+.title_bar h1 {
+    font-family: 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace',
+        'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New',
+        monospace;
+}
+
 .connect_button {
     border-radius: 5px;
     width: 200px;
@@ -39,11 +45,31 @@
 }
 
 .connect_button:active {
-    background-color: #dddddd;
+    background-color: #ccecfe;
+}
+
+.unconnect_button {
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ff8282;
+    text-align: center;
+    font-size: 10pt;
+    cursor: default;
+}
+
+.unconnect_button:hover {
+    background-color: #ff3535;
+}
+
+.unconnect_button:active {
+    background-color: #f9bfbf;
 }
 
 .datatable {
     width: 95%;
+    margin-bottom: 10em;
     /* height: 1000px; */
     display: flex;
     flex-direction: column;
@@ -51,7 +77,7 @@
     /* border: 10px solid #555555; */
     /* justify-content: center; */
     align-items: center;
-    z-index: 2;
+    z-index: 0;
 }
 
 .datatable table {
@@ -63,7 +89,7 @@
     color: black;
     border-radius: 5px;
 
-    box-shadow: 0 0px 4px 2px #dddddd;
+    box-shadow: 0 0px 4px 2px #ccecfe;
 }
 
 .datatable th {
@@ -74,7 +100,7 @@
     border-left: 1px solid #555555; */
     font-size: 14pt;
     margin: 20px;
-    z-index: 1;
+    z-index: 0;
     height: 50px;
 }
 
@@ -88,9 +114,9 @@
     /* border-collapse: collapse; */
     border: 1px solid #cbe9e9;
     /* background-color: crimson; */
-    height: 40px;
+    height: 50px;
     font-size: 14pt;
-    z-index: 1;
+    /* z-index: 0; */
     /* border-radius: 30px; */
 }
 
@@ -141,7 +167,7 @@
 
 .newrow {
     position: relative;
-    background-color: #dddddd;
+    background-color: #ccecfe;
     /* box-shadow: 2px 2px 2px 2px gray;s */
 
     border-bottom-left-radius: 5px;
@@ -170,6 +196,7 @@
     overflow: hidden;
     font-size: 14pt;
     color: #777777;
+    z-index: 0;
     /* width: 500px */
 }
 
@@ -190,17 +217,17 @@
 
 .name_col {
     background-color: azure;
-    width: 10%;
+    width: 30%;
 }
 
 .query_col {
     background-color: azure;
-    width: 70%;
+    width: 30%;
+    align-items: center;
 }
 .query_col div {
-    background-color: azure;
-    margin: 20px;
-
+    /* position: initial; */
+    width: 100%;
     flex-direction: row;
     display: flex;
     justify-content: space-around;
@@ -211,7 +238,7 @@
     background-color: white;
     height: 40px;
     width: 75%;
-
+    margin: 10px;
     border-radius: 10px;
     font-size: 12pt;
     color: #777777;
@@ -221,9 +248,11 @@
 
 .query_col textarea {
     /* background-color: black; */
-    width: 75%;
+    width: 100%;
     height: 150px;
     resize: none;
+    margin: 10px;
+
     /* height: 40px; */
     padding: 10px;
     /* text-align: center; */
@@ -232,6 +261,31 @@
     font-size: 10pt;
     color: #777777;
     background-color: white;
+}
+
+.querybutton div {
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #b8e5fe;
+    text-align: center;
+    font-size: 10pt;
+    cursor: default;
+    z-index: unset;
+    margin: 10px;
+}
+
+.querybutton div:hover {
+    background-color: #66c8fe;
+}
+
+.querybutton div:active {
+    background-color: #ccecfe;
+}
+
+.queryfield textarea {
+    width: 75%;
 }
 
 .date_col {
@@ -257,7 +311,7 @@
     align-items: center;
     border-radius: 5px;
 
-    box-shadow: 0 0 4px 2px #dddddd;
+    box-shadow: 0 0 4px 2px #ccecfe;
 
     display: flex;
     flex-direction: row;
@@ -280,7 +334,7 @@
     margin: 20px;
     padding: 0px;
     position: relative;
-    background-color: #b8e5fe;
+    background-color: #7ad1f8;
 
     transition:
         padding 0.05s ease-in-out,
@@ -291,11 +345,11 @@
     padding: 20px;
     margin: 0px;
     /* transform: scale(2); */
-    background-color: #b8e5fe;
+    background-color: #7ad1f8;
 }
 
 .toolbar_button:active {
-    background-color: #dddddd;
+    background-color: #ccecfe;
 }
 
 .toolbar_slash {
@@ -326,13 +380,20 @@
 .dropdown {
     background-color: inherit;
     width: max-content;
-    /* border-radius: 30px;
-    width: 40px;
-    height: 40px; */
-    /* margin: 20px;
-  padding: 20px; */
     position: relative;
-    /* background-color: #adadad; */
+}
+
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+
+    padding: 10px;
+    background-color: white;
+    width: 200px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 2px #ccecfe;
+    z-index: 11;
 }
 
 /* .image:hover{
@@ -346,7 +407,7 @@
 
     width: 300px;
     height: 100px;
-    /* border: 1px solid #DDDDDD; */
+    /* border: 1px solid #CCECFE; */
     background-color: #ffffff;
     /* padding: 10px; */
     margin: 20px;
@@ -358,8 +419,8 @@
     flex-direction: row;
     gap: 1%;
     justify-content: space-between;
-    box-shadow: 0 0 4px 2px #dddddd;
-    z-index: 10;
+    box-shadow: 0 0 4px 2px #ccecfe;
+    z-index: 0;
 }
 
 .notif_right {
@@ -408,27 +469,7 @@
 }
 
 .notif_button:active {
-    background-color: #dddddd;
-}
-
-.menu {
-    position: absolute;
-    top: 50%;
-    left: -25%;
-    /* top: 100%;
-    left: 100%; */
-    /* list-style-type: none;
-    margin: 5px 0;
-    padding: 0; */
-    /* margin: 20px; */
-    padding: 10px;
-    background-color: white;
-    /* border: 1px solid #DDDDDD; */
-    width: 200px;
-    border-radius: 5px;
-    box-shadow: 0 0 4px 2px #dddddd;
-    /* overflow: hidden; */
-    z-index: 10;
+    background-color: #ccecfe;
 }
 
 .connectDialog {

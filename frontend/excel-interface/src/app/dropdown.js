@@ -3,7 +3,6 @@ import styles from './page.module.css';
 
 const useOutsideClick = (callback) => {
     const ref = useRef();
-    console.log('HALLO');
     useEffect(() => {
         const handleClick = (event) => {
             if (ref.current && !ref.current.contains(event.target)) {
@@ -23,7 +22,6 @@ const useOutsideClick = (callback) => {
 
 export default function DropdownMenu({ trigger, child }) {
     const ref = useOutsideClick(() => {
-        // console.log("HEEEELO")
         setDropdownOpen(false);
     });
 
@@ -36,11 +34,6 @@ export default function DropdownMenu({ trigger, child }) {
         setDropdownOpen(false);
     };
 
-    // const dropdownCallback = (mode) => {
-    //   setDropdownOpen(false);
-    //   uploadCallback(mode);
-    // };
-
     return (
         <div className={styles.dropdown} ref={ref}>
             {cloneElement(trigger, {
@@ -49,7 +42,7 @@ export default function DropdownMenu({ trigger, child }) {
             {dropdownOpen ? (
                 <div className={styles.menu}>
                     {cloneElement(child, {
-                        closeCallback: handleClose,
+                        closecallback: handleClose,
                     })}
                 </div>
             ) : null}

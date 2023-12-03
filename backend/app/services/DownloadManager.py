@@ -78,7 +78,7 @@ class DownloadManager:
             except Exception as error:
                 logger.error(str(error))
                 raise HTTPException(status_code=500, detail=f"Primary key is not selected in the {mapping.query}")
-
+            
             try:
                 self.sparql_client.setQuery(query)
                 ret = self.sparql_client.queryAndConvert()

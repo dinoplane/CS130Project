@@ -1,4 +1,4 @@
-'use client'; // This is a client component 👈🏽
+'use client';
 
 import styles from './page.module.css';
 import { useState } from 'react';
@@ -9,20 +9,16 @@ import Header from './header';
 import MappingTable from './mapping_table';
 import NotifDialog from './notifdialog';
 
-// Example of a data array that
-
 const mappingManager = new MappingManager();
 const MAPPINGS = [];
 const excelHandler = new ExcelHandler();
 
-// console.log(MAPPINGS)
 export default function Home() {
-    // const errRef = useRef(null);
     const [hasNotif, setHasNotif] = useState(false);
     const [notifMsg, setNotifMsg] = useState('');
     const [notifError, setNotifError] = useState(false);
 
-    const [showTable, setShowTable] = useState(true); // Set false later
+    const [showTable, setShowTable] = useState(false);
     const [fusekiUrl, setFusekiUrl] = useState('');
 
     const closeNotifCallback = () => {
@@ -30,52 +26,50 @@ export default function Home() {
     };
 
     const handleNotifCallback = (val, isError = false) => {
-        console.log('HAI');
         setHasNotif(true);
         setNotifMsg(val);
         setNotifError(isError);
     };
-
-    // const handleSuccessCallback = (val) => {
-    //     console.log(val);
-    //     setNotifMsg('');
-    //     setHasError(false);
-    // };
 
     async function connectToFuseki(url) {
         if (url == '') {
             handleNotifCallback('Url cannot be empty.', true);
             return false;
         }
-        setShowTable(true);
 
-        // if (showTable)
-        // {setShowTable(false);}
-        // else
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
 
-        // return true;
-        let success = fetch(url, {
+        var raw = JSON.stringify({
+            fuseki_url: url,
+        });
+
+        var requestOptions = {
             method: 'POST',
-            body: JSON.stringify({
-                fusekiUrl: url,
-            }),
-        })
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+
+        let success = fetch(
+            'http://0.0.0.0:8000/excel-interface/operations/check-connection',
+            requestOptions
+        )
             .then((response) => {
                 if (response.ok) {
                     mappingManager.setFusekiUrl(url);
                     excelHandler.setFusekiUrl(url);
-                    return response.json();
+                    setShowTable(true);
+                    return true;
                 }
                 throw new Error('Something went wrong');
             })
-            .then((responseJson) => {
-                // Do something with the response
+            .then(() => {
                 handleNotifCallback('Connected!', false);
                 setFusekiUrl(url);
                 return true;
             })
             .catch((error) => {
-                // console.log(notif);
                 handleNotifCallback("Can't connect to " + url, true);
                 return false;
             });
@@ -92,9 +86,7 @@ export default function Home() {
                         fusekiUrl={fusekiUrl}
                         mappingManager={mappingManager}
                         excelHandler={excelHandler}
-                        // successCallback={handleSuccessCallback}
                         notifCallback={handleNotifCallback}
-                        // rerenderCallback={handleRerenderCallback}
                     />
                 ) : (
                     <p>Nothing to see here!</p>

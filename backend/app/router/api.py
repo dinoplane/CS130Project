@@ -1,11 +1,15 @@
-from fastapi import APIRouter, Request, Body, status, HTTPException
+from fastapi import APIRouter, Request, Body, status, HTTPException, UploadFile
 from pymongo.errors import PyMongoError
-
 from app.database.fuseki_connection import Fuseki
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
     DeleteMappingRequestModel, CheckFusekiConnectionRequestModel
 from app.services.DownloadManager import DownloadManager
 from app.services.MappingManager import MappingDBManager
+from app.services.UploadManager import UploadManager
+
+from openpyxl import Workbook, load_workbook
+
+from io import BytesIO
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])
 
@@ -42,12 +46,18 @@ async def delete_mappings(request: Request, items_to_delete: DeleteMappingReques
         # Handle other exceptions (non-HTTPException and non-PyMongoError) here, log or perform other actions
         raise HTTPException(status_code=500, detail=f"Unexpected error: {str(e)}")
 
-
 @router.post(path="/download", status_code=status.HTTP_200_OK)
 async def download(request: DownloadRequestSchema):
     download_client = DownloadManager(request)
     return download_client.download()
 
+@router.post("/upload", status_code=status.HTTP_200_OK)
+async def upload_mapping(request: Request, file: UploadFile = UploadFile(...)):
+    upload_client = UploadManager(request)
+    contents = await file.read()
+
+    wb = load_workbook(BytesIO(contents))
+    return upload_client.upload(wb)
 
 @router.post("/check-connection", status_code=status.HTTP_200_OK)
 async def check_connection(request: Request, request_model: CheckFusekiConnectionRequestModel = Body(...)):

@@ -5,7 +5,6 @@ import styles from './page.module.css';
 import DownloadImg from './img/download.svg';
 import UploadImg from './img/upload.svg';
 import DeleteImg from './img/delete.svg';
-// import { upload } from "@testing-library/user-event/dist/types/utility";
 
 // https://www.robinwieruch.de/react-hook-detect-click-outside-component/
 
@@ -17,7 +16,7 @@ export default function Toolbar({
     const changeHandler = (event) => {
         uploadCallback(event.target.files[0]);
     };
-    // Consider adding are you sure? dialog
+
     return (
         <div className={styles.toolbar}>
             <div
