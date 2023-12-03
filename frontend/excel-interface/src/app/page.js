@@ -22,7 +22,7 @@ export default function Home() {
     const [notifMsg, setNotifMsg] = useState('');
     const [notifError, setNotifError] = useState(false);
 
-    const [showTable, setShowTable] = useState(true); // Set false later
+    const [showTable, setShowTable] = useState(false); // Set false later
     const [fusekiUrl, setFusekiUrl] = useState('');
 
     const closeNotifCallback = () => {
@@ -49,17 +49,24 @@ export default function Home() {
         }
         setShowTable(true);
 
-        // if (showTable)
-        // {setShowTable(false);}
-        // else
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
 
-        // return true;
-        let success = fetch(url, {
+        var raw = JSON.stringify({
+            fuseki_url: url,
+        });
+
+        var requestOptions = {
             method: 'POST',
-            body: JSON.stringify({
-                fusekiUrl: url,
-            }),
-        })
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+
+        let success = fetch(
+            'http://0.0.0.0:8000/excel-interface/operations/check-connection',
+            requestOptions
+        )
             .then((response) => {
                 if (response.ok) {
                     mappingManager.setFusekiUrl(url);
