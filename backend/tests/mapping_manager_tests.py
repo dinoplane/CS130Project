@@ -1,15 +1,11 @@
 #get our app from backend
 from app.main import app
 import os
-from app.schema.mapping_schema import MappingEntry, FetchMappingRequestModel
-
-#with pytest
-import pytest
+from app.schema.mapping_schema import MappingEntry
 
 #use TestClient
 from fastapi.testclient import TestClient
-from fastapi import Request, Response, Body, status
-
+    
 #use direct connection to Client
 from pymongo import MongoClient
 
@@ -62,7 +58,6 @@ def test_add_mapping():
     test_connec = MongoClient(os.getenv('CONNECT_URL'))
     test_db = test_connec['mapping_DB']
 
-    #req.app.map_db["mappings"].insert_one(mapping)
     fake_url = "test_url"
     sample_fuseki = {"fuseki_url":fake_url}
     #will test app adding sample_map1
@@ -97,8 +92,53 @@ def test_add_mapping():
         #TEST item added correctly
         assert documents+[resp.json()] == updated_documents
 
-        #CLEANUP
+        #CLEANUP (needs to be extended to fully clean up if exception occurs)
         db_del = test_db["mappings"].delete_one({"id":resp_id})
         assert db_del.deleted_count==1
     test_connec.close()
     return 
+
+def test_remove_mapping():
+    test_connec = MongoClient(os.getenv('CONNECT_URL'))
+    test_db = test_connec['mapping_DB']
+
+    #req.app.map_db["mappings"].insert_one(mapping)
+    fake_url = "test_url"
+    sample_fuseki = {"fuseki_url":fake_url}
+    #will test app removing sample_map2
+    sample_map2 = dict(MappingEntry(name="test_add_2",query="this is a test query (again)", fuseki_url=fake_url))
+    test_id = sample_map2["id"]
+
+    with TestClient(app) as tester:
+        #compare to original db values
+        testing_db = test_db["mappings"].find(sample_fuseki)
+        documents=[{ k:v for k, v in document.items() if k != "_id"} for document in testing_db] #format
+
+        #add our sample map
+        assert test_db["mappings"].insert_one(sample_map2) != None
+
+        #test resp
+        resp = tester.request(method="DELETE", url="/excel-interface/mapping-database/delete", json={"ids":[test_id]}) #workaround TestClient delete method doesn't take json param
+        try:
+            assert resp.status_code == 204 #succesfully deleted
+        except:
+            #CLEANUP OTHERWISE
+            db_del = test_db["mappings"].delete_one({"id":test_id})
+            assert db_del.deleted_count==1
+            assert resp.status_code == 204 #succesfully deleted
+
+        #try to get the object we just added
+        db_val = test_db["mappings"].find_one({"id":sample_map2["id"]})
+        assert db_val== None #does not exist
+
+        #get the resulting database
+        updated_db = test_db["mappings"].find(sample_fuseki)
+        updated_documents=[{ k:v for k, v in document.items() if k != "_id"} for document in updated_db]
+        #TEST item removed correctly
+        assert documents == updated_documents
+
+    test_connec.close()
+    return 
+
+
+
