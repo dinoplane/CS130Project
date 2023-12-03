@@ -12,12 +12,12 @@ export function ConnectDialog({
     const onInputSubmit = (e) => {
         connectCallback(urlInputRef.current.value)
             .then((response) => {
-                if (response.ok) {
-                    return response.json();
+                if (response) {
+                    return true;
                 }
                 throw new Error('Something went wrong');
             })
-            .then((responseJson) => {
+            .then(() => {
                 // Do something with the response
                 updateCallback(urlInputRef.current.value);
                 closeCallback();

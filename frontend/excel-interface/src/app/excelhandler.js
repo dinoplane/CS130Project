@@ -2,7 +2,7 @@ export default class ExcelHandler {
     constructor() {
         this.fusekiDispatchUrl =
             'http://0.0.0.0:8000/excel-interface/operations/';
-        this.fusekiKBUrl = 'http://localhost:3030/db/';
+        this.fusekiKBUrl = '';
     }
 
     setFusekiUrl(url) {

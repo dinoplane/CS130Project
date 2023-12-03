@@ -26,3 +26,7 @@ class DeleteMappingRequestModel(BaseModel):
 class DownloadRequestSchema(BaseModel):
     fuseki_url: str = Field(...)
     selected_mappings: List[MappingEntry] = Field(...)
+
+
+class CheckFusekiConnectionRequestModel(BaseModel):
+    fuseki_url: str = Field(...)

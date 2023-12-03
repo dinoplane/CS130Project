@@ -2,7 +2,7 @@ export default class MappingManager {
     constructor() {
         this.mappingDbUrl =
             'http://0.0.0.0:8000/excel-interface/mapping-database/'; // localhost:blabla/excel-interface/mapping-database
-        this.fusekiKBUrl = 'http://localhost:3030/db/';
+        this.fusekiKBUrl = '';
     }
 
     setFusekiUrl(url) {
@@ -83,7 +83,7 @@ export default class MappingManager {
             body: raw,
             redirect: 'follow',
         };
-
+        console.log('fetching ' + this.fusekiKBUrl);
         let success = await fetch(this.mappingDbUrl + 'fetch', requestOptions)
             .then((response) => {
                 console.log(response);

@@ -1,13 +1,11 @@
-from fastapi import APIRouter, Request, Response, Body, status, HTTPException, UploadFile
+from fastapi import APIRouter, Request, Body, status, HTTPException, UploadFile
 from pymongo.errors import PyMongoError
-from fastapi.responses import JSONResponse
-
+from app.database.fuseki_connection import Fuseki
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
-    DeleteMappingRequestModel
+    DeleteMappingRequestModel, CheckFusekiConnectionRequestModel
 from app.services.DownloadManager import DownloadManager
 from app.services.MappingManager import MappingDBManager
 from app.services.UploadManager import UploadManager
-from app.services.DownloadManager import DownloadManager
 
 from openpyxl import Workbook, load_workbook
 
@@ -60,3 +58,7 @@ async def upload_mapping(request: Request, file: UploadFile = UploadFile(...)):
 
     wb = load_workbook(BytesIO(contents))
     return upload_client.upload(wb)
+
+@router.post("/check-connection", status_code=status.HTTP_200_OK)
+async def check_connection(request: Request, request_model: CheckFusekiConnectionRequestModel = Body(...)):
+    return Fuseki.is_valid_url(request_model.fuseki_url)
