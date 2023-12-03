@@ -9,22 +9,11 @@ from io import StringIO
 #### code starts here
 def upload_mapping(fuseki_url, query, sheet):
     ##replace with user provided url
-    # fuseki_url = "http://localhost:3030/db/"
 
     sparql = SPARQLWrapper(fuseki_url)
     sparql.setReturnFormat(CSV)
 
-    '''
-    q = """"""
-    sparql.setQuery(q)
-    ret = sparql.queryAndConvert()
-    print(ret.decode())
-    return
-    '''
-
-
-
-    ###replace this with the query gotten from the execl sheet
+    ###replace this with the query gotten from the excel sheet
     user_provided_query = query
 
     #flatten the query for parsing purposes. it should already be flattened because
@@ -34,7 +23,7 @@ def upload_mapping(fuseki_url, query, sheet):
 
     query = user_provided_query
 
-    #### here we take care of the prefix issue
+    #### resolve prefix issue
     prefix = 'data:/'
     shorten = "a:"
 
@@ -85,17 +74,14 @@ def upload_mapping(fuseki_url, query, sheet):
             query = query[:select_index] + ' ' + subject_name + query[select_index:]
 
     except:
-        #i dont wanna check all the edge cases for strings so i assume if
-        #we hit an error here the query was bad to begin with
-        #again, replace this with whatever behaviour you do for bad queries
         wb = Workbook()
-        ws = wb.active
+        worksheet = wb.active
         wb.save('bad-formed-query.xlsx')
         print("bad query formed")
         return
 
 
-        #now lets query the kb and get the excel file
+    #query the kb and get the excel file
     ret = None
     try:
         sparql.setQuery(query)
@@ -104,7 +90,7 @@ def upload_mapping(fuseki_url, query, sheet):
         # bad query, we must do smth to handle
         # for now jst download empty excel file, you'll have to change this
         wb = Workbook()
-        ws = wb.active
+        worksheet = wb.active
         wb.save('bad-formed-query.xlsx')
         print("bad query fored")
         return
@@ -127,17 +113,12 @@ def upload_mapping(fuseki_url, query, sheet):
         original_mapping.append(row)
 
     ############ now we read the modifed excel file into a 2d list
-
-    ##first read contents of the file (replace with uploaded file)
-    # uploaded_file = sheet # "modified-data.xlsx"
-    # wb = load_workbook(uploaded_file)
-    ws = sheet
+    worksheet = sheet
 
     # #here's where the modified data will be stored as a 2d list
     modified_mapping = []
-    # sheet
-    for i in range(1,ws.max_row+1):
-        row = [cell.value for cell in ws[i]]
+    for i in range(1,worksheet.max_row+1):
+        row = [cell.value for cell in worksheet[i]]
         isEmpty = True
         for col in row:
             if not ((col == None) or (col == '')):
@@ -146,9 +127,6 @@ def upload_mapping(fuseki_url, query, sheet):
             modified_mapping.append(row)
 
 
-
-    ## now we have to see the differences between the data and do a bunch of stuff
-
     #first thing we do is check that the primary key exists in uploaded mapping
     pk = subject_name[1:]
     try:
@@ -156,7 +134,6 @@ def upload_mapping(fuseki_url, query, sheet):
     except:
         #there is no primary key in the uploaded mapping
         #therefore we can't know how to modify the kb
-        #here i just do nothing, you determine the behaviour
         print("no primary key in upload")
         return
     pk_index_mod = modified_mapping[0].index(pk)
@@ -168,12 +145,10 @@ def upload_mapping(fuseki_url, query, sheet):
     orig_labels.sort()
     mod_labels.sort()
     if not (orig_labels == mod_labels):
-        #here i don't change the kb
-        #maybe put out an error message
         print("label mismatch")
         return
 
-    #lets get all the relevant predicates
+    #get relevant predicates
 
     tokenized = user_provided_query.split()
     #since labels can be an alias, we map the alias to the true label
@@ -184,20 +159,14 @@ def upload_mapping(fuseki_url, query, sheet):
                 index = tokenized.index(pred)
                 pred_map[tokenized[index+1][1:]] = pred
     except:
-        #i dont wanna check all the edge cases for strings so i assume if
-        #we hit an error here the query was bad to begin with
-        #don't update kb
         print("bad query formed")
         return
 
     ## the first step is to see which rows to delete
     to_delete = []
-    #print(original_mapping)
-    #print(modified_mapping)
     orig_keys = [i[pk_index_orig] for i in original_mapping]
     mod_keys = [i[pk_index_mod] for i in modified_mapping]
-    #print(orig_keys)
-    #print(mod_keys)
+
     for key in orig_keys:
         if key not in mod_keys:
             to_delete.append(key)
@@ -208,7 +177,6 @@ def upload_mapping(fuseki_url, query, sheet):
 
     sparql.setQuery(delete_query)
     ret = sparql.queryAndConvert()
-    #print(ret.decode())
 
 
     #### now we have to handle inserts/modifications
@@ -234,7 +202,6 @@ def upload_mapping(fuseki_url, query, sheet):
                 val = int(val)
             label = pred_map[label]
             triples.append([key, label, val])
-    #print(triples)
 
     #we perform a delete-insert
     #first the delete
@@ -246,11 +213,9 @@ def upload_mapping(fuseki_url, query, sheet):
         remove_data +=("    a:" + str(entry[0])+ " " +  "a:" + str(entry[1]) + " ?a" + str(count) + " .\n")
         count+=1
     delete_query = "PREFIX a: <data:/> \nDELETE WHERE {\n" + remove_data + "}"
-    #print(delete_query)
 
     sparql.setQuery(delete_query)
     ret = sparql.queryAndConvert()
-    #print(ret.decode())
 
     #now the insert
     add_data = ""
@@ -263,19 +228,3 @@ def upload_mapping(fuseki_url, query, sheet):
 
     sparql.setQuery(insert_query)
     ret = sparql.queryAndConvert()
-    #print(ret.decode())
-
-
-"""
-if __name__ == "__main__":
-    # you want to put the whole program in a try catch block
-    # because fuseki might not be set up yet, or might be and invalid link
-    try:
-        main()
-    except:
-        #replace this with behaviour below in backend
-        # if the program crashes for any reason, show the user
-        # an error saying "something went wrong" or
-        # "check if fuseki server is still connected"
-        print("bad error")
-"""
