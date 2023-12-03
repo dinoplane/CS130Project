@@ -33,6 +33,7 @@ export default function Home() {
 
     async function connectToFuseki(url) {
         if (url == '') {
+            console.log('HAI');
             handleNotifCallback('Url cannot be empty.', true);
             return false;
         }
