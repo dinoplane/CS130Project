@@ -8,11 +8,30 @@ import AddImg from './img/add.svg';
 import ConfirmImg from './img/confirm.svg';
 import SlashImg from './img/slash.svg';
 import CancelImg from './img/cancel.svg';
+import DropdownMenu from './dropdown';
 
 function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     const onSelectChange = (e) => {
         console.log('HAI');
         rowCheckboxCallback(e, mapping);
+    };
+    // const replacer = (match, p1, p2, p3, offset, string) => {
+
+    //   }
+
+    const formatQuery = (query) => {
+        // Remove new lines
+        query = query.replaceAll('\n', '');
+        query = query.replaceAll(/\s\s+/g, ' '); // this messes up strings...
+
+        // Add new lines before WHERE,
+        query = query.replaceAll('WHERE', '\nWHERE');
+        // // After . {  )
+        query = query.replaceAll(/([\.\{\)])/g, '$&\n    ');
+        // query = query.replaceAll(/[A-Z]+\([^.]*\)/g, );
+        query = query.replaceAll(/\s+(\})\s*/g, '\n}\n');
+
+        return query;
     };
 
     return (
@@ -25,7 +44,21 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
                 ></input>
             </td>
             <td className={styles.name_col}>{mapping.name}</td>
-            <td className={styles.query_col}>{mapping.query}</td>
+            <td className={styles.query_col}>
+                <DropdownMenu
+                    trigger={
+                        <div className={styles.querybutton}>
+                            <div>View Mapping</div>
+                        </div>
+                    }
+                    child={
+                        <textarea
+                            value={formatQuery(mapping.query)}
+                            readOnly={true}
+                        />
+                    }
+                />
+            </td>
             <td className={styles.date_col}>{mapping.date}</td>
         </tr>
     );
@@ -74,21 +107,19 @@ function UINewRow({ addRowCallback, closeCallback }) {
                 </div>
             </td>
             <td className={styles.query_col}>
-                <div>
+                <div className={styles.namefield}>
                     <p>Name:</p>
                     <input
                         ref={nameInputRef}
-                        className={styles.namefield}
                         type="text"
                         placeholder="Enter Mapping Name"
                         autoFocus
                     ></input>
                 </div>
-                <div>
+                <div className={styles.queryfield}>
                     <p>Query: </p>
                     <textarea
                         ref={queryInputRef}
-                        className={styles.queryfield}
                         placeholder="Enter Mapping Query"
                     ></textarea>
                 </div>
@@ -136,8 +167,6 @@ export default function MappingTable({
                 notifCallback('Mappings successfully retrieved!', false);
                 console.log(newData);
             } else {
-                const d = new Date();
-                let text = d.toTimeString().substring(0, 8);
                 notifCallback(
                     'Mapping retrieval failed. Please refresh and try again.',
                     true
@@ -204,6 +233,17 @@ export default function MappingTable({
         }
     }, [fusekiUrl]);
 
+    const uncheckAllEntries = () => {
+        const currData = [...data];
+
+        setIsParentChecked(false);
+        currData.map((row) => {
+            row.isChecked = false;
+            return row;
+        });
+        setData([...currData]);
+    };
+
     const toggleSelectedEntries = (e, entry) => {
         const currData = [...data];
         const { checked } = e.target;
@@ -248,8 +288,6 @@ export default function MappingTable({
                 setShowTemplateRow(false);
                 notifCallback(`Mapping "${newEntry.name}" created.`, false);
             } else {
-                const d = new Date();
-                let text = d.toTimeString().substring(0, 8);
                 notifCallback(
                     `Cannot create mapping "${newEntry.name}".`,
                     true
@@ -270,9 +308,8 @@ export default function MappingTable({
         excelHandler.downloadExcel(selectedMappings).then((response) => {
             if (response) {
                 notifCallback('Successfully downloaded data.', false);
+                uncheckAllEntries();
             } else {
-                const d = new Date();
-                let text = d.toTimeString().substring(0, 8);
                 notifCallback('Cannot download excel sheet', true);
             }
         });
@@ -283,8 +320,6 @@ export default function MappingTable({
             if (response) {
                 notifCallback('Uploaded and updated knowledge base.', false);
             } else {
-                const d = new Date();
-                let text = d.toTimeString().substring(0, 8);
                 notifCallback('Cannot upload/update knowledge base', true);
             }
         });
@@ -306,8 +341,6 @@ export default function MappingTable({
                     false
                 );
             } else {
-                const d = new Date();
-                let text = d.toTimeString().substring(0, 8);
                 notifCallback('Cannot delete mappings.', true);
             }
         });

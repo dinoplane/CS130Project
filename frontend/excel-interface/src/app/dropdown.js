@@ -49,7 +49,7 @@ export default function DropdownMenu({ trigger, child }) {
             {dropdownOpen ? (
                 <div className={styles.menu}>
                     {cloneElement(child, {
-                        closeCallback: handleClose,
+                        closecallback: handleClose,
                     })}
                 </div>
             ) : null}
