@@ -39,6 +39,8 @@ jobs:
         echo "PYTHONPATH=./backend" >> $GITHUB_ENV
     - name: set environment variables
       run: |
+        echo "CONNECT_URL=mongodb+srv://Cluster33690:eE1RRF1ZSEFW@cluster33690.au8shvj.mongodb.net" >> $GITHUB_ENV
+        echo "MAP_DB=mapping_DB" >> $GITHUB_ENV
         python environment_variables.py
     - name: Test with pytest
       run: |
