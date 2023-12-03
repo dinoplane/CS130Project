@@ -1,12 +1,37 @@
 #get our app from backend
 from app.main import app
-from app.schema.mapping_schema import MappingEntry
+import os
+from app.schema.mapping_schema import MappingEntry, FetchMappingRequestModel
+
+#with pytest
+import pytest
 
 #use TestClient
 from fastapi.testclient import TestClient
 from fastapi import Request, Response, Body, status
 
+#use direct connection to Client
+from pymongo import MongoClient
+
+def test_map_db_connection():
+    #MongoClient will not throw exception
+    test_mongodb_client = MongoClient(os.getenv('CONNECT_URL'))
+    #Check to see if connection succeeded with server_info
+    assert test_mongodb_client.server_info() 
+
+    #Check that 'mapping_DB' database exists 
+    assert "mapping_DB" in test_mongodb_client.list_database_names()
+
+    #Check that "mappings" collection exists in the DB
+    test_map_db = test_mongodb_client['mapping_DB']
+    assert "mappings" in test_map_db.list_collection_names()
+
+    #clost test connection
+    test_mongodb_client.close()
+    return
+
 def test_router_ping():
+    #check app router pink
     with TestClient(app) as tester:
         resp = tester.get("/excel-interface/mapping-database-ping/ping")
         assert resp.status_code == 200
@@ -14,39 +39,66 @@ def test_router_ping():
     return 
 
 def test_get_mappings():
+    #test post ("fetch")
+    test_connec = MongoClient(os.getenv('CONNECT_URL'))
+    test_db = test_connec['mapping_DB']
+    sample_fuseki = {"fuseki_url": "http://localhost:3030/db/"}
+
     with TestClient(app) as tester:
-        resp = tester.get("/excel-interface/mapping-database/")
+        #testing rep
+        resp = tester.post("/excel-interface/mapping-database/fetch", json=sample_fuseki,)
+        #compare to true db values
+        testing_db = test_db["mappings"].find(sample_fuseki)
+        #format the values being tested against without "_id" 
+        documents=[{ k:v for k, v in document.items() if k != "_id"} for document in testing_db]
+
         assert resp.status_code == 200
-        cur_check = resp.json()
-        resp = tester.get("/excel-interface/mapping-database/")
-        assert resp.status_code == 200
-        assert resp.json() == cur_check
+        #db should be passed back in "result"
+        assert resp.json()["result"] == documents
+    test_connec.close()
     return 
 
 def test_add_mapping():
+    test_connec = MongoClient(os.getenv('CONNECT_URL'))
+    test_db = test_connec['mapping_DB']
+
+    #req.app.map_db["mappings"].insert_one(mapping)
+    fake_url = "test_url"
+    sample_fuseki = {"fuseki_url":fake_url}
+    #will test app adding sample_map1
     sample_map1 = {
-        "id":16,
-        "name":"",
-        "query":"", 
-        "date":"11/29/2023" 
+        "name":"test_add_1",
+        "query":"this is a query", 
+        "fuseki_url":fake_url,
     }
-    sample_map2 = {
-        "id":17,
-        "name":"",
-        "query":"", 
-        "date":"11/29/2023" 
-    }
-    #MappingEntry(id=16, name="", query="", date="11/29/2023")
+
     with TestClient(app) as tester:
-        og_resp = tester.get("/excel-interface/mapping-database/")
-        assert og_resp.status_code == 200
-        resp = tester.post("/excel-interface/mapping-database/", json=sample_map1)
-        #check to see that succesfully created
-        assert resp.status_code == 201
-        #check that correct object was stored
-        assert resp.json() == sample_map1
-        new_resp = tester.get("/excel-interface/mapping-database/")
-        assert og_resp.status_code == 200
-        #check that the total contents line up
-        assert (og_resp.json() + [resp.json()])==new_resp.json()
+        #compare to original db values
+        testing_db = test_db["mappings"].find(sample_fuseki)
+        documents=[{ k:v for k, v in document.items() if k != "_id"} for document in testing_db] #format
+
+        #test resp
+        resp = tester.post("/excel-interface/mapping-database/create", json=sample_map1)
+        assert resp.status_code == 201 #succesfully created
+        resp_id = resp.json()["id"] #id of added mapping
+
+        #get the object we just added
+        db_val = test_db["mappings"].find_one({"id":resp_id})
+        assert db_val!= None #exists
+        #add backend generated vals
+        db_val.pop("_id")
+        sample_map1["id"] = resp_id
+        sample_map1["date"] = db_val["date"]
+        assert db_val == sample_map1 #equal to what we put in
+
+        #get the resulting database
+        updated_db = test_db["mappings"].find(sample_fuseki)
+        updated_documents=[{ k:v for k, v in document.items() if k != "_id"} for document in updated_db]
+        #TEST item added correctly
+        assert documents+[resp.json()] == updated_documents
+
+        #CLEANUP
+        db_del = test_db["mappings"].delete_one({"id":resp_id})
+        assert db_del.deleted_count==1
+    test_connec.close()
     return 
