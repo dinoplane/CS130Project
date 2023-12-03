@@ -10,7 +10,7 @@ export default function NotifDialog({
     notifError,
 }) {
     return (
-        <div className={styles.notifdialog}>
+        <div className={!notifError ? styles.notifdialog : styles.errordialog}>
             <div className={styles.notif_icon}>
                 {!notifError ? (
                     <NotifOKImg className={styles.image} alt="HAI" />
