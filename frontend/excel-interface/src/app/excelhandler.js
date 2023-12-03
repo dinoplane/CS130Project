@@ -51,7 +51,6 @@ export default class ExcelHandler {
                 aElement.setAttribute('download', fileName);
                 const href = URL.createObjectURL(responseBlob);
                 aElement.href = href;
-                // aElement.setAttribute('href', href);
                 aElement.setAttribute('target', '_blank');
                 aElement.click();
                 URL.revokeObjectURL(href);

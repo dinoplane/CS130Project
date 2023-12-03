@@ -1,4 +1,4 @@
-'use client'; // This is a client component 👈🏽
+'use client';
 
 import styles from './page.module.css';
 import { useState } from 'react';
@@ -9,20 +9,16 @@ import Header from './header';
 import MappingTable from './mapping_table';
 import NotifDialog from './notifdialog';
 
-// Example of a data array that
-
 const mappingManager = new MappingManager();
 const MAPPINGS = [];
 const excelHandler = new ExcelHandler();
 
-// console.log(MAPPINGS)
 export default function Home() {
-    // const errRef = useRef(null);
     const [hasNotif, setHasNotif] = useState(false);
     const [notifMsg, setNotifMsg] = useState('');
     const [notifError, setNotifError] = useState(false);
 
-    const [showTable, setShowTable] = useState(false); // Set false later
+    const [showTable, setShowTable] = useState(false);
     const [fusekiUrl, setFusekiUrl] = useState('');
 
     const closeNotifCallback = () => {
@@ -34,12 +30,6 @@ export default function Home() {
         setNotifMsg(val);
         setNotifError(isError);
     };
-
-    // const handleSuccessCallback = (val) => {
-    //     console.log(val);
-    //     setNotifMsg('');
-    //     setHasError(false);
-    // };
 
     async function connectToFuseki(url) {
         if (url == '') {
@@ -75,13 +65,11 @@ export default function Home() {
                 throw new Error('Something went wrong');
             })
             .then(() => {
-                // Do something with the response
                 handleNotifCallback('Connected!', false);
                 setFusekiUrl(url);
                 return true;
             })
             .catch((error) => {
-                // console.log(notif);
                 handleNotifCallback("Can't connect to " + url, true);
                 return false;
             });
@@ -99,7 +87,6 @@ export default function Home() {
                         mappingManager={mappingManager}
                         excelHandler={excelHandler}
                         notifCallback={handleNotifCallback}
-                        // rerenderCallback={handleRerenderCallback}
                     />
                 ) : (
                     <p>Nothing to see here!</p>

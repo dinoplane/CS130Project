@@ -19,7 +19,6 @@ export function ConnectDialog({
                 throw new Error('Something went wrong');
             })
             .then(() => {
-                // Do something with the response
                 updateCallback(urlInputRef.current.value);
                 closecallback();
 
@@ -34,7 +33,6 @@ export function ConnectDialog({
         <div className={styles.connectDialog}>
             <input
                 ref={urlInputRef}
-                // className={styles.namefield}
                 type="text"
                 placeholder="Enter Fuseki Url"
                 defaultValue={startText}

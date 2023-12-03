@@ -12,12 +12,8 @@ import DropdownMenu from './dropdown';
 
 function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     const onSelectChange = (e) => {
-        console.log('HAI');
         rowCheckboxCallback(e, mapping);
     };
-    // const replacer = (match, p1, p2, p3, offset, string) => {
-
-    //   }
 
     const formatQuery = (query) => {
         // Remove new lines
@@ -26,7 +22,7 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
 
         // Add new lines before WHERE,
         query = query.replaceAll('WHERE', '\nWHERE');
-        // // After . {  )
+        // After . {  )
         query = query.replaceAll(/([\.\{\)])/g, '$&\n    ');
         // query = query.replaceAll(/[A-Z]+\([^.]*\)/g, );
         query = query.replaceAll(/\s+(\})\s*/g, '\n}\n');
@@ -146,7 +142,6 @@ export default function MappingTable({
     mappingManager,
     excelHandler,
     notifCallback,
-    // rerenderCallback
 }) {
     const [showTemplateRow, setShowTemplateRow] = useState(false);
     const [data, setData] = useState(mappings);
@@ -161,11 +156,9 @@ export default function MappingTable({
                 let newData = currData.map((row) => {
                     return { data: row, isChecked: false };
                 });
-                console.log(newData);
                 setData([...newData]);
                 setParentCheckboxVal();
                 notifCallback('Mappings successfully retrieved!', false);
-                console.log(newData);
             } else {
                 notifCallback(
                     'Mapping retrieval failed. Please refresh and try again.',
@@ -176,17 +169,7 @@ export default function MappingTable({
     };
 
     // useConstructor(() => {
-    //     console.log(fusekiUrl);
     //     console.log('Occurs ONCE, BEFORE the initial render.');
-    //     // loadMappings();
-    //     // console.log(mappings)
-    //     // let currData = [...mappings];
-    //     // const newData = currData.map((row) => {
-    //     //   return {data: row, isChecked: false};
-    //     // });
-
-    //     // console.log(newData)
-    //     // setData([...newData]);
     // });
 
     const openTemplate = () => {
@@ -228,7 +211,6 @@ export default function MappingTable({
 
     useEffect(() => {
         if (fusekiUrl != '') {
-            console.log('Setting ' + fusekiUrl);
             loadMappings();
         }
     }, [fusekiUrl]);
@@ -251,7 +233,6 @@ export default function MappingTable({
         if (entry === 'all') {
             setIsParentChecked(checked);
         }
-        console.log(entry);
         currData.map((row) => {
             if (entry === 'all') {
                 row.isChecked = checked;
@@ -294,13 +275,9 @@ export default function MappingTable({
                 );
             }
         });
-        console.log('AAAAAAAAAAAAAA');
-        console.log(newEntry);
-        console.log(data);
     };
 
     function downloadExcel(selectedMappings) {
-        console.log(selectedMappings);
         if (selectedMappings.length == 0) {
             notifCallback('No mappings selected for download.', true);
             return;
