@@ -198,8 +198,10 @@ export default function MappingTable({
     }, [data]);
 
     useEffect(() => {
-        console.log('Setting ' + fusekiUrl);
-        loadMappings();
+        if (fusekiUrl != '') {
+            console.log('Setting ' + fusekiUrl);
+            loadMappings();
+        }
     }, [fusekiUrl]);
 
     const toggleSelectedEntries = (e, entry) => {

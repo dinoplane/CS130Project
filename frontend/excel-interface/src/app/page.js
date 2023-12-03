@@ -22,7 +22,7 @@ export default function Home() {
     const [notifMsg, setNotifMsg] = useState('');
     const [notifError, setNotifError] = useState(false);
 
-    const [showTable, setShowTable] = useState(true); // Set false later
+    const [showTable, setShowTable] = useState(false); // Set false later
     const [fusekiUrl, setFusekiUrl] = useState('');
 
     const closeNotifCallback = () => {
@@ -30,7 +30,6 @@ export default function Home() {
     };
 
     const handleNotifCallback = (val, isError = false) => {
-        console.log('HAI');
         setHasNotif(true);
         setNotifMsg(val);
         setNotifError(isError);
@@ -47,7 +46,6 @@ export default function Home() {
             handleNotifCallback('Url cannot be empty.', true);
             return false;
         }
-        setShowTable(true);
 
         var myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
@@ -71,11 +69,12 @@ export default function Home() {
                 if (response.ok) {
                     mappingManager.setFusekiUrl(url);
                     excelHandler.setFusekiUrl(url);
-                    return response.json();
+                    setShowTable(true);
+                    return true;
                 }
                 throw new Error('Something went wrong');
             })
-            .then((responseJson) => {
+            .then(() => {
                 // Do something with the response
                 handleNotifCallback('Connected!', false);
                 setFusekiUrl(url);
@@ -99,7 +98,6 @@ export default function Home() {
                         fusekiUrl={fusekiUrl}
                         mappingManager={mappingManager}
                         excelHandler={excelHandler}
-                        // successCallback={handleSuccessCallback}
                         notifCallback={handleNotifCallback}
                         // rerenderCallback={handleRerenderCallback}
                     />
