@@ -67,7 +67,7 @@ export default function Header({ connectCallback }) {
                                     : styles.connect_button
                             }
                         >
-                            {!isKBSet ? 'Not Connected' : 'Connected'}
+                            {!isKBSet ? 'Not Connected' : 'Connected!'}
                         </div>
                     }
                     child={
