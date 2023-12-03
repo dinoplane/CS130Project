@@ -22,7 +22,7 @@ export default function Home() {
     const [notifMsg, setNotifMsg] = useState('');
     const [notifError, setNotifError] = useState(false);
 
-    const [showTable, setShowTable] = useState(false); // Set false later
+    const [showTable, setShowTable] = useState(true); // Set false later
     const [fusekiUrl, setFusekiUrl] = useState('');
 
     const closeNotifCallback = () => {
