@@ -1,0 +1,27 @@
+They will be providing us queries in simple sparql (sparql with no prefixes)
+below are some simple sparql queries for you to try
+
+SELECT ?subject ?name
+WHERE {
+  ?subject start-date ?sd .
+  ?subject name ?name .
+  FILTER(?sd < "2019-01-01")
+}
+LIMIT 25
+
+SELECT ?name ?loc
+WHERE {
+  ?subject start-date ?sd .
+  ?subject name ?name .
+  ?subject location ?loc .
+  FILTER(?sd < "2019-01-01")
+}
+LIMIT 25
+
+
+SELECT ?name ?loc
+WHERE {
+  ?subject start-date ?sd .
+  ?subject name ?name .
+  ?subject location ?loc .
+}
