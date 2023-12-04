@@ -2,6 +2,7 @@
 from io import BytesIO
 from fastapi import APIRouter, Request, Body, status, HTTPException, UploadFile
 from pymongo.errors import PyMongoError
+from openpyxl import Workbook, load_workbook
 
 from app.database.fuseki_connection import Fuseki
 from app.schema.mapping_schema import MappingEntry, DownloadRequestSchema, FetchMappingRequestModel, \
@@ -10,7 +11,6 @@ from app.services.DownloadManager import DownloadManager
 from app.services.MappingManager import MappingDBManager
 from app.services.UploadManager import UploadManager
 
-from openpyxl import Workbook, load_workbook
 
 
 ping_router = APIRouter(prefix="/excel-interface/mapping-database-ping", tags=["mapping-database-ping"])
