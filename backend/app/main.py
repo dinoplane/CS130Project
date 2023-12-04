@@ -1,3 +1,4 @@
+"""Module providing FastAPI backend app"""
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
