@@ -1,13 +1,15 @@
-from SPARQLWrapper import SPARQLWrapper, CSV, SPARQLExceptions
-from openpyxl import Workbook, load_workbook
+"""Module providing upload mapping logic"""
 import csv
 from io import StringIO
+from SPARQLWrapper import SPARQLWrapper, CSV, SPARQLExceptions
+from openpyxl import Workbook, load_workbook
 
 
 ## WHAT YOU NEED TO GIVE
 
 #### code starts here
 def upload_mapping(fuseki_url, query, sheet):
+    """Function uploading sheet to provided url based on provided query"""
     ##replace with user provided url
 
     sparql = SPARQLWrapper(fuseki_url)
