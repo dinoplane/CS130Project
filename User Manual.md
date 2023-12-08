@@ -26,7 +26,17 @@ There are two types of users:
 
 ## Build Instructions
 
-### provide build instructions here
+### Backend
+
+1. Navigate into the `backend` directory.
+
+2. Open a terminal and run `pip install -r requirements.txt`.
+
+3. Navigate into the `backend/app` directory.
+4. Mark `backend` as sources root. In terminal execute `export PYTHONPATH="${PYTHONPATH}:your-source/CS130Project/backend"
+`
+5. Run `uvicorn main:app --reload`
+
 
 
 ## Excellent Interface User Guide
