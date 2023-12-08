@@ -1,3 +1,17 @@
+/**
+ * @export Home
+ *
+ */
+
+/**
+ * A mapping entry used to query the knowledge base
+ * @typedef {Object} Entry
+ * @property {int} id - The mapping id
+ * @property {String} name - The mapping name
+ * @property {String} query - The mapping query
+ * @property {String} date - The date created
+ */
+
 'use client';
 
 import styles from './page.module.css';
@@ -10,7 +24,6 @@ import MappingTable from './mapping_table';
 import NotifDialog from './notifdialog';
 
 const mappingManager = new MappingManager();
-const MAPPINGS = [];
 const excelHandler = new ExcelHandler();
 
 export default function Home() {

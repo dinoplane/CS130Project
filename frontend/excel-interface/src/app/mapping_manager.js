@@ -1,14 +1,33 @@
+/**
+ * @module MappingManager
+ */
+
 export default class MappingManager {
+    /**
+     * A class that makes API calls related to mapping manipulation to the backend.
+     * @constructor
+     * @property {String} mappingDbUrl the url of the upload/download endpoint
+     * @property {String} fusekiKBUrl the url of the Fuseki knowledge base url
+     */
     constructor() {
         this.mappingDbUrl =
-            'http://0.0.0.0:8000/excel-interface/mapping-database/'; // localhost:blabla/excel-interface/mapping-database
+            'http://0.0.0.0:8000/excel-interface/mapping-database/';
         this.fusekiKBUrl = '';
     }
 
+    /**
+     * Sets the knowledge base url.
+     * @param {String} url the url of the Fuseki knowledge base
+     */
     setFusekiUrl(url) {
         this.fusekiKBUrl = url;
     }
 
+    /**
+     * Creates a mapping entry on the backend with the given name and query.
+     * @param {Entry} entry a mapping entry with only the name and query
+     * @returns {Entry} a mapping entry with an id number and date string
+     */
     async createMapping(entry) {
         let success = true;
 
@@ -38,6 +57,11 @@ export default class MappingManager {
         return success;
     }
 
+    /**
+     * Deletes the selected mapping entries from the backend.
+     * @param {Entry[]} entries a list of mapping entries to be deleted
+     * @returns {Boolean} true on success, false otherwise
+     */
     async deleteMapping(entries) {
         var myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
@@ -69,6 +93,11 @@ export default class MappingManager {
         return success;
     }
 
+    /**
+     * Fetches mappings from backend for display
+     *
+     * @returns {Entry[]} a list of mapping entries for the specific KB
+     */
     async requestMapping() {
         var myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');

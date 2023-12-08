@@ -10,6 +10,8 @@ import SlashImg from './img/slash.svg';
 import CancelImg from './img/cancel.svg';
 import DropdownMenu from './dropdown';
 
+// Define Entry here
+
 function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     const onSelectChange = (e) => {
         rowCheckboxCallback(e, mapping);

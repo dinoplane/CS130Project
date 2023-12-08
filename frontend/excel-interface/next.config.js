@@ -28,7 +28,7 @@ const nextConfig = {
         return config;
     },
     reactStrictMode: false,
-    // ...other config
+    plugins: ['plugins/markdown'],
 };
 
 module.exports = nextConfig;
