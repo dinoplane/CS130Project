@@ -1,18 +1,21 @@
+/**
+ * @module NotifDialog
+ */
+
 import NotifOKImg from './img/notifOK.svg';
 import NotifErrorImg from './img/notifError.svg';
 
 import styles from './page.module.css';
 
 /**
- * @class NotifDialog
+ * @class
  * This component renders a notification dialog which closes on click of a dismiss button.
  *
- * @param
- * @property {Boolean} dropdownOpen whether or not the dropdown is open
- * @callback handleOpen opens the dropdown
- * @callback handleClose closes the dropdown
+ * @param {Callback} closeNotifCallback a callback called when the dismiss button is pressed
+ * @param {String} notifMsg the notification message
+ * @param {Boolean} notifError whether or not the notification is for an error
  *
- * @returns {ReactNode} A React element that renders a dropdown menu
+ * @returns {ReactNode} A React element that renders a notification dialog
  */
 export default function NotifDialog({
     closeNotifCallback,

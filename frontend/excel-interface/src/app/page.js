@@ -1,11 +1,11 @@
 /**
- * @export Home
- *
+ * @module Home
  */
 
 /**
- * A mapping entry used to query the knowledge base
+ * @global
  * @typedef {Object} Entry
+ * @description A mapping entry used to query the knowledge base
  * @property {int} id - The mapping id
  * @property {String} name - The mapping name
  * @property {String} query - The mapping query
@@ -23,9 +23,34 @@ import Header from './header';
 import MappingTable from './mapping_table';
 import NotifDialog from './notifdialog';
 
+/**
+ * @global
+ * @constant
+ * @description an instance of MappingManager
+ */
 const mappingManager = new MappingManager();
+
+/**
+ * @global
+ * @constant
+ * @description an instance of ExcelHandler
+ */
 const excelHandler = new ExcelHandler();
 
+/**
+ * @class
+ *
+ * The interface of the webapp.
+ *
+ * @param {Boolean} hasNotif whether or not there is a notification
+ * @param {Boolean} notifMsg the notification message
+ * @param {Boolean} notifError whether or not the notification is an error
+ *
+ * @param {Boolean} showTable whether or not the mapping table should be shown
+ * @param {String} fusekiUrl the url of the Fuseki KB
+ *
+ * @returns {ReactNode} the rendered interface
+ */
 export default function Home() {
     const [hasNotif, setHasNotif] = useState(false);
     const [notifMsg, setNotifMsg] = useState('');
@@ -34,16 +59,35 @@ export default function Home() {
     const [showTable, setShowTable] = useState(false);
     const [fusekiUrl, setFusekiUrl] = useState('');
 
+    /**
+     * @method closeNotifCallback
+     * @description Closes the notification.
+     */
     const closeNotifCallback = () => {
         setHasNotif(false);
     };
 
-    const handleNotifCallback = (val, isError = false) => {
+    /**
+     * @method handleNotifCallback
+     * @description Called when there is a notification.
+     *
+     * @param {String} msg the notification message
+     * @param {Boolean} isError whether or not the notification is an error
+     */
+    const handleNotifCallback = (msg, isError = false) => {
         setHasNotif(true);
-        setNotifMsg(val);
+        setNotifMsg(msg);
         setNotifError(isError);
     };
 
+    /**
+     * @method connectToFuseki
+     * @description Validates and connects to the Fuseki KB provided by the url.
+     * Prompts the fetching of mappings on success.
+     *
+     * @param {String} url the url of the Fuseki KB
+     * @returns {Boolean} true on success, false otherwise
+     */
     async function connectToFuseki(url) {
         if (url == '') {
             console.log('HAI');
@@ -83,7 +127,7 @@ export default function Home() {
                 setFusekiUrl(url);
                 return true;
             })
-            .catch((error) => {
+            .catch(() => {
                 handleNotifCallback("Can't connect to " + url, true);
                 return false;
             });

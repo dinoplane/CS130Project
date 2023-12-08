@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect, cloneElement } from 'react';
-import styles from './page.module.css';
 /**
  * @module DropdownMenu
  */
+
+import { useState, useRef, useEffect, cloneElement } from 'react';
+import styles from './page.module.css';
 
 /**
  * @callback useOutsideClick
@@ -30,7 +31,7 @@ const useOutsideClick = (callback) => {
 };
 
 /**
- * @class DropdownMenu
+ * @class
  * This component renders a dropdown menu that can be closed when the user
  * clicks outside the element area.
  *
@@ -40,7 +41,7 @@ const useOutsideClick = (callback) => {
  * @property {Boolean} dropdownOpen whether or not the dropdown is open
  * @property {Callback} ref a reference to the useOutsideClick callback
  *
- * @returns {ReactNode} A React element that renders a dropdown menu
+ * @returns {ReactNode} a React element that renders a dropdown menu
  */
 export default function DropdownMenu({ trigger, child }) {
     const ref = useOutsideClick(() => {
@@ -48,14 +49,18 @@ export default function DropdownMenu({ trigger, child }) {
     });
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    /** @method handleOpen
-     * @description Opens the dropdown menu.*/
+    /**
+     * @method handleOpen
+     * @description Opens the dropdown menu.
+     */
     const handleOpen = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
-    /** @method handleClose
-     * @description Closes the dropdown menu.*/
+    /**
+     * @method handleClose
+     * @description Closes the dropdown menu.
+     */
     const handleClose = () => {
         setDropdownOpen(false);
     };

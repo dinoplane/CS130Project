@@ -1,4 +1,6 @@
-import { useState, useRef, useEffect, cloneElement } from 'react';
+/**
+ * @module Toolbar
+ */
 
 import styles from './page.module.css';
 
@@ -8,11 +10,26 @@ import DeleteImg from './img/delete.svg';
 
 // https://www.robinwieruch.de/react-hook-detect-click-outside-component/
 
+/**
+ * @class
+ * This component renders the toolbar of the mapping table,
+ * with the upload, download, and delete buttons.
+ * @param {Callback} downloadCallback the callback called when the download button is pressed
+ * @param {Callback} uploadCallback the callback called when the upload button is pressed
+ * @param {Callback} deleteCallback the callback called when the delete button is pressed
+ *
+ * @returns a React element that renders a toolbar
+ */
 export default function Toolbar({
     downloadCallback,
     uploadCallback,
     deleteCallback,
 }) {
+    /**
+     * @method changeHandler
+     * @description A callback called when the file is selected for upload.
+     * @param {HTMLEvent} event the HTMLEvent of the file selection
+     */
     const changeHandler = (event) => {
         uploadCallback(event.target.files[0]);
     };

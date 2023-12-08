@@ -2,9 +2,11 @@
  * @module MappingManager
  */
 
+/**
+ * A class that makes API calls related to mapping manipulation to the backend.
+ */
 export default class MappingManager {
     /**
-     * A class that makes API calls related to mapping manipulation to the backend.
      * @constructor
      * @property {String} mappingDbUrl the url of the upload/download endpoint
      * @property {String} fusekiKBUrl the url of the Fuseki knowledge base url
@@ -25,7 +27,7 @@ export default class MappingManager {
 
     /**
      * Creates a mapping entry on the backend with the given name and query.
-     * @param {Entry} entry a mapping entry with only the name and query
+     * @param {EntryData} entry a mapping entry with only the name and query
      * @returns {Entry} a mapping entry with an id number and date string
      */
     async createMapping(entry) {
@@ -59,7 +61,7 @@ export default class MappingManager {
 
     /**
      * Deletes the selected mapping entries from the backend.
-     * @param {Entry[]} entries a list of mapping entries to be deleted
+     * @param {EntryData[]} entries a list of mapping entries to be deleted
      * @returns {Boolean} true on success, false otherwise
      */
     async deleteMapping(entries) {
@@ -94,7 +96,7 @@ export default class MappingManager {
     }
 
     /**
-     * Fetches mappings from backend for display
+     * Fetches mappings from backend for display.
      *
      * @returns {Entry[]} a list of mapping entries for the specific KB
      */

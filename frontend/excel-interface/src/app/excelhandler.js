@@ -1,9 +1,12 @@
 /**
  * @module ExcelHandler
  */
+
+/**
+ * A class that makes API calls related to Excel processing to the backend.
+ */
 export default class ExcelHandler {
     /**
-     * A class that makes API calls related to Excel processing to the backend
      * @constructor
      * @property {String} fusekiDispatchUrl the url of the upload/download endpoint
      * @property {String} fusekiKBUrl the url of the Fuseki knowledge base url
@@ -26,7 +29,7 @@ export default class ExcelHandler {
      * Downloads an Excel sheet from the backend representing a view of
      * the Fuseki KB based off the selected mappings.
      *
-     * @param {Entry[]} entries the selected mapping entries
+     * @param {EntryData[]} entries the selected mapping entries
      * @returns {Excel} an Excel sheet based off selected mappings
      */
     async downloadExcel(entries) {

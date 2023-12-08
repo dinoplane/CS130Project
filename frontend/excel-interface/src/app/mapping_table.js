@@ -1,3 +1,7 @@
+/**
+ * @module MappingTable
+ */
+
 import { useState, useRef, useEffect } from 'react';
 import Toolbar from './toolbar';
 import getDateTodayString from './getdatestring';
@@ -9,14 +13,37 @@ import ConfirmImg from './img/confirm.svg';
 import SlashImg from './img/slash.svg';
 import CancelImg from './img/cancel.svg';
 import DropdownMenu from './dropdown';
+import ExcelHandler from './excelhandler';
 
-// Define Entry here
-
-function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
+/**
+ * @class
+ * A selectable row of a table displaying the fields
+ * of a mapping entry.
+ *
+ * @param {Callback} rowCheckboxCallback a callback called when the checkbox is toggled
+ * @param {Entry} mapping the mapping entry to display
+ * @param {Boolean} isSelected whether or not the row is selected
+ * @returns {ReactNode} a component that renders an entry row of the mapping table.
+ */
+export function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
+    /**
+     * @inner
+     * @method module:MappingTable.UIMappingRow.onSelectChange
+     * @description Called when the checkbox is toggled.
+     *
+     * @param {HTMLEvent} e the event of the checkbox toggle
+     */
     const onSelectChange = (e) => {
         rowCheckboxCallback(e, mapping);
     };
 
+    /**
+     * @inner
+     * @method module:MappingTable.UIMappingRow.formatQuery
+     * @description Formats the mapping query into a readable format
+     * @param {String} query the mapping query
+     * @returns {String} a formatted query used for display in the row
+     */
     const formatQuery = (query) => {
         // Remove new lines
         query = query.replaceAll('\n', '');
@@ -62,12 +89,25 @@ function UIMappingRow({ rowCheckboxCallback, mapping, isSelected }) {
     );
 }
 
+/**
+ * @class
+ * A row in the mapping table that allows the user to input the fields of a new mapping.
+ * @param {Callback} addRowCallback a callback called when the add row button is clicked.
+ * @param {Callback} closeCallback a callback called when the cancel button is clicked
+ * @returns {ReactNode} a component that renders an input row in the table.
+ */
 function UINewRow({ addRowCallback, closeCallback }) {
     const nameInputRef = useRef(null);
     const queryInputRef = useRef(null);
-    const onInputSubmit = (e) => {
+
+    /**
+     * @method  module:MappingTable.UIMappingRow.onInputSubmit
+     * @description Called when the user clicks on the submit button.
+     */
+    const onInputSubmit = () => {
         addRowCallback(nameInputRef.current.value, queryInputRef.current.value);
     };
+
     return (
         <tr key={'add-row'} className={styles.newrow}>
             <td className={styles.checkbox_col}>
@@ -138,6 +178,29 @@ function UINewRow({ addRowCallback, closeCallback }) {
 //     setHasBeenCalled(true);
 // };
 
+/**
+ * @typedef {Object} EntryData
+ * Bookkeeping for row selection.
+ * @property {Entry} data the contained entry
+ * @property {Boolean} isChecked whether or not the associated row is selected
+ */
+
+/**
+ * @class
+ *
+ * A table where each row contains an entry and the last row can be used to add mappings.
+ *
+ * @param {Entry[]} mappings a list of initial mappings (used for debugging)
+ * @param {String} fusekiUrl the url of the Fuseki KB
+ * @param {MappingManager} mappingManager an instance of the MappingManager
+ * @param {ExcelHandler} excelHandler an instance of the ExcelHandler
+ * @param {Callback} notifCallback a callback for making notifications
+ *
+ * @property {Boolean} showTemplateRow whether or not the last row is open or not
+ * @property {EntryData[]} data a list of entries in the mapping table with bookkeeping
+ * @property {Boolean} isParentChecked whether or not the parent checkbox is checked
+ * @returns {ReactNode} a component that renders a table of mappings
+ */
 export default function MappingTable({
     mappings,
     fusekiUrl,
@@ -151,6 +214,10 @@ export default function MappingTable({
 
     const parentCheckboxRef = useRef(null);
 
+    /**
+     * @method loadMappings
+     * @description Loads mappings into the table by requesting them from the mapping manager.
+     */
     const loadMappings = () => {
         mappingManager.requestMapping().then((mappings) => {
             if (mappings) {
@@ -174,15 +241,28 @@ export default function MappingTable({
     //     console.log('Occurs ONCE, BEFORE the initial render.');
     // });
 
+    /**
+     * @method openTemplate
+     * @description Expands the last row for mapping input.
+     */
     const openTemplate = () => {
         setShowTemplateRow(true);
     };
 
+    /**
+     * @method getSelectedEntries
+     * @description Gets a list of EntryData whose row is selected.
+     * @returns {EntryData[]} a list of EntryData
+     */
     const getSelectedEntries = () => {
         let ret = data.filter((row) => row.isChecked);
         return ret;
     };
 
+    /**
+     * @method setParentCheckboxVal
+     * @description Sets the value of the parent checkbox based on the values of the child checkboxes.
+     */
     const setParentCheckboxVal = () => {
         const currData = [...data];
         if (parentCheckboxRef.current != null) {
@@ -217,6 +297,10 @@ export default function MappingTable({
         }
     }, [fusekiUrl]);
 
+    /**
+     * @method uncheckAllEntries
+     * @description Unchecks all the rows in the table.
+     */
     const uncheckAllEntries = () => {
         const currData = [...data];
 
@@ -228,6 +312,12 @@ export default function MappingTable({
         setData([...currData]);
     };
 
+    /**
+     * @method toggleSelectedEntries
+     * @description Called whenever a checkbox is toggled.
+     * @param {HTMLEvent} e the event associated with the checkbox toggle
+     * @param {EntryData} entry the associated entry
+     */
     const toggleSelectedEntries = (e, entry) => {
         const currData = [...data];
         const { checked } = e.target;
@@ -248,6 +338,13 @@ export default function MappingTable({
         setData([...currData]);
     };
 
+    /**
+     * @method addRow
+     * @description Requests the mapping manager to create a mapping on the
+     * backend, and on success, adds a row to the mapping table.
+     * @param {String} in_name the mapping name
+     * @param {String} in_query the mapping query
+     */
     const addRow = (in_name, in_query) => {
         if (in_name == '') {
             notifCallback('Name field cannot be empty.', true);
@@ -279,6 +376,12 @@ export default function MappingTable({
         });
     };
 
+    /**
+     * @method downloadExcel
+     * @description Requests the excelHandler to download an Excel sheet from the
+     * backend based on the selected mapping rows.
+     * @param {EntryData[]} selectedMappings a list of selected mappings
+     */
     function downloadExcel(selectedMappings) {
         if (selectedMappings.length == 0) {
             notifCallback('No mappings selected for download.', true);
@@ -294,6 +397,12 @@ export default function MappingTable({
         });
     }
 
+    /**
+     * @method uploadExcel
+     * @description Requests the excelHandler to upload an Excel sheet to the backend
+     * for updating the KB.
+     * @param {Excel} selectedFile the uploaded file
+     */
     function uploadExcel(selectedFile) {
         excelHandler.uploadExcel(selectedFile).then((response) => {
             if (response) {
@@ -304,6 +413,12 @@ export default function MappingTable({
         });
     }
 
+    /**
+     * @method deleteRows
+     * @description Requests the mappingManager to delete the selected rows from
+     * the backend and on success, the rows are removed from the mapping table.
+     * @param {EntryData[]} selectedMappings a list of selected mappings
+     */
     function deleteRows(selectedMappings) {
         if (selectedMappings.length == 0) {
             notifCallback('No mappings selected for deletion.', true);
