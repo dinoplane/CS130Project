@@ -1,25 +1,29 @@
+"""Module providing FastAPI app unit tests"""
+import os
 #get our app from backend
 from app.main import app
-import os
 from app.schema.mapping_schema import MappingEntry
 
 #use pytest
 import pytest
 #use TestClient
 from fastapi.testclient import TestClient
-    
+
 #use direct connection to Client
 from pymongo import MongoClient
 
 @pytest.fixture
 def mongo_connec():
+    """Fixture providing MongoDB connection configuration variables"""
     return {'db_url': os.getenv('CONNECT_URL'), 'db_name':'mapping_DB', 'c_name':'mappings'}
 
 @pytest.fixture
 def api_routes():
+    """Fixture providing app router paths"""
     return {"db_ping":"/excel-interface/mapping-database-ping/", "map_db":"/excel-interface/mapping-database/"}
 
 def test_map_db_connection(mongo_connec):
+    """Function performing unit test on mongoDB connection"""
     #MongoClient will not throw exception
     test_mongodb_client = MongoClient(mongo_connec['db_url'])
     #Check to see if connection succeeded with server_info
@@ -37,6 +41,7 @@ def test_map_db_connection(mongo_connec):
     return
 
 def test_router_ping(api_routes):
+    """Function performing unit test on app ping router"""
     #check app router pink
     with TestClient(app) as tester:
         resp = tester.get(api_routes["db_ping"]+"ping")
@@ -45,6 +50,7 @@ def test_router_ping(api_routes):
     return 
 
 def test_get_mappings(mongo_connec, api_routes):
+    """Function performing unit test on mappingBD router fetch endpoint"""
     #test post ("fetch")
     test_connec = MongoClient(mongo_connec['db_url'])
     test_db = test_connec[mongo_connec['db_name']]
@@ -65,6 +71,7 @@ def test_get_mappings(mongo_connec, api_routes):
     return 
 
 def test_add_mapping(mongo_connec, api_routes):
+    """Function performing unit test on mappingBD router create endpoint"""
     test_connec = MongoClient(mongo_connec['db_url'])
     test_db = test_connec[mongo_connec['db_name']]
 
@@ -109,6 +116,7 @@ def test_add_mapping(mongo_connec, api_routes):
     return 
 
 def test_remove_mapping(mongo_connec, api_routes):
+    """Function performing unit test on mappingBD router delete endpoint"""
     test_connec = MongoClient(mongo_connec['db_url'])
     test_db = test_connec[mongo_connec['db_name']]
 

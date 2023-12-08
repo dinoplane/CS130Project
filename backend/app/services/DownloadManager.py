@@ -1,10 +1,12 @@
+"""Module providing DownloadManager Class"""
 import logging
+import csv
+from io import StringIO
+from io import BytesIO
 
 from SPARQLWrapper import SPARQLWrapper, CSV, SPARQLExceptions
 from fastapi import HTTPException
 from openpyxl import Workbook
-import csv
-from io import StringIO
 
 from starlette.responses import StreamingResponse
 
@@ -16,13 +18,14 @@ logger = logging.getLogger(__name__)
 
 
 class DownloadManager:
-
+    """Class representing Download Manager"""
     def __init__(self, request: DownloadRequestSchema):
 
         self.request: DownloadRequestSchema = request
         self.sparql_client = Fuseki.get_connection(request.fuseki_url)
 
     def download(self):
+        """Method returning Streaming Response from instance download request"""
         workbook = Workbook()
         workbook.remove(workbook.active)
         for mapping in self.request.selected_mappings:
@@ -77,14 +80,14 @@ class DownloadManager:
 
             except Exception as error:
                 logger.error(str(error))
-                raise HTTPException(status_code=500, detail=f"Primary key is not selected in the {mapping.query}")
+                raise HTTPException(status_code=500, detail=f"Primary key is not selected in the {mapping.query}") from error
             
             try:
                 self.sparql_client.setQuery(query)
                 ret = self.sparql_client.queryAndConvert()
             except SPARQLExceptions.QueryBadFormed as error:
                 logger.error(str(error))
-                raise HTTPException(status_code=500, detail=f"Bad query")
+                raise HTTPException(status_code=500, detail=f"Bad query") from error
 
             content = ret.decode()
 
@@ -113,14 +116,15 @@ class DownloadManager:
                                  , headers=headers)
 
     def check_valid_mapping(self, mapping: MappingEntry, query: str):
-        for not_permitted_keyword in ['INSERT', 'DELETE', 'LOAD', 'CLEAR', 'CONSTRUCT']:
+        """Method checking validity of MappingEntry query"""
+        keys = ['INSERT', 'DELETE', 'LOAD', 'CLEAR', 'CONSTRUCT']
+        for not_permitted_keyword in keys:
             if not_permitted_keyword in query:
-                raise HTTPException(status_code=500, detail=f"The mapping {mapping.query} not permitted actions: "
-                                                            f"'INSERT', 'DELETE', 'LOAD', 'CLEAR', 'CONSTRUCT'")
+                raise HTTPException(status_code=500, detail=f"The mapping {mapping.query} not permitted actions: {keys}")
 
 
 def save_workbook_to_memory(workbook):
-    from io import BytesIO
+    """Function saving workbook to memory"""
     stream = BytesIO()
     workbook.save(stream)
     stream.seek(0)
