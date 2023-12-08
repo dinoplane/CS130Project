@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: Source: page.js</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <h1 class="page-title">Source: page.js</h1>
+
+      <section>
+        <article>
+          <pre class="prettyprint source linenums"><code>/**
+ * @module Home
+ */
+
+/**
+ * @global
+ * @typedef {Object} Entry
+ * @description A mapping entry used to query the knowledge base
+ * @property {int} id - The mapping id
+ * @property {String} name - The mapping name
+ * @property {String} query - The mapping query
+ * @property {String} date - The date created
+ */
+
+'use client';
+
+import styles from './page.module.css';
+import { useState } from 'react';
+
+import MappingManager from './mapping_manager';
+import ExcelHandler from './excelhandler';
+import Header from './header';
+import MappingTable from './mapping_table';
+import NotifDialog from './notifdialog';
+
+/**
+ * @global
+ * @constant
+ * @description an instance of MappingManager
+ */
+const mappingManager = new MappingManager();
+
+/**
+ * @global
+ * @constant
+ * @description an instance of ExcelHandler
+ */
+const excelHandler = new ExcelHandler();
+
+/**
+ * @class
+ *
+ * The interface of the webapp.
+ *
+ * @param {Boolean} hasNotif whether or not there is a notification
+ * @param {Boolean} notifMsg the notification message
+ * @param {Boolean} notifError whether or not the notification is an error
+ *
+ * @param {Boolean} showTable whether or not the mapping table should be shown
+ * @param {String} fusekiUrl the url of the Fuseki KB
+ *
+ * @returns {ReactNode} the rendered interface
+ */
+export default function Home() {
+    const [hasNotif, setHasNotif] = useState(false);
+    const [notifMsg, setNotifMsg] = useState('');
+    const [notifError, setNotifError] = useState(false);
+
+    const [showTable, setShowTable] = useState(false);
+    const [fusekiUrl, setFusekiUrl] = useState('');
+
+    /**
+     * @method closeNotifCallback
+     * @description Closes the notification.
+     */
+    const closeNotifCallback = () => {
+        setHasNotif(false);
+    };
+
+
+    /**
+     * @method handleNotifCallback
+     * @description Called when there is a notification.
+     *
+     * @param {String} msg the notification message
+     * @param {Boolean} isError whether or not the notification is an error
+     */
+    const handleNotifCallback = (msg, isError = false) => {
+        setHasNotif(true);
+        setNotifMsg(msg);
+        setNotifError(isError);
+    };
+
+    /**
+     * @method connectToFuseki
+     * @description Validates and connects to the Fuseki KB provided by the url.
+     * Prompts the fetching of mappings on success.
+     *
+     * @param {String} url the url of the Fuseki KB
+     * @returns {Boolean} true on success, false otherwise
+     */
+    async function connectToFuseki(url) {
+        if (url == '') {
+            console.log('HAI');
+            handleNotifCallback('Url cannot be empty.', true);
+            return false;
+        }
+
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        var raw = JSON.stringify({
+            fuseki_url: url,
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+
+        let success = fetch(
+            'http://0.0.0.0:8000/excel-interface/operations/check-connection',
+            requestOptions
+        )
+            .then((response) => {
+                if (response.ok) {
+                    mappingManager.setFusekiUrl(url);
+                    excelHandler.setFusekiUrl(url);
+                    setShowTable(true);
+                    return true;
+                }
+                throw new Error('Something went wrong');
+            })
+            .then(() => {
+                handleNotifCallback('Connected!', false);
+                setFusekiUrl(url);
+                return true;
+            })
+            .catch(() => {
+                handleNotifCallback("Can't connect to " + url, true);
+                return false;
+            });
+        return success;
+    }
+
+    return (
+        &lt;main className={styles.main}>
+            &lt;div className={styles.maindiv}>
+                &lt;Header connectCallback={connectToFuseki} />
+                {showTable ? (
+                    &lt;MappingTable
+                        mappings={[]}
+                        fusekiUrl={fusekiUrl}
+                        mappingManager={mappingManager}
+                        excelHandler={excelHandler}
+                        notifCallback={handleNotifCallback}
+                    />
+                ) : (
+                    &lt;p>Nothing to see here!&lt;/p>
+                )}
+            &lt;/div>
+            {hasNotif &amp;&amp; (
+                &lt;NotifDialog
+                    closeNotifCallback={closeNotifCallback}
+                    notifMsg={notifMsg}
+                    notifError={notifError}
+                />
+            )}
+        &lt;/main>
+    );
+}
+</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Modules</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Classes</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Header.ConnectDialog.html">ConnectDialog</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li>
+          <a href="module-MappingTable.UIMappingRow.html">UIMappingRow</a>
+        </li>
+        <li><a href="module-MappingTable-UINewRow.html">UINewRow</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Global</h3>
+      <ul>
+        <li><a href="global.html#excelHandler">excelHandler</a></li>
+        <li><a href="global.html#getDateTodayString">getDateTodayString</a></li>
+        <li><a href="global.html#mappingManager">mappingManager</a></li>
+      </ul>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Dec 08
+      2023 12:16:34 GMT-0800 (Pacific Standard Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

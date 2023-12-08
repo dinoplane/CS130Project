@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: Class: UIMappingRow</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <h1 class="page-title">Class: UIMappingRow</h1>
+
+      <section>
+        <header>
+          <h2>
+            <span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"
+              ><a href="module-MappingTable.html">MappingTable</a>.</span
+            >UIMappingRow<span class="signature"
+              >(rowCheckboxCallback, mapping, isSelected)</span
+            ><span class="type-signature"> &rarr; {ReactNode}</span>
+          </h2>
+
+          <div class="class-description">
+            A selectable row of a table displaying the fields of a mapping
+            entry.
+          </div>
+        </header>
+
+        <article>
+          <div class="container-overview">
+            <h2>Constructor</h2>
+
+            <h4 class="name" id="UIMappingRow">
+              <span class="type-signature"></span>new UIMappingRow<span
+                class="signature"
+                >(rowCheckboxCallback, mapping, isSelected)</span
+              ><span class="type-signature"> &rarr; {ReactNode}</span>
+            </h4>
+
+            <h5>Parameters:</h5>
+
+            <table class="params">
+              <thead>
+                <tr>
+                  <th>Name</th>
+
+                  <th>Type</th>
+
+                  <th class="last">Description</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="name"><code>rowCheckboxCallback</code></td>
+
+                  <td class="type">
+                    <span class="param-type">Callback</span>
+                  </td>
+
+                  <td class="description last">
+                    a callback called when the checkbox is toggled
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="name"><code>mapping</code></td>
+
+                  <td class="type">
+                    <span class="param-type"
+                      ><a href="global.html#Entry">Entry</a></span
+                    >
+                  </td>
+
+                  <td class="description last">the mapping entry to display</td>
+                </tr>
+
+                <tr>
+                  <td class="name"><code>isSelected</code></td>
+
+                  <td class="type">
+                    <span class="param-type">Boolean</span>
+                  </td>
+
+                  <td class="description last">
+                    whether or not the row is selected
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <dl class="details">
+              <dt class="tag-source">Source:</dt>
+              <dd class="tag-source">
+                <ul class="dummy">
+                  <li>
+                    <a href="mapping_table.js.html">mapping_table.js</a>,
+                    <a href="mapping_table.js.html#line29">line 29</a>
+                  </li>
+                </ul>
+              </dd>
+            </dl>
+
+            <h5>Returns:</h5>
+
+            <div class="param-desc">
+              a component that renders an entry row of the mapping table.
+            </div>
+
+            <dl>
+              <dt>Type</dt>
+              <dd>
+                <span class="param-type">ReactNode</span>
+              </dd>
+            </dl>
+          </div>
+
+          <h3 class="subsection-title">Methods</h3>
+
+          <h4 class="name" id=".formatQuery">
+            <span class="type-signature">(static) </span>formatQuery<span
+              class="signature"
+              >(query)</span
+            ><span class="type-signature"> &rarr; {String}</span>
+          </h4>
+
+          <div class="description">
+            Formats the mapping query into a readable format
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>query</code></td>
+
+                <td class="type">
+                  <span class="param-type">String</span>
+                </td>
+
+                <td class="description last">the mapping query</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="mapping_table.js.html">mapping_table.js</a>,
+                  <a href="mapping_table.js.html#line42">line 42</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            a formatted query used for display in the row
+          </div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">String</span>
+            </dd>
+          </dl>
+
+          <h4 class="name" id=".onInputSubmit">
+            <span class="type-signature">(static) </span>onInputSubmit<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            Called when the user clicks on the submit button.
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="mapping_table.js.html">mapping_table.js</a>,
+                  <a href="mapping_table.js.html#line105">line 105</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id=".onSelectChange">
+            <span class="type-signature">(static) </span>onSelectChange<span
+              class="signature"
+              >(e)</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">Called when the checkbox is toggled.</div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>e</code></td>
+
+                <td class="type">
+                  <span class="param-type">HTMLEvent</span>
+                </td>
+
+                <td class="description last">
+                  the event of the checkbox toggle
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="mapping_table.js.html">mapping_table.js</a>,
+                  <a href="mapping_table.js.html#line31">line 31</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+        </article>
+      </section>
+    </div>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Modules</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Classes</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Header.ConnectDialog.html">ConnectDialog</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li>
+          <a href="module-MappingTable.UIMappingRow.html">UIMappingRow</a>
+        </li>
+        <li><a href="module-MappingTable-UINewRow.html">UINewRow</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Global</h3>
+      <ul>
+        <li><a href="global.html#excelHandler">excelHandler</a></li>
+        <li><a href="global.html#getDateTodayString">getDateTodayString</a></li>
+        <li><a href="global.html#mappingManager">mappingManager</a></li>
+      </ul>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Dec 08
+      2023 12:16:34 GMT-0800 (Pacific Standard Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

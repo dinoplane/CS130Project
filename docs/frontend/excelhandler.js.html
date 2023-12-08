@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: Source: excelhandler.js</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <h1 class="page-title">Source: excelhandler.js</h1>
+
+      <section>
+        <article>
+          <pre class="prettyprint source linenums"><code>/**
+ * @module ExcelHandler
+ */
+
+/**
+ * A class that makes API calls related to Excel processing to the backend.
+ */
+export default class ExcelHandler {
+    /**
+     * @constructor
+     * @property {String} fusekiDispatchUrl the url of the upload/download endpoint
+     * @property {String} fusekiKBUrl the url of the Fuseki knowledge base url
+     */
+    constructor() {
+        this.fusekiDispatchUrl =
+            'http://0.0.0.0:8000/excel-interface/operations/';
+        this.fusekiKBUrl = '';
+    }
+
+    /**
+     * Sets the knowledge base url.
+     * @param {String} url the url of the Fuseki knowledge base
+     */
+    setFusekiUrl(url) {
+        this.fusekiKBUrl = url;
+    }
+
+    /**
+     * Downloads an Excel sheet from the backend representing a view of
+     * the Fuseki KB based off the selected mappings.
+     *
+     * @param {EntryData[]} entries the selected mapping entries
+     * @returns {Excel} an Excel sheet based off selected mappings
+     */
+    async downloadExcel(entries) {
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        const raw = JSON.stringify({
+            fuseki_url: this.fusekiKBUrl,
+            selected_mappings: entries.map((entry) => {
+                return {
+                    fuseki_url: this.fusekiKBUrl,
+                    id: entry.data.id,
+                    name: entry.data.name,
+                    query: entry.data.query,
+                    date: entry.data.date,
+                };
+            }),
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+        const success = fetch(
+            this.fusekiDispatchUrl + 'download',
+            requestOptions
+        )
+            .then((response) => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Something went wrong');
+            })
+            .then((responseBlob) => {
+                const d = new Date();
+                let text = d.toTimeString().substring(0, 8);
+                const fileName = text + '-excel.xlsx';
+
+                const aElement = document.createElement('a');
+                aElement.setAttribute('download', fileName);
+                const href = URL.createObjectURL(responseBlob);
+                aElement.href = href;
+                aElement.setAttribute('target', '_blank');
+                aElement.click();
+                URL.revokeObjectURL(href);
+                return true;
+            })
+            .catch((error) => {
+                console.log(error);
+                return false;
+            });
+        return success;
+    }
+
+    /**
+     * Uploads an Excel file to the backend to update the
+     * knowledge base based on changes made on the Excel sheet.
+     *
+     * Note the the Excel sheet should be downloaded from the webapp first.
+     *
+     * @param {Excel} selectedFile a file with the desired modifications to the KB
+     * @returns {Boolean} true on success, false otherwise
+     */
+    async uploadExcel(selectedFile) {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+
+        var requestOptions = {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow',
+        };
+
+        const success = fetch(this.fusekiDispatchUrl + 'upload', requestOptions)
+            .then((response) => {
+                if (response.ok) {
+                    return true;
+                }
+                throw new Error('Something went wrong');
+            })
+            .catch((error) => {
+                console.log(error);
+                return false;
+            });
+        return success;
+    }
+}
+</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Modules</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Classes</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Header.ConnectDialog.html">ConnectDialog</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li>
+          <a href="module-MappingTable.UIMappingRow.html">UIMappingRow</a>
+        </li>
+        <li><a href="module-MappingTable-UINewRow.html">UINewRow</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Global</h3>
+      <ul>
+        <li><a href="global.html#excelHandler">excelHandler</a></li>
+        <li><a href="global.html#getDateTodayString">getDateTodayString</a></li>
+        <li><a href="global.html#mappingManager">mappingManager</a></li>
+      </ul>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Dec 08
+      2023 12:16:34 GMT-0800 (Pacific Standard Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

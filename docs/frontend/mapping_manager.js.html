@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: Source: mapping_manager.js</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <h1 class="page-title">Source: mapping_manager.js</h1>
+
+      <section>
+        <article>
+          <pre class="prettyprint source linenums"><code>/**
+ * @module MappingManager
+ */
+
+/**
+ * A class that makes API calls related to mapping manipulation to the backend.
+ */
+export default class MappingManager {
+    /**
+     * @constructor
+     * @property {String} mappingDbUrl the url of the upload/download endpoint
+     * @property {String} fusekiKBUrl the url of the Fuseki knowledge base url
+     */
+    constructor() {
+        this.mappingDbUrl =
+            'http://0.0.0.0:8000/excel-interface/mapping-database/';
+        this.fusekiKBUrl = '';
+    }
+
+    /**
+     * Sets the knowledge base url.
+     * @param {String} url the url of the Fuseki knowledge base
+     */
+    setFusekiUrl(url) {
+        this.fusekiKBUrl = url;
+    }
+
+    /**
+     * Creates a mapping entry on the backend with the given name and query.
+     * @param {EntryData} entry a mapping entry with only the name and query
+     * @returns {Entry} a mapping entry with an id number and date string
+     */
+    async createMapping(entry) {
+        let success = true;
+
+        success = fetch(this.mappingDbUrl + 'create', {
+            method: 'POST',
+            headers: {
+                accept: ' application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                fuseki_url: this.fusekiKBUrl,
+                name: entry.name,
+                query: entry.query,
+            }),
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Something went wrong');
+            })
+            .catch((error) => {
+                console.log(error);
+                return false;
+            });
+        console.log(success);
+        return success;
+    }
+
+    /**
+     * Deletes the selected mapping entries from the backend.
+     * @param {EntryData[]} entries a list of mapping entries to be deleted
+     * @returns {Boolean} true on success, false otherwise
+     */
+    async deleteMapping(entries) {
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        const raw = JSON.stringify({
+            ids: entries.map((entry) => {
+                return entry.data.id;
+            }),
+        });
+
+        var requestOptions = {
+            method: 'DELETE',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+
+        let success = fetch(this.mappingDbUrl + 'delete', requestOptions)
+            .then((response) => {
+                if (response.ok) {
+                    return true;
+                }
+                throw new Error('Something went wrong');
+            })
+            .catch((error) => {
+                console.log(error);
+                return false;
+            });
+        return success;
+    }
+
+    /**
+     * Fetches mappings from backend for display.
+     *
+     * @returns {Entry[]} a list of mapping entries for the specific KB
+     */
+    async requestMapping() {
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+
+        var raw = JSON.stringify({
+            fuseki_url: this.fusekiKBUrl,
+        });
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
+        };
+        console.log('fetching ' + this.fusekiKBUrl);
+        let success = await fetch(this.mappingDbUrl + 'fetch', requestOptions)
+            .then((response) => {
+                console.log(response);
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Something went wrong');
+            })
+            .then((responseJson) => {
+                console.log(responseJson);
+                return responseJson;
+            })
+            .catch((error) => {
+                console.log(error);
+                return false;
+            });
+        console.log(success);
+        return success;
+    }
+}
+</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Modules</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Classes</h3>
+      <ul>
+        <li><a href="module-DropdownMenu.html">DropdownMenu</a></li>
+        <li><a href="module-ExcelHandler.html">ExcelHandler</a></li>
+        <li><a href="module-Header.html">Header</a></li>
+        <li><a href="module-Header.ConnectDialog.html">ConnectDialog</a></li>
+        <li><a href="module-Home.html">Home</a></li>
+        <li><a href="module-MappingManager.html">MappingManager</a></li>
+        <li><a href="module-MappingTable.html">MappingTable</a></li>
+        <li>
+          <a href="module-MappingTable.UIMappingRow.html">UIMappingRow</a>
+        </li>
+        <li><a href="module-MappingTable-UINewRow.html">UINewRow</a></li>
+        <li><a href="module-NotifDialog.html">NotifDialog</a></li>
+        <li><a href="module-Toolbar.html">Toolbar</a></li>
+      </ul>
+      <h3>Global</h3>
+      <ul>
+        <li><a href="global.html#excelHandler">excelHandler</a></li>
+        <li><a href="global.html#getDateTodayString">getDateTodayString</a></li>
+        <li><a href="global.html#mappingManager">mappingManager</a></li>
+      </ul>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Dec 08
+      2023 12:16:34 GMT-0800 (Pacific Standard Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>
