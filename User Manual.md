@@ -46,13 +46,17 @@ Requirements:
 5. Rerun the tests with `npm run test` 
   
 6. Run `npm run start` to start the client. It should be running on `localhost:3000`
-### Backend
 
+### Backend
+Link to Github Action (CI Script): [here](https://github.com/dinoplane/CS130Project/blob/main/.github/workflows/python-package.yml)
+- Trigger the build by rerunning the action
+    
 1. Navigate into the `backend` directory.
 
 2. Open a terminal and run `pip install -r requirements.txt`.
 
 3. Navigate into the `backend/app` directory.
+
 4. Mark `backend` as sources root. In terminal execute `export PYTHONPATH="${PYTHONPATH}:your-source/CS130Project/backend"
 `
 5. Run `uvicorn main:app --reload`
