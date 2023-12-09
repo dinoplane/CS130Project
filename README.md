@@ -41,7 +41,7 @@ Requirements:
 6. Run `npm run start` to start the client. It should be running on `localhost:3000`
 
 ### Backend
-Link to Github Action: [here](https://github.com/dinoplane/CS130Project/blob/main/.github/workflows/python-package.yml)
+Link to Github Action(Ci Script): [here](https://github.com/dinoplane/CS130Project/blob/main/.github/workflows/python-package.yml)
 - Trigger the build by rerunning the action
 
 1. Navigate into the `backend` directory.
