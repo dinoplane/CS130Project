@@ -23,8 +23,8 @@ describe('ConnectDialog Component',  () => {
       const inputElement = getByPlaceholderText('Enter Fuseki Url');
       const submitButton = getByText('SUBMIT');
   
-      expect(inputElement).toBeTruthy(); // Equivalent to jest-dom's toBeInTheDocument()
-      expect(submitButton).toBeTruthy(); // Equivalent to jest-dom's toBeInTheDocument()
+      expect(inputElement).toBeTruthy(); 
+      expect(submitButton).toBeTruthy();
   
       // Simulate user input and submit
       fireEvent.change(inputElement, { target: { value: 'http://example.com' } });
@@ -46,7 +46,7 @@ describe('ConnectDialog Component',  () => {
 
       const { getByPlaceholderText, getByText } = render(<Header connectCallback={connectCallbackMock} />);
   
-      expect(getByText('Excellent Interface')).toBeTruthy(); // Equivalent to jest-dom's toBeInTheDocument()
+      expect(getByText('Excellent Interface')).toBeTruthy();
 
     });
   

@@ -51,7 +51,6 @@ describe('MappingManager', () => {
     const entries = [
       { data: { id: 1 } },
       { data: { id: 2 } },
-      // Add more entries as needed
     ];
 
     // Mock the successful response for deleteMapping
@@ -67,7 +66,6 @@ describe('MappingManager', () => {
     const entries = [
       { data: { id: 1 } },
       { data: { id: 2 } },
-      // Add more entries as needed
     ];
 
     // Mock an error response for deleteMapping

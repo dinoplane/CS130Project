@@ -57,7 +57,6 @@ jest.mock('../src/app/mapping_manager', () => ({
     fireEvent.click(getByText('SUBMIT'));
     await waitFor(() => {
         // Check if the state has been updated or components are rendered as expected
-        // You can use the testing library queries to make assertions
         expect(getAllByText('Connected!')).toBeTruthy();
       });
 
