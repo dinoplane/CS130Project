@@ -13,7 +13,7 @@ export default class MappingManager {
      */
     constructor() {
         this.mappingDbUrl =
-            'http://0.0.0.0:8000/excel-interface/mapping-database/';
+            process.env.BACKEND_URL + '/excel-interface/mapping-database/';
         this.fusekiKBUrl = '';
     }
 

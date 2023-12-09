@@ -17,9 +17,11 @@ There are two types of users:
 - download an Excel sheet from a set of selected mappings
 - modify and upload the Excel sheet, whose changes are reflected on the database
 
-## Build Instructions
+## Build/Deploy Instructions
 
 ### Frontend
+
+Link to Github Action (CI Script): [here](https://github.com/dinoplane/CS130Project/blob/main/.github/workflows/node.js.yml)
 
 Requirements:
 
@@ -29,6 +31,10 @@ Requirements:
 
 2. Open a terminal and run `npm ci`.
 
-3. Run `npm run dev`.
+3. Make sure to edit the `BACKEND_URL` environment variable to the url of where the backend is hosted (no `/` at the end).
+
+4. Run `npm run build` to build the app.
+
+5. Run `npm run start` to start the client. It should be running on `localhost:3000`
 
 ### Backend

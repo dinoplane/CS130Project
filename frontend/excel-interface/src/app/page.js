@@ -110,7 +110,8 @@ export default function Home() {
         };
 
         let success = fetch(
-            'http://0.0.0.0:8000/excel-interface/operations/check-connection',
+            process.env.BACKEND_URL +
+                '/excel-interface/operations/check-connection',
             requestOptions
         )
             .then((response) => {

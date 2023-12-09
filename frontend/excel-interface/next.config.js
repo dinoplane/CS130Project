@@ -28,7 +28,9 @@ const nextConfig = {
         return config;
     },
     reactStrictMode: false,
-    plugins: ['plugins/markdown'],
+    env: {
+        BACKEND_URL: process.env.BACKEND_URL,
+    },
 };
 
 module.exports = nextConfig;

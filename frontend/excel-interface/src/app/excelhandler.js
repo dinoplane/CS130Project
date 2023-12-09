@@ -13,7 +13,7 @@ export default class ExcelHandler {
      */
     constructor() {
         this.fusekiDispatchUrl =
-            'http://0.0.0.0:8000/excel-interface/operations/';
+            process.env.BACKEND_URL + '/excel-interface/operations/';
         this.fusekiKBUrl = '';
     }
 
