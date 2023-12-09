@@ -34,6 +34,7 @@ export function ConnectDialog({
                 if (response) {
                     return true;
                 }
+                console.log(response)
                 throw new Error('Something went wrong');
             })
             .then(() => {
